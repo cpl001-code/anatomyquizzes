@@ -53,7 +53,6 @@ a { color: inherit; }
 .wm-name { font: 800 24px/1 var(--font); letter-spacing: -0.01em; }
 .wm-dash { font-size: 19px; white-space: pre; }
 .wm-tag { font: italic 400 19px/1 var(--font); }
-.where { justify-self: end; max-width: 100%; padding-right: 8px; color: var(--muted); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ---- shell: menu + main ---- */
 .shell { display: grid; grid-template-columns: var(--menu) minmax(0, 1fr); min-height: calc(100vh - var(--bar)); min-height: calc(100dvh - var(--bar)); }
@@ -159,7 +158,6 @@ dialog p { margin: 0 0 12px; }
   .menu-inner { width: 100%; }
   .shell.menu-closed .menu { transform: translateX(-104%); }
   .scrim { display: block; position: fixed; inset: var(--bar) 0 0 0; z-index: 20; border: 0; padding: 0; background: rgba(0, 0, 0, 0.3); }
-  .where { display: none; }
   main { padding: 0 0 24px; }
   .home { padding: 0 18px; }
   .quiz { flex-direction: column; gap: 0; }
@@ -179,7 +177,6 @@ dialog p { margin: 0 0 12px; }
     <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 5.5h16M3 11h16M3 16.5h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
   </button>
   <a class="wordmark" id="home-link" href="#"><span class="wm-name">Free Anatomy Quizzes</span><span class="wm-dash"> &ndash; </span><em class="wm-tag">Medical education shouldn't be so expensive</em></a>
-  <span class="where" id="where"></span>
 </header>
 
 <div class="shell booting" id="shell">
@@ -371,7 +368,6 @@ dialog p { margin: 0 0 12px; }
     if (!base) return showHome("That quiz could not be opened.");
     $("home").hidden = true;
     $("quiz").hidden = false;
-    $("where").textContent = entry.nav.join(" / ");
     document.title = entry.label + " | Free Anatomy Quizzes";
     markCurrent(entry.slug);
     var p = $("panel");
@@ -626,7 +622,6 @@ dialog p { margin: 0 0 12px; }
     Q = null;
     $("quiz").hidden = true;
     $("home").hidden = false;
-    $("where").textContent = "";
     document.title = "Free Anatomy Quizzes";
     markCurrent(null);
     var n = $("home-problem");
@@ -646,7 +641,16 @@ dialog p { margin: 0 0 12px; }
   $("browse").addEventListener("click", function () { setMenu(true, true); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && PHONE.matches && menuOpen()) setMenu(false); });
   PHONE.addEventListener("change", function () { setMenu(PHONE.matches ? false : store("aq.menu") !== "closed"); });
+  // The About button opens about.html when the site has one, otherwise the
+  // short credits box below.
+  var aboutPage = false;
+  try {
+    fetch("about.html", { cache: "no-cache" }).then(function (r) {
+      aboutPage = r.ok && String(r.headers.get("content-type") || "").indexOf("text/html") === 0;
+    }).catch(function () {});
+  } catch (e) {}
   $("about-btn").addEventListener("click", function () {
+    if (aboutPage) { location.href = "about.html"; return; }
     var d = $("about");
     if (PHONE.matches) setMenu(false);
     if (d.showModal) d.showModal(); else d.setAttribute("open", "");
