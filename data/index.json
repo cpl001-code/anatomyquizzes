@@ -1,0 +1,14 @@
+{
+ "generated": "2026-11-23T19:16:05+00:00",
+ "scenes": [
+  {
+   "id": "pilot_scapular_posterior_arm_muscles_posterior",
+   "title": "Scapular and posterior arm muscles (posterior)",
+   "region": "upper_limb",
+   "lab": "Shoulder Joint, Scapular Muscles, and Posterior Arm",
+   "view": "posterior",
+   "structures": 7,
+   "path": "scenes/pilot_scapular_posterior_arm_muscles_posterior"
+  }
+ ]
+}
