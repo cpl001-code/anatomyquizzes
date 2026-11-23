@@ -1,5 +1,47 @@
 {
- "generated": "2026-11-23T19:16:05+00:00",
+ "generated": "2026-11-23T20:01:58+00:00",
+ "menu": {
+  "systems": [
+   "Skeletal System",
+   "Joints and Ligaments",
+   "Muscular System",
+   "Nervous System",
+   "Cardiovascular System",
+   "Lymphatic System",
+   "Respiratory System",
+   "Digestive System",
+   "Urinary System",
+   "Reproductive System",
+   "Endocrine System"
+  ],
+  "areas": [
+   "Head and Neck",
+   "Upper Body",
+   "Thorax",
+   "Abdomen",
+   "Pelvis",
+   "Back",
+   "Lower Body"
+  ],
+  "parts": [
+   "Shoulder",
+   "Shoulder and Arm",
+   "Axilla",
+   "Arm",
+   "Elbow",
+   "Forearm",
+   "Wrist",
+   "Hand",
+   "Hip",
+   "Gluteal Region",
+   "Thigh",
+   "Knee",
+   "Leg",
+   "Ankle",
+   "Foot"
+  ],
+  "show_empty_systems": true
+ },
  "scenes": [
   {
    "id": "pilot_scapular_posterior_arm_muscles_posterior",
@@ -7,6 +49,11 @@
    "region": "upper_limb",
    "lab": "Shoulder Joint, Scapular Muscles, and Posterior Arm",
    "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Upper Body",
+    "Shoulder and Arm"
+   ],
    "structures": 7,
    "path": "scenes/pilot_scapular_posterior_arm_muscles_posterior"
   }
