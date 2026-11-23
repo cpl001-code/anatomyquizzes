@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-23T21:18:40+00:00",
+ "generated": "2026-11-23T21:40:42+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -43,6 +43,20 @@
   "show_empty_systems": true
  },
  "scenes": [
+  {
+   "id": "ul_hand_bones_carpals_metacarpals_anterior",
+   "title": "Carpal bones and metacarpals (palmar)",
+   "region": "upper_limb",
+   "lab": "Osteology of the Upper Limb",
+   "view": "anterior",
+   "nav": [
+    "Skeletal System",
+    "Upper Body",
+    "Hand"
+   ],
+   "structures": 13,
+   "path": "scenes/ul_hand_bones_carpals_metacarpals_anterior"
+  },
   {
    "id": "pilot_scapular_posterior_arm_muscles_posterior",
    "title": "Scapular and posterior arm muscles (posterior)",
