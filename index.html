@@ -315,7 +315,7 @@ dialog p { margin: 0 0 12px; }
         var parts = areas.get(areaName);
         var area = branch("area", areaName, few);
         sorted(parts, menu.parts).forEach(function (partName) {
-          var list = parts.get(partName).slice().sort(function (a, b) { return String(a.title).localeCompare(String(b.title)); });
+          var list = parts.get(partName).slice();   // already in study order: the build sorts data/index.json
           if (list.length === 1) {
             list[0].label = partName;
             area.appendChild(leaf(list[0], partName));

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-23T21:51:33+00:00",
+ "generated": "2026-11-23T21:59:37+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -100,6 +100,20 @@
    "path": "scenes/ul_anterior_arm_muscles_anterior"
   },
   {
+   "id": "ul_anterior_forearm_superficial_muscles_anterior",
+   "title": "Superficial muscles of the anterior forearm (anterior)",
+   "region": "upper_limb",
+   "lab": "Forearm, Cubital Fossa, and Elbow Joint",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Upper Body",
+    "Forearm"
+   ],
+   "structures": 6,
+   "path": "scenes/ul_anterior_forearm_superficial_muscles_anterior"
+  },
+  {
    "id": "ul_anterior_forearm_deep_muscles_anterior",
    "title": "Deep muscles of the anterior forearm (anterior)",
    "region": "upper_limb",
@@ -126,20 +140,6 @@
    ],
    "structures": 10,
    "path": "scenes/ul_posterior_forearm_muscles_posterior"
-  },
-  {
-   "id": "ul_anterior_forearm_superficial_muscles_anterior",
-   "title": "Superficial muscles of the anterior forearm (anterior)",
-   "region": "upper_limb",
-   "lab": "Forearm, Cubital Fossa, and Elbow Joint",
-   "view": "anterior",
-   "nav": [
-    "Muscular System",
-    "Upper Body",
-    "Forearm"
-   ],
-   "structures": 6,
-   "path": "scenes/ul_anterior_forearm_superficial_muscles_anterior"
   }
  ]
 }
