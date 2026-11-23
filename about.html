@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
+<title>About | Free Anatomy Quizzes</title>
+<meta name="description" content="Why Free Anatomy Quizzes is free, what medical school costs, and how the images are made.">
+<link rel="preload" href="fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='7'/%3E%3C/svg%3E">
+<style>
+/* Same direction as the quiz page: white, black type, Source Sans 3, no
+   footer. The one feature here is the bill: what a medical student pays,
+   set as a plain ledger with the amounts in a right-hand column. */
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 200 900; font-display: swap; src: url("fonts/source-sans-3-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: italic; font-weight: 200 900; font-display: swap; src: url("fonts/source-sans-3-latin-wght-italic.woff2") format("woff2"); }
+:root {
+  color-scheme: light;
+  --page: #ffffff;
+  --ink: #000000;
+  --muted: #5c6670;
+  --mist: #f4f5f6;
+  --line: #dcdfe3;
+  --bar: 56px;
+  --font: "Source Sans 3", "Source Sans Pro", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--page); color: var(--ink); font: 400 19px/1.55 var(--font); -webkit-text-size-adjust: 100%; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+.bar { position: sticky; top: 0; z-index: 30; height: var(--bar); display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 10px; padding: 0 10px; background: var(--page); border-bottom: 1px solid var(--line); }
+.back { justify-self: start; padding: 8px 10px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.back:hover { background: var(--mist); }
+.wordmark { display: flex; align-items: baseline; justify-content: center; min-width: 0; text-decoration: none; white-space: nowrap; }
+.wm-name { font: 800 24px/1 var(--font); letter-spacing: -0.01em; }
+.wm-dash { font-size: 19px; white-space: pre; }
+.wm-tag { font: italic 400 19px/1 var(--font); }
+
+main { max-width: 43rem; margin: 0 auto; padding: 56px 24px 96px; }
+h1 { font: 800 clamp(34px, 6vw, 52px)/1.04 var(--font); letter-spacing: -0.02em; margin: 0 0 22px; text-wrap: balance; }
+h2 { font: 800 26px/1.15 var(--font); letter-spacing: -0.01em; margin: 64px 0 14px; }
+p { margin: 0 0 18px; }
+.lead { font-size: 22px; line-height: 1.45; }
+
+/* the bill */
+.bill { margin: 34px 0 0; }
+.bill h3 { font: 700 17px/1.3 var(--font); margin: 30px 0 0; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+.bill dl { margin: 0; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.row dt { margin: 0; }
+.row dt small { display: block; color: var(--muted); font-size: 15px; line-height: 1.35; }
+.row dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.src { color: var(--muted); font-size: 15px; line-height: 1.4; margin: 8px 0 0; }
+.note { color: var(--muted); font-size: 16px; margin-top: 22px; }
+
+.fix { margin-top: 64px; padding: 22px 24px; background: var(--mist); border-radius: 10px; }
+.fix h2 { margin-top: 0; }
+.fix p:last-child { margin-bottom: 0; }
+.credits { color: var(--muted); font-size: 16px; }
+.credits h2 { color: var(--ink); }
+
+@media (max-width: 760px) {
+  body { font-size: 18px; }
+  .bar { grid-template-columns: auto minmax(0, 1fr); }
+  .wordmark { flex-direction: column; align-items: center; gap: 3px; }
+  .wm-name { font-size: 19px; }
+  .wm-dash { display: none; }
+  .wm-tag { font-size: clamp(11px, 3.4vw, 14px); }
+  main { padding: 34px 18px 72px; }
+  .lead { font-size: 20px; }
+  h2 { margin-top: 48px; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="back" href="index.html">&larr; Quizzes</a>
+  <a class="wordmark" href="index.html"><span class="wm-name">Free Anatomy Quizzes</span><span class="wm-dash"> &ndash; </span><em class="wm-tag">Medical education shouldn't be so expensive</em></a>
+</header>
+
+<main>
+  <h1>Medical education shouldn't be so expensive.</h1>
+  <p class="lead">This site is free. Here is what a medical student in the United States is already paying.</p>
+
+  <section class="bill" aria-label="What medical school costs">
+    <h3>Tuition</h3>
+    <dl>
+      <div class="row"><dt>One year at a public school, in state<small>Median tuition, fees and health insurance, 2025&ndash;26</small></dt><dd>$43,648</dd></div>
+      <div class="row"><dt>One year at a private school<small>Median tuition, fees and health insurance, 2025&ndash;26</small></dt><dd>$74,661</dd></div>
+      <div class="row"><dt>All four years at a public school<small>Median cost of attendance with living expenses, class of 2026</small></dt><dd>$297,745</dd></div>
+      <div class="row"><dt>All four years at a private school<small>Median cost of attendance with living expenses, class of 2026</small></dt><dd>$408,150</dd></div>
+    </dl>
+    <p class="src">Source: Association of American Medical Colleges, <a href="https://www.aamc.org/data/tuitionandstudentfees/">Tuition and Student Fees Reports</a> and the <a href="https://store.aamc.org/medical-student-education-debt-costs-and-loan-repayment-fact-card-for-the-class-of-2025.html">Debt, Costs, and Loan Repayment Fact Card</a> (October 2025).</p>
+
+    <h3>Getting in</h3>
+    <dl>
+      <div class="row"><dt>MCAT registration<small>2027 testing year</small></dt><dd>$360</dd></div>
+      <div class="row"><dt>AMCAS application, first school<small>2027 cycle</small></dt><dd>$180</dd></div>
+      <div class="row"><dt>Each school after the first<small>A 16-school list comes to $900, before each school's own secondary fee</small></dt><dd>$48</dd></div>
+    </dl>
+    <p class="src">Sources: AAMC, <a href="https://students-residents.aamc.org/register-mcat-exam/mcat-scheduling-fees">MCAT Scheduling Fees</a> and <a href="https://students-residents.aamc.org/financial-aid/article/the-cost-of-applying-to-medical-school/">The Cost of Applying to Medical School</a>.</p>
+
+    <h3>Licensing exams</h3>
+    <dl>
+      <div class="row"><dt>USMLE Step 1</dt><dd>$695</dd></div>
+      <div class="row"><dt>USMLE Step 2 CK</dt><dd>$695</dd></div>
+      <div class="row"><dt>USMLE Step 3</dt><dd>$955</dd></div>
+      <div class="row"><dt>All three</dt><dd>$2,345</dd></div>
+    </dl>
+    <p class="src">Source: NBME, <a href="https://www.nbme.org/examinees/united-states-medical-licensing-exam-usmle">USMLE fees for 2026 and 2027</a>.</p>
+
+    <h3>Study resources</h3>
+    <dl>
+      <div class="row"><dt>UWorld question bank for one Step exam<small>360 days of access; 30 days is $349</small></dt><dd>$579</dd></div>
+      <div class="row"><dt>Sketchy Medical<small>12 months</small></dt><dd>$449.99</dd></div>
+      <div class="row"><dt>AMBOSS Student Life<small>One payment, through the first year of residency</small></dt><dd>$1,199</dd></div>
+    </dl>
+    <p class="src">Sources: prices listed by <a href="https://medical.uworld.com/usmle/usmle-step-2-ck/">UWorld</a> (Step 2 CK), <a href="https://www.sketchy.com/explore/medical">Sketchy</a> and <a href="https://www.amboss.com/us/students/student-life">AMBOSS</a>, November 2026.</p>
+
+    <h3>Applying to residency</h3>
+    <dl>
+      <div class="row"><dt>Each of the first 30 programs in a specialty<small>ERAS, 2027 season</small></dt><dd>$11</dd></div>
+      <div class="row"><dt>Each program after that<small>40 programs in one specialty comes to $630</small></dt><dd>$30</dd></div>
+      <div class="row"><dt>USMLE transcript<small>Once per season</small></dt><dd>$70</dd></div>
+    </dl>
+    <p class="src">Source: AAMC, <a href="https://students-residents.aamc.org/applying-residency/article/fees-eras-residency-applications/">Fees for ERAS Residency Applications</a>.</p>
+
+    <p class="note">Fees change every year, and fee assistance exists for some of them. The links go to each organization's current numbers.</p>
+  </section>
+
+  <h2>Why I built this</h2>
+  <p>I'm a medical student. Anki is an invaluable resource for medical students, but for anatomy I found it super slow. The inspiration for this site came from a few online quizzes that made it really easy to learn structures quickly. There just weren't many of them, and the images were very low quality.</p>
+  <p>I wanted quizzes like that for the entire anatomy curriculum, with high-quality images.</p>
+
+  <h2>How the images are made</h2>
+  <p>I used Z-Anatomy, an open 3D atlas of the human body, to build a database of body parts and how they connect. I then wrote a program in Blender that renders anatomically correct images from that model, one group of structures at a time.</p>
+  <p>An image model adds the finer surface detail on top of each render: muscle fibers, tendon, the texture of bone. Every finished image is checked against the original render so that no structure moves or changes shape, and I review each one before it goes on the site.</p>
+
+  <section class="fix">
+    <h2>See a mistake?</h2>
+    <p>I have tried to personally verify the accuracy of every image. If you see an error, let me know and I will get it fixed.</p>
+    <p id="contact">Email <a href="mailto:colin.laird19@gmail.com">colin.laird19@gmail.com</a>.</p>
+    <p>These quizzes are for study. Check anything important against your course materials.</p>
+  </section>
+
+  <section class="credits">
+    <h2>Credits</h2>
+    <p>3D anatomy from <a href="https://github.com/Z-Anatomy/Models-of-human-anatomy">Z-Anatomy</a>, the libre 3D atlas of anatomy (CC BY-SA 4.0), which is built on BodyParts3D by The Database Center for Life Science (CC BY-SA 2.1 Japan). The images on this site are derived from those models and are shared under the same license, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+    <p>Rendered in Blender. Surface detail added with an image model. Set in Source Sans 3 (SIL Open Font License).</p>
+  </section>
+</main>
+</body>
+</html>
