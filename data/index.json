@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-23T21:16:55+00:00",
+ "generated": "2026-11-23T21:18:40+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -44,20 +44,6 @@
  },
  "scenes": [
   {
-   "id": "ul_hand_bones_carpals_metacarpals_anterior",
-   "title": "Carpal bones and metacarpals (palmar)",
-   "region": "upper_limb",
-   "lab": "Osteology of the Upper Limb",
-   "view": "anterior",
-   "nav": [
-    "Skeletal System",
-    "Upper Body",
-    "Hand"
-   ],
-   "structures": 13,
-   "path": "scenes/ul_hand_bones_carpals_metacarpals_anterior"
-  },
-  {
    "id": "pilot_scapular_posterior_arm_muscles_posterior",
    "title": "Scapular and posterior arm muscles (posterior)",
    "region": "upper_limb",
@@ -70,20 +56,6 @@
    ],
    "structures": 7,
    "path": "scenes/pilot_scapular_posterior_arm_muscles_posterior"
-  },
-  {
-   "id": "ul_anterior_arm_muscles_anterior",
-   "title": "Anterior arm muscles (anterior)",
-   "region": "upper_limb",
-   "lab": "Anterior Thorax, Axilla, and Anterior Arm",
-   "view": "anterior",
-   "nav": [
-    "Muscular System",
-    "Upper Body",
-    "Arm"
-   ],
-   "structures": 6,
-   "path": "scenes/ul_anterior_arm_muscles_anterior"
   }
  ]
 }
