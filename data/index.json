@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T19:23:21+00:00",
+ "generated": "2026-11-24T19:27:58+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -85,6 +85,20 @@
    ],
    "structures": 10,
    "path": "scenes/sys_hip_pelvis_ligaments_anterior"
+  },
+  {
+   "id": "sys_knee_ligaments_posterior",
+   "title": "Ligaments and menisci of the knee (posterior)",
+   "region": "lower_limb",
+   "lab": "Knee Joint",
+   "view": "posterior",
+   "nav": [
+    "Joints and Ligaments",
+    "Lower Body",
+    "Knee"
+   ],
+   "structures": 7,
+   "path": "scenes/sys_knee_ligaments_posterior"
   },
   {
    "id": "ul_pectoral_shoulder_superficial_muscles_anterior",
