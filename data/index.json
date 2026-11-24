@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-23T23:00:26+00:00",
+ "generated": "2026-11-24T15:16:19+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -24,6 +24,7 @@
    "Lower Body"
   ],
   "parts": [
+   "Chest and Shoulder",
    "Shoulder",
    "Shoulder and Arm",
    "Axilla",
@@ -70,6 +71,48 @@
    ],
    "structures": 14,
    "path": "scenes/ul_hand_bones_phalanges_anterior"
+  },
+  {
+   "id": "ul_pectoral_shoulder_superficial_muscles_anterior",
+   "title": "Superficial muscles of the pectoral region and shoulder (anterior)",
+   "region": "upper_limb",
+   "lab": "Anterior Thorax, Axilla, and Anterior Arm",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Upper Body",
+    "Chest and Shoulder"
+   ],
+   "structures": 4,
+   "path": "scenes/ul_pectoral_shoulder_superficial_muscles_anterior"
+  },
+  {
+   "id": "ul_pectoral_deep_axilla_muscles_anterior",
+   "title": "Deep muscles of the pectoral region and axilla (anterior)",
+   "region": "upper_limb",
+   "lab": "Anterior Thorax, Axilla, and Anterior Arm",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Upper Body",
+    "Chest and Shoulder"
+   ],
+   "structures": 5,
+   "path": "scenes/ul_pectoral_deep_axilla_muscles_anterior"
+  },
+  {
+   "id": "ul_back_shoulder_superficial_muscles_posterior",
+   "title": "Superficial muscles of the back and shoulder (posterior)",
+   "region": "upper_limb",
+   "lab": "Shoulder Joint, Scapular Muscles, and Posterior Arm",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Upper Body",
+    "Shoulder and Arm"
+   ],
+   "structures": 5,
+   "path": "scenes/ul_back_shoulder_superficial_muscles_posterior"
   },
   {
    "id": "pilot_scapular_posterior_arm_muscles_posterior",
@@ -140,6 +183,20 @@
    ],
    "structures": 10,
    "path": "scenes/ul_posterior_forearm_muscles_posterior"
+  },
+  {
+   "id": "ul_hand_deep_muscles_palmar",
+   "title": "Deep muscles of the palm (palmar)",
+   "region": "upper_limb",
+   "lab": "Wrist Joint and Hand",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Upper Body",
+    "Hand"
+   ],
+   "structures": 5,
+   "path": "scenes/ul_hand_deep_muscles_palmar"
   }
  ]
 }
