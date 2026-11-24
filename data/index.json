@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T19:27:58+00:00",
+ "generated": "2026-11-24T20:48:41+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -83,7 +83,7 @@
     "Lower Body",
     "Hip"
    ],
-   "structures": 10,
+   "structures": 11,
    "path": "scenes/sys_hip_pelvis_ligaments_anterior"
   },
   {
@@ -213,6 +213,20 @@
    "path": "scenes/ul_posterior_forearm_muscles_posterior"
   },
   {
+   "id": "ul_hand_thenar_hypothenar_muscles_palmar",
+   "title": "Thenar and hypothenar muscles (palmar)",
+   "region": "upper_limb",
+   "lab": "Wrist Joint and Hand",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Upper Body",
+    "Hand"
+   ],
+   "structures": 7,
+   "path": "scenes/ul_hand_thenar_hypothenar_muscles_palmar"
+  },
+  {
    "id": "ul_hand_deep_muscles_palmar",
    "title": "Deep muscles of the palm (palmar)",
    "region": "upper_limb",
@@ -269,6 +283,20 @@
    "path": "scenes/sys_lungs_lobes_anterior"
   },
   {
+   "id": "sys_tracheobronchial_tree_anterior",
+   "title": "Trachea and bronchial tree (anterior)",
+   "region": "thorax",
+   "lab": "Trachea and Bronchi",
+   "view": "anterior",
+   "nav": [
+    "Respiratory System",
+    "Thorax",
+    "Trachea and Bronchi"
+   ],
+   "structures": 12,
+   "path": "scenes/sys_tracheobronchial_tree_anterior"
+  },
+  {
    "id": "sys_abdominal_viscera_anterior",
    "title": "Organs of the digestive tract (anterior)",
    "region": "abdomen",
@@ -323,6 +351,20 @@
    ],
    "structures": 6,
    "path": "scenes/sys_urinary_tract_anterior"
+  },
+  {
+   "id": "sys_thyroid_parathyroid_posterior",
+   "title": "Thyroid and parathyroid glands (posterior)",
+   "region": "head_and_neck",
+   "lab": "Thyroid and Parathyroid Glands",
+   "view": "posterior",
+   "nav": [
+    "Endocrine System",
+    "Head and Neck",
+    "Thyroid"
+   ],
+   "structures": 28,
+   "path": "scenes/sys_thyroid_parathyroid_posterior"
   },
   {
    "id": "sys_suprarenal_glands_pancreas_anterior",
