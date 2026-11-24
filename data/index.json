@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T19:22:12+00:00",
+ "generated": "2026-11-24T19:23:21+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -239,6 +239,62 @@
    ],
    "structures": 11,
    "path": "scenes/sys_brain_gyri_lateral_left_colour"
+  },
+  {
+   "id": "sys_lungs_lobes_anterior",
+   "title": "Lobes of the lungs (anterior)",
+   "region": "thorax",
+   "lab": "Lungs",
+   "view": "anterior",
+   "nav": [
+    "Respiratory System",
+    "Thorax",
+    "Lungs"
+   ],
+   "structures": 11,
+   "path": "scenes/sys_lungs_lobes_anterior"
+  },
+  {
+   "id": "sys_abdominal_viscera_anterior",
+   "title": "Organs of the digestive tract (anterior)",
+   "region": "abdomen",
+   "lab": "Abdominal Viscera",
+   "view": "anterior",
+   "nav": [
+    "Digestive System",
+    "Abdomen",
+    "Digestive Tract"
+   ],
+   "structures": 11,
+   "path": "scenes/sys_abdominal_viscera_anterior"
+  },
+  {
+   "id": "sys_stomach_pancreas_spleen_anterior",
+   "title": "Stomach, duodenum, pancreas and spleen (anterior, liver removed)",
+   "region": "abdomen",
+   "lab": "Stomach, Pancreas and Spleen",
+   "view": "anterior",
+   "nav": [
+    "Digestive System",
+    "Abdomen",
+    "Stomach and Pancreas"
+   ],
+   "structures": 16,
+   "path": "scenes/sys_stomach_pancreas_spleen_anterior"
+  },
+  {
+   "id": "sys_right_kidney_hilum_anterior",
+   "title": "Right kidney and its hilum (anterior)",
+   "region": "abdomen",
+   "lab": "Kidney",
+   "view": "anterior",
+   "nav": [
+    "Urinary System",
+    "Abdomen",
+    "Kidney"
+   ],
+   "structures": 8,
+   "path": "scenes/sys_right_kidney_hilum_anterior"
   },
   {
    "id": "sys_urinary_tract_anterior",
