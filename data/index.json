@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T20:48:41+00:00",
+ "generated": "2026-11-24T22:49:52+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -267,6 +267,20 @@
    ],
    "structures": 11,
    "path": "scenes/sys_brain_gyri_lateral_left_colour"
+  },
+  {
+   "id": "sys_heart_great_vessels_anterior",
+   "title": "Heart and great vessels (anterior)",
+   "region": "thorax",
+   "lab": "Heart",
+   "view": "anterior",
+   "nav": [
+    "Cardiovascular System",
+    "Thorax",
+    "Heart"
+   ],
+   "structures": 26,
+   "path": "scenes/sys_heart_great_vessels_anterior"
   },
   {
    "id": "sys_lungs_lobes_anterior",
