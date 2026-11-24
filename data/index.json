@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T23:08:36+00:00",
+ "generated": "2026-11-24T23:09:58+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -281,6 +281,20 @@
    ],
    "structures": 26,
    "path": "scenes/sys_heart_great_vessels_anterior"
+  },
+  {
+   "id": "sys_abdominal_aorta_branches_anterior",
+   "title": "Abdominal aorta and its branches (anterior)",
+   "region": "abdomen",
+   "lab": "Abdominal Aorta",
+   "view": "anterior",
+   "nav": [
+    "Cardiovascular System",
+    "Abdomen",
+    "Aorta and Branches"
+   ],
+   "structures": 25,
+   "path": "scenes/sys_abdominal_aorta_branches_anterior"
   },
   {
    "id": "sys_lungs_lobes_anterior",
