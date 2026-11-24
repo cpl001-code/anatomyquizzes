@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T18:14:48+00:00",
+ "generated": "2026-11-24T18:35:38+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -197,6 +197,20 @@
    ],
    "structures": 5,
    "path": "scenes/ul_hand_deep_muscles_palmar"
+  },
+  {
+   "id": "sys_urinary_tract_anterior",
+   "title": "Kidneys, ureters and urinary bladder (anterior)",
+   "region": "abdomen",
+   "lab": "Kidneys and Urinary Tract",
+   "view": "anterior",
+   "nav": [
+    "Urinary System",
+    "Abdomen",
+    "Kidneys and Bladder"
+   ],
+   "structures": 6,
+   "path": "scenes/sys_urinary_tract_anterior"
   }
  ]
 }
