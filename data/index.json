@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T18:35:38+00:00",
+ "generated": "2026-11-24T19:04:10+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -211,6 +211,20 @@
    ],
    "structures": 6,
    "path": "scenes/sys_urinary_tract_anterior"
+  },
+  {
+   "id": "sys_suprarenal_glands_pancreas_anterior",
+   "title": "Suprarenal glands and pancreas (anterior)",
+   "region": "abdomen",
+   "lab": "Suprarenal Glands and Pancreas",
+   "view": "anterior",
+   "nav": [
+    "Endocrine System",
+    "Abdomen",
+    "Suprarenal Glands"
+   ],
+   "structures": 6,
+   "path": "scenes/sys_suprarenal_glands_pancreas_anterior"
   }
  ]
 }
