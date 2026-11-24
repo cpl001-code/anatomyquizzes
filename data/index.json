@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T19:04:10+00:00",
+ "generated": "2026-11-24T19:22:12+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -71,6 +71,20 @@
    ],
    "structures": 14,
    "path": "scenes/ul_hand_bones_phalanges_anterior"
+  },
+  {
+   "id": "sys_hip_pelvis_ligaments_anterior",
+   "title": "Ligaments of the hip joint and pelvis (anterior)",
+   "region": "lower_limb",
+   "lab": "Hip Joint",
+   "view": "anterior",
+   "nav": [
+    "Joints and Ligaments",
+    "Lower Body",
+    "Hip"
+   ],
+   "structures": 10,
+   "path": "scenes/sys_hip_pelvis_ligaments_anterior"
   },
   {
    "id": "ul_pectoral_shoulder_superficial_muscles_anterior",
@@ -197,6 +211,34 @@
    ],
    "structures": 5,
    "path": "scenes/ul_hand_deep_muscles_palmar"
+  },
+  {
+   "id": "sys_brain_gyri_lateral_left",
+   "title": "Gyri of the cerebral hemisphere (left lateral)",
+   "region": "head_and_neck",
+   "lab": "Brain",
+   "view": "lateral_left",
+   "nav": [
+    "Nervous System",
+    "Head and Neck",
+    "Brain"
+   ],
+   "structures": 11,
+   "path": "scenes/sys_brain_gyri_lateral_left"
+  },
+  {
+   "id": "sys_brain_gyri_lateral_left_colour",
+   "title": "Gyri of the cerebral hemisphere (left lateral, color-coded)",
+   "region": "head_and_neck",
+   "lab": "Brain",
+   "view": "lateral_left",
+   "nav": [
+    "Nervous System",
+    "Head and Neck",
+    "Brain"
+   ],
+   "structures": 11,
+   "path": "scenes/sys_brain_gyri_lateral_left_colour"
   },
   {
    "id": "sys_urinary_tract_anterior",
