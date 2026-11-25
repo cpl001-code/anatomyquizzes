@@ -81,6 +81,12 @@ a { color: inherit; }
   .shell.menu-closed .menu { transition-delay: 0.2s, 0s; }
 }
 .shell.booting, .shell.booting .menu { transition: none !important; }
+/* one quiz, two looks: natural or color-coded picture */
+.looks { display: inline-flex; margin: 2px 0 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.looks button { border: 0; background: var(--page); color: var(--ink); padding: 6px 14px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.looks button + button { border-left: 1px solid var(--line); }
+.looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
@@ -241,6 +247,7 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 0.7440">
         <h1 class="caption"><span class="qt" id="quiz-title">Heart and great vessels (anterior)</span><span id="caption">Heart, anterior view</span></h1>
+        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Heart and great vessels (anterior)" src="../../scenes/sys_heart_great_vessels_anterior/image.b873e74cf4.jpg" width="1488" height="2000">
           <canvas id="glow"></canvas>
@@ -282,6 +289,7 @@ a.btn { display: inline-block; text-decoration: none; }
       </ul>
       <h2>More quizzes</h2>
       <ul class="links">
+        <li><a href="../heart-chambers-coronary-vessels-posterior/">Heart, chambers and coronary vessels (posterior)</a></li>
         <li><a href="../lobes-lungs-anterior/">Lobes of the lungs (anterior)</a></li>
         <li><a href="../trachea-bronchial-tree-anterior/">Trachea and bronchial tree (anterior)</a></li>
         <li><a href="../abdominal-aorta-branches-anterior/">Abdominal aorta and its branches (anterior)</a></li>
@@ -294,7 +302,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"sys-heart-great-vessels-anterior","build":"f6c7fce5f4","entry":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","nav":["Cardiovascular System","Thorax","Heart"],"structures":26,"path":"scenes/sys_heart_great_vessels_anterior","url":"heart-great-vessels-anterior"},"scene":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","image":"image.b873e74cf4.jpg","size":[1488,2000],"hitmap":"hitmap.365253dd2d.png","hitmap_colors":{"Right atrium":[31,31,94],"Right ventricle":[31,31,161],"Left ventricle":[31,31,224],"Left atrium":[31,94,31],"Pulmonary trunk":[31,94,94],"Ascending aorta":[31,94,161],"Aortic arch":[31,94,224],"Superior vena cava":[31,161,31],"Brachiocephalic trunk":[31,161,94],"Left common carotid artery":[31,161,161],"Left subclavian artery":[31,161,224],"Right subclavian artery":[31,224,31],"Right coronary artery":[31,224,94],"Anterior interventricular artery":[31,224,161],"Great cardiac vein":[31,224,224],"Inferior vena cava (thoracic part)":[94,31,31],"Thoracic aorta":[94,31,94],"Abdominal aorta":[94,31,161],"Internal jugular vein.r":[94,94,31],"Internal jugular vein.l":[94,94,94],"Right subclavian vein":[94,94,161],"Left subclavian vein":[94,94,224],"Right brachiocephalic vein":[94,161,31],"Left brachiocephalic vein":[94,161,94],"Right common carotid artery":[94,161,161],"Right marginal branch (of right coronary artery)":[161,94,224],"Diagonal branch (of left anterior descending)":[161,94,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"right_atrium","name":"Right atrium","prompts":["Right atrium"],"objects":["Right atrium"],"dot":{"x":0.2017,"y":0.5461}},{"id":"right_ventricle","name":"Right ventricle","prompts":["Right ventricle"],"objects":["Right ventricle"],"dot":{"x":0.5205,"y":0.7043}},{"id":"left_ventricle","name":"Left ventricle","prompts":["Left ventricle"],"objects":["Left ventricle"],"dot":{"x":0.8481,"y":0.6946}},{"id":"left_atrium","name":"Left atrium","prompts":["Left atrium"],"objects":["Left atrium"],"dot":{"x":0.6999,"y":0.4818}},{"id":"pulmonary_trunk","name":"Pulmonary trunk","prompts":["Pulmonary trunk"],"objects":["Pulmonary trunk"],"dot":{"x":0.54,"y":0.3802}},{"id":"ascending_aorta","name":"Ascending aorta","prompts":["Ascending aorta"],"objects":["Ascending aorta"],"dot":{"x":0.3753,"y":0.3463}},{"id":"aortic_arch","name":"Aortic arch","prompts":["Aortic arch"],"objects":["Aortic arch"],"dot":{"x":0.4609,"y":0.1951}},{"id":"superior_vena_cava","name":"Superior vena cava","prompts":["Superior vena cava"],"objects":["Superior vena cava"],"dot":{"x":0.2477,"y":0.3033}},{"id":"brachiocephalic_trunk","name":"Brachiocephalic trunk","prompts":["Brachiocephalic trunk"],"objects":["Brachiocephalic trunk"],"dot":{"x":0.3108,"y":0.0882}},{"id":"left_common_carotid_artery","name":"Left common carotid artery","prompts":["Left common carotid artery"],"objects":["Left common carotid artery"],"dot":{"x":0.4654,"y":0.0302}},{"id":"left_subclavian_artery","name":"Left subclavian artery","prompts":["Left subclavian artery"],"objects":["Left subclavian artery"],"dot":{"x":0.6376,"y":0.0331}},{"id":"right_subclavian_artery","name":"Right subclavian artery","prompts":["Right subclavian artery"],"objects":["Right subclavian artery"],"dot":{"x":0.0938,"y":0.0503}},{"id":"right_coronary_artery","name":"Right coronary artery","prompts":["Right coronary artery"],"objects":["Right coronary artery"],"dot":{"x":0.1217,"y":0.5002}},{"id":"anterior_interventricular_artery","name":"Anterior interventricular artery (left anterior descending)","prompts":["Anterior interventricular artery (left anterior descending)"],"objects":["Anterior interventricular artery"],"dot":{"x":0.8588,"y":0.5807}},{"id":"great_cardiac_vein","name":"Great cardiac vein","prompts":["Great cardiac vein"],"objects":["Great cardiac vein"],"dot":{"x":0.9138,"y":0.6726}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (thoracic part)"],"dot":{"x":0.2947,"y":0.9127}},{"id":"descending_aorta","name":"Descending (thoracic) aorta","prompts":["Descending (thoracic) aorta"],"objects":["Thoracic aorta","Abdominal aorta"],"dot":{"x":0.4224,"y":0.9343}},{"id":"right_internal_jugular_vein","name":"Right internal jugular vein","prompts":["Right internal jugular vein"],"objects":["Internal jugular vein.r"],"dot":{"x":0.2013,"y":0.0283}},{"id":"left_internal_jugular_vein","name":"Left internal jugular vein","prompts":["Left internal jugular vein"],"objects":["Internal jugular vein.l"],"dot":{"x":0.5185,"y":0.0227}},{"id":"right_subclavian_vein","name":"Right subclavian vein","prompts":["Right subclavian vein"],"objects":["Right subclavian vein"],"dot":{"x":0.0931,"y":0.0772}},{"id":"left_subclavian_vein","name":"Left subclavian vein","prompts":["Left subclavian vein"],"objects":["Left subclavian vein"],"dot":{"x":0.7302,"y":0.0813}},{"id":"right_brachiocephalic_vein","name":"Right brachiocephalic vein","prompts":["Right brachiocephalic vein"],"objects":["Right brachiocephalic vein"],"dot":{"x":0.2221,"y":0.1298}},{"id":"left_brachiocephalic_vein","name":"Left brachiocephalic vein","prompts":["Left brachiocephalic vein"],"objects":["Left brachiocephalic vein"],"dot":{"x":0.3787,"y":0.1432}},{"id":"right_common_carotid_artery","name":"Right common carotid artery","prompts":["Right common carotid artery"],"objects":["Right common carotid artery"],"dot":{"x":0.2577,"y":0.0297}},{"id":"right_marginal_branch","name":"Right marginal branch (of right coronary artery)","prompts":["Right marginal branch (of right coronary artery)"],"objects":["Right marginal branch (of right coronary artery)"],"dot":{"x":0.1808,"y":0.8449}},{"id":"diagonal_branch_of_lad","name":"Diagonal branch (of left anterior descending)","prompts":["Diagonal branch (of left anterior descending)"],"objects":["Diagonal branch (of left anterior descending)"],"dot":{"x":0.9281,"y":0.8094}}],"caption":"Heart, anterior view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"sys-heart-great-vessels-anterior","build":"379945f4eb","entry":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","nav":["Cardiovascular System","Thorax","Heart"],"structures":26,"path":"scenes/sys_heart_great_vessels_anterior","url":"heart-great-vessels-anterior"},"scene":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","image":"image.b873e74cf4.jpg","size":[1488,2000],"hitmap":"hitmap.365253dd2d.png","hitmap_colors":{"Right atrium":[31,31,94],"Right ventricle":[31,31,161],"Left ventricle":[31,31,224],"Left atrium":[31,94,31],"Pulmonary trunk":[31,94,94],"Ascending aorta":[31,94,161],"Aortic arch":[31,94,224],"Superior vena cava":[31,161,31],"Brachiocephalic trunk":[31,161,94],"Left common carotid artery":[31,161,161],"Left subclavian artery":[31,161,224],"Right subclavian artery":[31,224,31],"Right coronary artery":[31,224,94],"Anterior interventricular artery":[31,224,161],"Great cardiac vein":[31,224,224],"Inferior vena cava (thoracic part)":[94,31,31],"Thoracic aorta":[94,31,94],"Abdominal aorta":[94,31,161],"Internal jugular vein.r":[94,94,31],"Internal jugular vein.l":[94,94,94],"Right subclavian vein":[94,94,161],"Left subclavian vein":[94,94,224],"Right brachiocephalic vein":[94,161,31],"Left brachiocephalic vein":[94,161,94],"Right common carotid artery":[94,161,161],"Right marginal branch (of right coronary artery)":[161,94,224],"Diagonal branch (of left anterior descending)":[161,94,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"right_atrium","name":"Right atrium","prompts":["Right atrium"],"objects":["Right atrium"],"dot":{"x":0.2017,"y":0.5461}},{"id":"right_ventricle","name":"Right ventricle","prompts":["Right ventricle"],"objects":["Right ventricle"],"dot":{"x":0.5205,"y":0.7043}},{"id":"left_ventricle","name":"Left ventricle","prompts":["Left ventricle"],"objects":["Left ventricle"],"dot":{"x":0.8481,"y":0.6946}},{"id":"left_atrium","name":"Left atrium","prompts":["Left atrium"],"objects":["Left atrium"],"dot":{"x":0.6999,"y":0.4818}},{"id":"pulmonary_trunk","name":"Pulmonary trunk","prompts":["Pulmonary trunk"],"objects":["Pulmonary trunk"],"dot":{"x":0.54,"y":0.3802}},{"id":"ascending_aorta","name":"Ascending aorta","prompts":["Ascending aorta"],"objects":["Ascending aorta"],"dot":{"x":0.3753,"y":0.3463}},{"id":"aortic_arch","name":"Aortic arch","prompts":["Aortic arch"],"objects":["Aortic arch"],"dot":{"x":0.4609,"y":0.1951}},{"id":"superior_vena_cava","name":"Superior vena cava","prompts":["Superior vena cava"],"objects":["Superior vena cava"],"dot":{"x":0.2477,"y":0.3033}},{"id":"brachiocephalic_trunk","name":"Brachiocephalic trunk","prompts":["Brachiocephalic trunk"],"objects":["Brachiocephalic trunk"],"dot":{"x":0.3108,"y":0.0882}},{"id":"left_common_carotid_artery","name":"Left common carotid artery","prompts":["Left common carotid artery"],"objects":["Left common carotid artery"],"dot":{"x":0.4654,"y":0.0302}},{"id":"left_subclavian_artery","name":"Left subclavian artery","prompts":["Left subclavian artery"],"objects":["Left subclavian artery"],"dot":{"x":0.6376,"y":0.0331}},{"id":"right_subclavian_artery","name":"Right subclavian artery","prompts":["Right subclavian artery"],"objects":["Right subclavian artery"],"dot":{"x":0.0938,"y":0.0503}},{"id":"right_coronary_artery","name":"Right coronary artery","prompts":["Right coronary artery"],"objects":["Right coronary artery"],"dot":{"x":0.1217,"y":0.5002}},{"id":"anterior_interventricular_artery","name":"Anterior interventricular artery (left anterior descending)","prompts":["Anterior interventricular artery (left anterior descending)"],"objects":["Anterior interventricular artery"],"dot":{"x":0.8588,"y":0.5807}},{"id":"great_cardiac_vein","name":"Great cardiac vein","prompts":["Great cardiac vein"],"objects":["Great cardiac vein"],"dot":{"x":0.9138,"y":0.6726}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (thoracic part)"],"dot":{"x":0.2947,"y":0.9127}},{"id":"descending_aorta","name":"Descending (thoracic) aorta","prompts":["Descending (thoracic) aorta"],"objects":["Thoracic aorta","Abdominal aorta"],"dot":{"x":0.4224,"y":0.9343}},{"id":"right_internal_jugular_vein","name":"Right internal jugular vein","prompts":["Right internal jugular vein"],"objects":["Internal jugular vein.r"],"dot":{"x":0.2013,"y":0.0283}},{"id":"left_internal_jugular_vein","name":"Left internal jugular vein","prompts":["Left internal jugular vein"],"objects":["Internal jugular vein.l"],"dot":{"x":0.5185,"y":0.0227}},{"id":"right_subclavian_vein","name":"Right subclavian vein","prompts":["Right subclavian vein"],"objects":["Right subclavian vein"],"dot":{"x":0.0931,"y":0.0772}},{"id":"left_subclavian_vein","name":"Left subclavian vein","prompts":["Left subclavian vein"],"objects":["Left subclavian vein"],"dot":{"x":0.7302,"y":0.0813}},{"id":"right_brachiocephalic_vein","name":"Right brachiocephalic vein","prompts":["Right brachiocephalic vein"],"objects":["Right brachiocephalic vein"],"dot":{"x":0.2221,"y":0.1298}},{"id":"left_brachiocephalic_vein","name":"Left brachiocephalic vein","prompts":["Left brachiocephalic vein"],"objects":["Left brachiocephalic vein"],"dot":{"x":0.3787,"y":0.1432}},{"id":"right_common_carotid_artery","name":"Right common carotid artery","prompts":["Right common carotid artery"],"objects":["Right common carotid artery"],"dot":{"x":0.2577,"y":0.0297}},{"id":"right_marginal_branch","name":"Right marginal branch (of right coronary artery)","prompts":["Right marginal branch (of right coronary artery)"],"objects":["Right marginal branch (of right coronary artery)"],"dot":{"x":0.1808,"y":0.8449}},{"id":"diagonal_branch_of_lad","name":"Diagonal branch (of left anterior descending)","prompts":["Diagonal branch (of left anterior descending)"],"objects":["Diagonal branch (of left anterior descending)"],"dot":{"x":0.9281,"y":0.8094}}],"caption":"Heart, anterior view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -468,11 +476,41 @@ a.btn { display: inline-block; text-decoration: none; }
     window.scrollTo(0, 0);
     // The page of a quiz carries its own scene (AQ.scene, written by site_build.py), so the quiz never waits
     // for, or depends on, a second file. Only an old cached page still fetches scene.json.
-    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) { startScene(entry, base, AQ.scene); return; }
+    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) {
+      if (LOOKS) { $("looks").hidden = false; showLook(lookWanted(), false); }
+      else startScene(entry, base, AQ.scene);
+      return;
+    }
     fetch(base + "/scene.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (scene) { startScene(entry, base, scene); })
       .catch(function () { quizProblem("This quiz could not be loaded. Check your connection and reload the page."); });
   }
+  // ONE QUIZ, TWO LOOKS (Colin, 2026-11-25: "make a setting for the quiz taker to choose natural or colored quiz").
+  // A quiz that has a color-coded twin carries it as AQ.alt; the switch above the picture starts the quiz again
+  // with the other picture. The choice is remembered for the next quiz that has both. "#color" in the address
+  // opens the color-coded one (that is where the twin's old address sends people).
+  var LOOKS = (AQ.scene && AQ.entry && AQ.alt && AQ.alt.scene && AQ.alt.entry && typeof AQ.alt.entry.id === "string")
+    ? { natural: { entry: AQ.entry, scene: AQ.scene }, color: { entry: AQ.alt.entry, scene: AQ.alt.scene } } : null;
+  if (LOOKS) LOOKS.color.entry.slug = slugOf(LOOKS.color.entry.id);
+  function lookWanted() {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (h === "color" || h === "natural") return h;
+    return store("aq.look") === "color" ? "color" : "natural";
+  }
+  function lookNow() { return LOOKS && Q && Q.entry === LOOKS.color.entry ? "color" : "natural"; }
+  function showLook(which, remember) {
+    if (!LOOKS) return;
+    var L = which === "color" ? LOOKS.color : LOOKS.natural;
+    if (remember) store("aq.look", which === "color" ? "color" : "natural");
+    $("look-natural").setAttribute("aria-pressed", String(which !== "color"));
+    $("look-color").setAttribute("aria-pressed", String(which === "color"));
+    stopClock();
+    startScene(L.entry, ROOT + (safePath(String(L.entry.path || "")) || ""), L.scene);
+    $("quiz-title").textContent = typeof AQ.scene.title === "string" ? AQ.scene.title : "";   // the quiz keeps its own name
+  }
+  function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
+  $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
+  $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -633,7 +671,7 @@ a.btn { display: inline-block; text-decoration: none; }
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
     act.appendChild(again);
-    var k = order.indexOf(Q.entry), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
     if (next) {
       var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next);
       act.appendChild(nx);
@@ -750,8 +788,8 @@ a.btn { display: inline-block; text-decoration: none; }
       return;
     }
     if (AQ.quiz) {
-      if (Q && Q.entry && Q.entry.slug === AQ.quiz) {               // already running from the page's own data
-        if (byslug.has(AQ.quiz)) Q.entry = byslug.get(AQ.quiz);   // the menu's own entry, so "next quiz" finds it
+      if (LOOKS && Q && (h === "color" || h === "natural") && h !== lookNow()) showLook(h, true);
+      if (Q && Q.entry && (Q.entry.slug === AQ.quiz || (LOOKS && Q.entry === LOOKS.color.entry))) {   // already running from the page's own data
         markCurrent(AQ.quiz);
       } else if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
       else showHome("That quiz is no longer here. Pick another from the menu.");

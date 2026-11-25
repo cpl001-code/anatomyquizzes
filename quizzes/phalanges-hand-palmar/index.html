@@ -81,6 +81,12 @@ a { color: inherit; }
   .shell.menu-closed .menu { transition-delay: 0.2s, 0s; }
 }
 .shell.booting, .shell.booting .menu { transition: none !important; }
+/* one quiz, two looks: natural or color-coded picture */
+.looks { display: inline-flex; margin: 2px 0 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.looks button { border: 0; background: var(--page); color: var(--ink); padding: 6px 14px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.looks button + button { border-left: 1px solid var(--line); }
+.looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
@@ -241,6 +247,7 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 0.6620">
         <h1 class="caption"><span class="qt" id="quiz-title">Phalanges of the hand (palmar)</span><span id="caption">Right hand, palmar view</span></h1>
+        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Phalanges of the hand (palmar)" src="../../scenes/ul_hand_bones_phalanges_anterior/image.009f56aff4.jpg" width="1324" height="2000">
           <canvas id="glow"></canvas>
@@ -285,7 +292,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"ul-hand-bones-phalanges-anterior","build":"f6c7fce5f4","entry":{"id":"ul_hand_bones_phalanges_anterior","title":"Phalanges of the hand (palmar)","region":"upper_limb","lab":"Osteology of the Upper Limb","view":"anterior","nav":["Skeletal System","Upper Body","Hand"],"structures":14,"path":"scenes/ul_hand_bones_phalanges_anterior","url":"phalanges-hand-palmar"},"scene":{"id":"ul_hand_bones_phalanges_anterior","title":"Phalanges of the hand (palmar)","region":"upper_limb","lab":"Osteology of the Upper Limb","view":"anterior","image":"image.009f56aff4.jpg","size":[1324,2000],"hitmap":"hitmap.2e89a7e331.png","hitmap_colors":{"Proximal phalanx of first finger of hand.r":[31,31,94],"Proximal phalanx of second finger of hand.r":[31,31,161],"Proximal phalanx of third finger of hand.r":[31,31,224],"Proximal phalanx of fourth finger of hand.r":[31,94,31],"Proximal phalanx of fifth finger of hand.r":[31,94,94],"Middle phalanx of second finger of hand.r":[31,94,161],"Middle phalanx of third finger of hand.r":[31,94,224],"Middle phalanx of fourth finger of hand.r":[31,161,31],"Middle phalanx of fifth finger of hand.r":[31,161,94],"Distal phalanx of first finger of hand.r":[31,161,161],"Distal phalanx of second finger of hand.r":[31,161,224],"Distal phalanx of third finger of hand.r":[31,224,31],"Distal phalanx of fourth finger of hand.r":[31,224,94],"Distal phalanx of fifth finger of hand.r":[31,224,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"proximal_phalanx_of_1st_digit","name":"Proximal phalanx of 1st digit","prompts":["Proximal phalanx of 1st digit"],"objects":["Proximal phalanx of first finger of hand.r"],"dot":{"x":0.2309,"y":0.3943}},{"id":"proximal_phalanx_of_2nd_digit","name":"Proximal phalanx of 2nd digit","prompts":["Proximal phalanx of 2nd digit"],"objects":["Proximal phalanx of second finger of hand.r"],"dot":{"x":0.3506,"y":0.6229}},{"id":"proximal_phalanx_of_3rd_digit","name":"Proximal phalanx of 3rd digit","prompts":["Proximal phalanx of 3rd digit"],"objects":["Proximal phalanx of third finger of hand.r"],"dot":{"x":0.5191,"y":0.634}},{"id":"proximal_phalanx_of_4th_digit","name":"Proximal phalanx of 4th digit","prompts":["Proximal phalanx of 4th digit"],"objects":["Proximal phalanx of fourth finger of hand.r"],"dot":{"x":0.676,"y":0.6073}},{"id":"proximal_phalanx_of_5th_digit","name":"Proximal phalanx of 5th digit","prompts":["Proximal phalanx of 5th digit"],"objects":["Proximal phalanx of fifth finger of hand.r"],"dot":{"x":0.8139,"y":0.5544}},{"id":"middle_phalanx_of_2nd_digit","name":"Middle phalanx of 2nd digit","prompts":["Middle phalanx of 2nd digit"],"objects":["Middle phalanx of second finger of hand.r"],"dot":{"x":0.2726,"y":0.7529}},{"id":"middle_phalanx_of_3rd_digit","name":"Middle phalanx of 3rd digit","prompts":["Middle phalanx of 3rd digit"],"objects":["Middle phalanx of third finger of hand.r"],"dot":{"x":0.4813,"y":0.7893}},{"id":"middle_phalanx_of_4th_digit","name":"Middle phalanx of 4th digit","prompts":["Middle phalanx of 4th digit"],"objects":["Middle phalanx of fourth finger of hand.r"],"dot":{"x":0.6764,"y":0.7537}},{"id":"middle_phalanx_of_5th_digit","name":"Middle phalanx of 5th digit","prompts":["Middle phalanx of 5th digit"],"objects":["Middle phalanx of fifth finger of hand.r"],"dot":{"x":0.8633,"y":0.6743}},{"id":"distal_phalanx_of_1st_digit","name":"Distal phalanx of 1st digit","prompts":["Distal phalanx of 1st digit"],"objects":["Distal phalanx of first finger of hand.r"],"dot":{"x":0.1484,"y":0.5032}},{"id":"distal_phalanx_of_2nd_digit","name":"Distal phalanx of 2nd digit","prompts":["Distal phalanx of 2nd digit"],"objects":["Distal phalanx of second finger of hand.r"],"dot":{"x":0.2181,"y":0.8377}},{"id":"distal_phalanx_of_3rd_digit","name":"Distal phalanx of 3rd digit","prompts":["Distal phalanx of 3rd digit"],"objects":["Distal phalanx of third finger of hand.r"],"dot":{"x":0.4587,"y":0.8929}},{"id":"distal_phalanx_of_4th_digit","name":"Distal phalanx of 4th digit","prompts":["Distal phalanx of 4th digit"],"objects":["Distal phalanx of fourth finger of hand.r"],"dot":{"x":0.6814,"y":0.8418}},{"id":"distal_phalanx_of_5th_digit","name":"Distal phalanx of 5th digit","prompts":["Distal phalanx of 5th digit"],"objects":["Distal phalanx of fifth finger of hand.r"],"dot":{"x":0.8928,"y":0.7532}}],"caption":"Right hand, palmar view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"ul-hand-bones-phalanges-anterior","build":"379945f4eb","entry":{"id":"ul_hand_bones_phalanges_anterior","title":"Phalanges of the hand (palmar)","region":"upper_limb","lab":"Osteology of the Upper Limb","view":"anterior","nav":["Skeletal System","Upper Body","Hand"],"structures":14,"path":"scenes/ul_hand_bones_phalanges_anterior","url":"phalanges-hand-palmar"},"scene":{"id":"ul_hand_bones_phalanges_anterior","title":"Phalanges of the hand (palmar)","region":"upper_limb","lab":"Osteology of the Upper Limb","view":"anterior","image":"image.009f56aff4.jpg","size":[1324,2000],"hitmap":"hitmap.2e89a7e331.png","hitmap_colors":{"Proximal phalanx of first finger of hand.r":[31,31,94],"Proximal phalanx of second finger of hand.r":[31,31,161],"Proximal phalanx of third finger of hand.r":[31,31,224],"Proximal phalanx of fourth finger of hand.r":[31,94,31],"Proximal phalanx of fifth finger of hand.r":[31,94,94],"Middle phalanx of second finger of hand.r":[31,94,161],"Middle phalanx of third finger of hand.r":[31,94,224],"Middle phalanx of fourth finger of hand.r":[31,161,31],"Middle phalanx of fifth finger of hand.r":[31,161,94],"Distal phalanx of first finger of hand.r":[31,161,161],"Distal phalanx of second finger of hand.r":[31,161,224],"Distal phalanx of third finger of hand.r":[31,224,31],"Distal phalanx of fourth finger of hand.r":[31,224,94],"Distal phalanx of fifth finger of hand.r":[31,224,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"proximal_phalanx_of_1st_digit","name":"Proximal phalanx of 1st digit","prompts":["Proximal phalanx of 1st digit"],"objects":["Proximal phalanx of first finger of hand.r"],"dot":{"x":0.2309,"y":0.3943}},{"id":"proximal_phalanx_of_2nd_digit","name":"Proximal phalanx of 2nd digit","prompts":["Proximal phalanx of 2nd digit"],"objects":["Proximal phalanx of second finger of hand.r"],"dot":{"x":0.3506,"y":0.6229}},{"id":"proximal_phalanx_of_3rd_digit","name":"Proximal phalanx of 3rd digit","prompts":["Proximal phalanx of 3rd digit"],"objects":["Proximal phalanx of third finger of hand.r"],"dot":{"x":0.5191,"y":0.634}},{"id":"proximal_phalanx_of_4th_digit","name":"Proximal phalanx of 4th digit","prompts":["Proximal phalanx of 4th digit"],"objects":["Proximal phalanx of fourth finger of hand.r"],"dot":{"x":0.676,"y":0.6073}},{"id":"proximal_phalanx_of_5th_digit","name":"Proximal phalanx of 5th digit","prompts":["Proximal phalanx of 5th digit"],"objects":["Proximal phalanx of fifth finger of hand.r"],"dot":{"x":0.8139,"y":0.5544}},{"id":"middle_phalanx_of_2nd_digit","name":"Middle phalanx of 2nd digit","prompts":["Middle phalanx of 2nd digit"],"objects":["Middle phalanx of second finger of hand.r"],"dot":{"x":0.2726,"y":0.7529}},{"id":"middle_phalanx_of_3rd_digit","name":"Middle phalanx of 3rd digit","prompts":["Middle phalanx of 3rd digit"],"objects":["Middle phalanx of third finger of hand.r"],"dot":{"x":0.4813,"y":0.7893}},{"id":"middle_phalanx_of_4th_digit","name":"Middle phalanx of 4th digit","prompts":["Middle phalanx of 4th digit"],"objects":["Middle phalanx of fourth finger of hand.r"],"dot":{"x":0.6764,"y":0.7537}},{"id":"middle_phalanx_of_5th_digit","name":"Middle phalanx of 5th digit","prompts":["Middle phalanx of 5th digit"],"objects":["Middle phalanx of fifth finger of hand.r"],"dot":{"x":0.8633,"y":0.6743}},{"id":"distal_phalanx_of_1st_digit","name":"Distal phalanx of 1st digit","prompts":["Distal phalanx of 1st digit"],"objects":["Distal phalanx of first finger of hand.r"],"dot":{"x":0.1484,"y":0.5032}},{"id":"distal_phalanx_of_2nd_digit","name":"Distal phalanx of 2nd digit","prompts":["Distal phalanx of 2nd digit"],"objects":["Distal phalanx of second finger of hand.r"],"dot":{"x":0.2181,"y":0.8377}},{"id":"distal_phalanx_of_3rd_digit","name":"Distal phalanx of 3rd digit","prompts":["Distal phalanx of 3rd digit"],"objects":["Distal phalanx of third finger of hand.r"],"dot":{"x":0.4587,"y":0.8929}},{"id":"distal_phalanx_of_4th_digit","name":"Distal phalanx of 4th digit","prompts":["Distal phalanx of 4th digit"],"objects":["Distal phalanx of fourth finger of hand.r"],"dot":{"x":0.6814,"y":0.8418}},{"id":"distal_phalanx_of_5th_digit","name":"Distal phalanx of 5th digit","prompts":["Distal phalanx of 5th digit"],"objects":["Distal phalanx of fifth finger of hand.r"],"dot":{"x":0.8928,"y":0.7532}}],"caption":"Right hand, palmar view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -459,11 +466,41 @@ a.btn { display: inline-block; text-decoration: none; }
     window.scrollTo(0, 0);
     // The page of a quiz carries its own scene (AQ.scene, written by site_build.py), so the quiz never waits
     // for, or depends on, a second file. Only an old cached page still fetches scene.json.
-    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) { startScene(entry, base, AQ.scene); return; }
+    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) {
+      if (LOOKS) { $("looks").hidden = false; showLook(lookWanted(), false); }
+      else startScene(entry, base, AQ.scene);
+      return;
+    }
     fetch(base + "/scene.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (scene) { startScene(entry, base, scene); })
       .catch(function () { quizProblem("This quiz could not be loaded. Check your connection and reload the page."); });
   }
+  // ONE QUIZ, TWO LOOKS (Colin, 2026-11-25: "make a setting for the quiz taker to choose natural or colored quiz").
+  // A quiz that has a color-coded twin carries it as AQ.alt; the switch above the picture starts the quiz again
+  // with the other picture. The choice is remembered for the next quiz that has both. "#color" in the address
+  // opens the color-coded one (that is where the twin's old address sends people).
+  var LOOKS = (AQ.scene && AQ.entry && AQ.alt && AQ.alt.scene && AQ.alt.entry && typeof AQ.alt.entry.id === "string")
+    ? { natural: { entry: AQ.entry, scene: AQ.scene }, color: { entry: AQ.alt.entry, scene: AQ.alt.scene } } : null;
+  if (LOOKS) LOOKS.color.entry.slug = slugOf(LOOKS.color.entry.id);
+  function lookWanted() {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (h === "color" || h === "natural") return h;
+    return store("aq.look") === "color" ? "color" : "natural";
+  }
+  function lookNow() { return LOOKS && Q && Q.entry === LOOKS.color.entry ? "color" : "natural"; }
+  function showLook(which, remember) {
+    if (!LOOKS) return;
+    var L = which === "color" ? LOOKS.color : LOOKS.natural;
+    if (remember) store("aq.look", which === "color" ? "color" : "natural");
+    $("look-natural").setAttribute("aria-pressed", String(which !== "color"));
+    $("look-color").setAttribute("aria-pressed", String(which === "color"));
+    stopClock();
+    startScene(L.entry, ROOT + (safePath(String(L.entry.path || "")) || ""), L.scene);
+    $("quiz-title").textContent = typeof AQ.scene.title === "string" ? AQ.scene.title : "";   // the quiz keeps its own name
+  }
+  function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
+  $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
+  $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -624,7 +661,7 @@ a.btn { display: inline-block; text-decoration: none; }
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
     act.appendChild(again);
-    var k = order.indexOf(Q.entry), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
     if (next) {
       var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next);
       act.appendChild(nx);
@@ -741,8 +778,8 @@ a.btn { display: inline-block; text-decoration: none; }
       return;
     }
     if (AQ.quiz) {
-      if (Q && Q.entry && Q.entry.slug === AQ.quiz) {               // already running from the page's own data
-        if (byslug.has(AQ.quiz)) Q.entry = byslug.get(AQ.quiz);   // the menu's own entry, so "next quiz" finds it
+      if (LOOKS && Q && (h === "color" || h === "natural") && h !== lookNow()) showLook(h, true);
+      if (Q && Q.entry && (Q.entry.slug === AQ.quiz || (LOOKS && Q.entry === LOOKS.color.entry))) {   // already running from the page's own data
         markCurrent(AQ.quiz);
       } else if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
       else showHome("That quiz is no longer here. Pick another from the menu.");

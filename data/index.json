@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T17:27:47+00:00",
+ "generated": "2026-11-25T18:11:29+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -360,21 +360,6 @@
    "url": "gyri-cerebral-hemisphere-left-lateral"
   },
   {
-   "id": "sys_brain_gyri_lateral_left_colour",
-   "title": "Gyri of the cerebral hemisphere (left lateral, color-coded)",
-   "region": "head_and_neck",
-   "lab": "Brain",
-   "view": "lateral_left",
-   "nav": [
-    "Nervous System",
-    "Head and Neck",
-    "Brain"
-   ],
-   "structures": 11,
-   "path": "scenes/sys_brain_gyri_lateral_left_colour",
-   "url": "gyri-cerebral-hemisphere-left-lateral-color-coded"
-  },
-  {
    "id": "sys_brain_lobes_lateral_left_colour",
    "title": "Lobes of the cerebral hemisphere (left lateral, color-coded)",
    "region": "head_and_neck",
@@ -433,6 +418,21 @@
    "structures": 26,
    "path": "scenes/sys_heart_great_vessels_anterior",
    "url": "heart-great-vessels-anterior"
+  },
+  {
+   "id": "cv_heart_great_vessels_posterior",
+   "title": "Heart, chambers and coronary vessels (posterior)",
+   "region": "thorax",
+   "lab": "Heart",
+   "view": "posterior",
+   "nav": [
+    "Cardiovascular System",
+    "Thorax",
+    "Heart"
+   ],
+   "structures": 12,
+   "path": "scenes/cv_heart_great_vessels_posterior",
+   "url": "heart-chambers-coronary-vessels-posterior"
   },
   {
    "id": "sys_abdominal_aorta_branches_anterior",

@@ -81,6 +81,12 @@ a { color: inherit; }
   .shell.menu-closed .menu { transition-delay: 0.2s, 0s; }
 }
 .shell.booting, .shell.booting .menu { transition: none !important; }
+/* one quiz, two looks: natural or color-coded picture */
+.looks { display: inline-flex; margin: 2px 0 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.looks button { border: 0; background: var(--page); color: var(--ink); padding: 6px 14px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.looks button + button { border-left: 1px solid var(--line); }
+.looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
@@ -241,6 +247,7 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 0.6200">
         <h1 class="caption"><span class="qt" id="quiz-title">Superficial muscles of the anterior forearm (anterior)</span><span id="caption">Right forearm and hand, anterior view</span></h1>
+        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Superficial muscles of the anterior forearm (anterior)" src="../../scenes/ul_anterior_forearm_superficial_muscles_anterior/image.b79bb615aa.jpg" width="1240" height="2000">
           <canvas id="glow"></canvas>
@@ -277,7 +284,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"ul-anterior-forearm-superficial-muscles-anterior","build":"f6c7fce5f4","entry":{"id":"ul_anterior_forearm_superficial_muscles_anterior","title":"Superficial muscles of the anterior forearm (anterior)","region":"upper_limb","lab":"Forearm, Cubital Fossa, and Elbow Joint","view":"anterior","nav":["Muscular System","Upper Body","Forearm"],"structures":6,"path":"scenes/ul_anterior_forearm_superficial_muscles_anterior","url":"superficial-muscles-anterior-forearm"},"scene":{"id":"ul_anterior_forearm_superficial_muscles_anterior","title":"Superficial muscles of the anterior forearm (anterior)","region":"upper_limb","lab":"Forearm, Cubital Fossa, and Elbow Joint","view":"anterior","image":"image.b79bb615aa.jpg","size":[1240,2000],"hitmap":"hitmap.f764f13d51.png","hitmap_colors":{"Deep head of pronator teres.r":[31,31,94],"Superficial head of pronator teres.r":[31,31,161],"Flexor carpi radialis.r":[31,31,224],"Palmaris longus muscle.r":[31,94,31],"Humeral head of flexor carpi ulnaris.r":[31,94,94],"Ulnar head of flexor carpi ulnaris.r":[31,94,161],"Humero-ulnar head of flexor digitorum superficialis.r":[31,94,224],"Radial head of flexor digitorum superficialis.r":[31,161,31],"Brachioradialis muscle.r":[31,161,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"pronator_teres_muscle","name":"Pronator teres muscle","prompts":["Pronator teres muscle"],"objects":["Deep head of pronator teres.r","Superficial head of pronator teres.r"],"dot":{"x":0.5956,"y":0.2973}},{"id":"flexor_carpi_radialis_muscle","name":"Flexor carpi radialis muscle","prompts":["Flexor carpi radialis muscle"],"objects":["Flexor carpi radialis.r"],"dot":{"x":0.5467,"y":0.4852}},{"id":"palmaris_longus_muscle","name":"Palmaris longus muscle","prompts":["Palmaris longus muscle"],"objects":["Palmaris longus muscle.r"],"dot":{"x":0.6493,"y":0.3335}},{"id":"flexor_carpi_ulnaris_muscle","name":"Flexor carpi ulnaris muscle","prompts":["Flexor carpi ulnaris muscle"],"objects":["Humeral head of flexor carpi ulnaris.r","Ulnar head of flexor carpi ulnaris.r"],"dot":{"x":0.6536,"y":0.4073}},{"id":"flexor_digitorum_superficialis_muscle","name":"Flexor digitorum superficialis muscle","prompts":["Flexor digitorum superficialis muscle"],"objects":["Humero-ulnar head of flexor digitorum superficialis.r","Radial head of flexor digitorum superficialis.r"],"dot":{"x":0.5188,"y":0.4401}},{"id":"brachioradialis_muscle","name":"Brachioradialis muscle","prompts":["Brachioradialis muscle"],"objects":["Brachioradialis muscle.r"],"dot":{"x":0.4977,"y":0.3286}}],"caption":"Right forearm and hand, anterior view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"ul-anterior-forearm-superficial-muscles-anterior","build":"379945f4eb","entry":{"id":"ul_anterior_forearm_superficial_muscles_anterior","title":"Superficial muscles of the anterior forearm (anterior)","region":"upper_limb","lab":"Forearm, Cubital Fossa, and Elbow Joint","view":"anterior","nav":["Muscular System","Upper Body","Forearm"],"structures":6,"path":"scenes/ul_anterior_forearm_superficial_muscles_anterior","url":"superficial-muscles-anterior-forearm"},"scene":{"id":"ul_anterior_forearm_superficial_muscles_anterior","title":"Superficial muscles of the anterior forearm (anterior)","region":"upper_limb","lab":"Forearm, Cubital Fossa, and Elbow Joint","view":"anterior","image":"image.b79bb615aa.jpg","size":[1240,2000],"hitmap":"hitmap.f764f13d51.png","hitmap_colors":{"Deep head of pronator teres.r":[31,31,94],"Superficial head of pronator teres.r":[31,31,161],"Flexor carpi radialis.r":[31,31,224],"Palmaris longus muscle.r":[31,94,31],"Humeral head of flexor carpi ulnaris.r":[31,94,94],"Ulnar head of flexor carpi ulnaris.r":[31,94,161],"Humero-ulnar head of flexor digitorum superficialis.r":[31,94,224],"Radial head of flexor digitorum superficialis.r":[31,161,31],"Brachioradialis muscle.r":[31,161,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"pronator_teres_muscle","name":"Pronator teres muscle","prompts":["Pronator teres muscle"],"objects":["Deep head of pronator teres.r","Superficial head of pronator teres.r"],"dot":{"x":0.5956,"y":0.2973}},{"id":"flexor_carpi_radialis_muscle","name":"Flexor carpi radialis muscle","prompts":["Flexor carpi radialis muscle"],"objects":["Flexor carpi radialis.r"],"dot":{"x":0.5467,"y":0.4852}},{"id":"palmaris_longus_muscle","name":"Palmaris longus muscle","prompts":["Palmaris longus muscle"],"objects":["Palmaris longus muscle.r"],"dot":{"x":0.6493,"y":0.3335}},{"id":"flexor_carpi_ulnaris_muscle","name":"Flexor carpi ulnaris muscle","prompts":["Flexor carpi ulnaris muscle"],"objects":["Humeral head of flexor carpi ulnaris.r","Ulnar head of flexor carpi ulnaris.r"],"dot":{"x":0.6536,"y":0.4073}},{"id":"flexor_digitorum_superficialis_muscle","name":"Flexor digitorum superficialis muscle","prompts":["Flexor digitorum superficialis muscle"],"objects":["Humero-ulnar head of flexor digitorum superficialis.r","Radial head of flexor digitorum superficialis.r"],"dot":{"x":0.5188,"y":0.4401}},{"id":"brachioradialis_muscle","name":"Brachioradialis muscle","prompts":["Brachioradialis muscle"],"objects":["Brachioradialis muscle.r"],"dot":{"x":0.4977,"y":0.3286}}],"caption":"Right forearm and hand, anterior view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -451,11 +458,41 @@ a.btn { display: inline-block; text-decoration: none; }
     window.scrollTo(0, 0);
     // The page of a quiz carries its own scene (AQ.scene, written by site_build.py), so the quiz never waits
     // for, or depends on, a second file. Only an old cached page still fetches scene.json.
-    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) { startScene(entry, base, AQ.scene); return; }
+    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) {
+      if (LOOKS) { $("looks").hidden = false; showLook(lookWanted(), false); }
+      else startScene(entry, base, AQ.scene);
+      return;
+    }
     fetch(base + "/scene.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (scene) { startScene(entry, base, scene); })
       .catch(function () { quizProblem("This quiz could not be loaded. Check your connection and reload the page."); });
   }
+  // ONE QUIZ, TWO LOOKS (Colin, 2026-11-25: "make a setting for the quiz taker to choose natural or colored quiz").
+  // A quiz that has a color-coded twin carries it as AQ.alt; the switch above the picture starts the quiz again
+  // with the other picture. The choice is remembered for the next quiz that has both. "#color" in the address
+  // opens the color-coded one (that is where the twin's old address sends people).
+  var LOOKS = (AQ.scene && AQ.entry && AQ.alt && AQ.alt.scene && AQ.alt.entry && typeof AQ.alt.entry.id === "string")
+    ? { natural: { entry: AQ.entry, scene: AQ.scene }, color: { entry: AQ.alt.entry, scene: AQ.alt.scene } } : null;
+  if (LOOKS) LOOKS.color.entry.slug = slugOf(LOOKS.color.entry.id);
+  function lookWanted() {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (h === "color" || h === "natural") return h;
+    return store("aq.look") === "color" ? "color" : "natural";
+  }
+  function lookNow() { return LOOKS && Q && Q.entry === LOOKS.color.entry ? "color" : "natural"; }
+  function showLook(which, remember) {
+    if (!LOOKS) return;
+    var L = which === "color" ? LOOKS.color : LOOKS.natural;
+    if (remember) store("aq.look", which === "color" ? "color" : "natural");
+    $("look-natural").setAttribute("aria-pressed", String(which !== "color"));
+    $("look-color").setAttribute("aria-pressed", String(which === "color"));
+    stopClock();
+    startScene(L.entry, ROOT + (safePath(String(L.entry.path || "")) || ""), L.scene);
+    $("quiz-title").textContent = typeof AQ.scene.title === "string" ? AQ.scene.title : "";   // the quiz keeps its own name
+  }
+  function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
+  $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
+  $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -616,7 +653,7 @@ a.btn { display: inline-block; text-decoration: none; }
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
     act.appendChild(again);
-    var k = order.indexOf(Q.entry), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
     if (next) {
       var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next);
       act.appendChild(nx);
@@ -733,8 +770,8 @@ a.btn { display: inline-block; text-decoration: none; }
       return;
     }
     if (AQ.quiz) {
-      if (Q && Q.entry && Q.entry.slug === AQ.quiz) {               // already running from the page's own data
-        if (byslug.has(AQ.quiz)) Q.entry = byslug.get(AQ.quiz);   // the menu's own entry, so "next quiz" finds it
+      if (LOOKS && Q && (h === "color" || h === "natural") && h !== lookNow()) showLook(h, true);
+      if (Q && Q.entry && (Q.entry.slug === AQ.quiz || (LOOKS && Q.entry === LOOKS.color.entry))) {   // already running from the page's own data
         markCurrent(AQ.quiz);
       } else if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
       else showHome("That quiz is no longer here. Pick another from the menu.");

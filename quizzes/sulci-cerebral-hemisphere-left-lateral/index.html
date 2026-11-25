@@ -81,6 +81,12 @@ a { color: inherit; }
   .shell.menu-closed .menu { transition-delay: 0.2s, 0s; }
 }
 .shell.booting, .shell.booting .menu { transition: none !important; }
+/* one quiz, two looks: natural or color-coded picture */
+.looks { display: inline-flex; margin: 2px 0 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.looks button { border: 0; background: var(--page); color: var(--ink); padding: 6px 14px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.looks button + button { border-left: 1px solid var(--line); }
+.looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
@@ -241,6 +247,7 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 1.1236">
         <h1 class="caption"><span class="qt" id="quiz-title">Sulci of the cerebral hemisphere (left lateral)</span><span id="caption">Brain, left lateral view</span></h1>
+        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Sulci of the cerebral hemisphere (left lateral)" src="../../scenes/sys_brain_sulci_lateral_left/image.b647f8021e.jpg" width="2000" height="1780">
           <canvas id="glow"></canvas>
@@ -266,11 +273,11 @@ a.btn { display: inline-block; text-decoration: none; }
       <h2>More quizzes</h2>
       <ul class="links">
         <li><a href="../gyri-cerebral-hemisphere-left-lateral/">Gyri of the cerebral hemisphere (left lateral)</a></li>
-        <li><a href="../gyri-cerebral-hemisphere-left-lateral-color-coded/">Gyri of the cerebral hemisphere (left lateral, color-coded)</a></li>
         <li><a href="../lobes-cerebral-hemisphere-left-lateral-color-coded/">Lobes of the cerebral hemisphere (left lateral, color-coded)</a></li>
         <li><a href="../circle-of-willis-arteries-base-of-brain-inferior/">Circle of Willis and arteries at the base of the brain (inferior)</a></li>
         <li><a href="../bones-skull-right-lateral/">Bones of the skull (right lateral)</a></li>
         <li><a href="../larynx-trachea-anterior/">Larynx and trachea (anterior)</a></li>
+        <li><a href="../pituitary-pineal-glands-midline-brain-medial-view/">Pituitary and pineal glands and the midline of the brain (medial view)</a></li>
       </ul>
       <p class="fine">3D anatomy from Z-Anatomy, the libre 3D atlas of anatomy, built on BodyParts3D (CC BY-SA 4.0). Rendered in Blender; an imaging engine adds the finer surface detail. Every image is reviewed by the site&#x27;s author, a second-year medical student, before it goes on the site. <a href="../../about.html">About and credits</a></p>
     </section>
@@ -280,7 +287,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"sys-brain-sulci-lateral-left","build":"f6c7fce5f4","entry":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","nav":["Nervous System","Head and Neck","Brain"],"structures":9,"path":"scenes/sys_brain_sulci_lateral_left","url":"sulci-cerebral-hemisphere-left-lateral"},"scene":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","image":"image.b647f8021e.jpg","size":[2000,1780],"hitmap":"hitmap.01b0074f45.png","hitmap_colors":{"Central sulcus":[224,224,161],"Precentral sulcus":[224,224,94],"Postcentral sulcus":[224,224,31],"Superior frontal sulcus":[224,161,224],"Inferior frontal sulcus":[224,161,161],"Lateral sulcus (Sylvian fissure)":[224,161,94],"Superior temporal sulcus":[224,161,31],"Inferior temporal sulcus":[224,94,224],"Intraparietal sulcus":[224,94,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"central_sulcus","name":"Central sulcus","prompts":["Central sulcus"],"objects":["Central sulcus"],"dot":{"x":0.4973,"y":0.234}},{"id":"precentral_sulcus","name":"Precentral sulcus","prompts":["Precentral sulcus"],"objects":["Precentral sulcus"],"dot":{"x":0.4908,"y":0.1902}},{"id":"postcentral_sulcus","name":"Postcentral sulcus","prompts":["Postcentral sulcus"],"objects":["Postcentral sulcus"],"dot":{"x":0.6258,"y":0.2042}},{"id":"superior_frontal_sulcus","name":"Superior frontal sulcus","prompts":["Superior frontal sulcus"],"objects":["Superior frontal sulcus"],"dot":{"x":0.3197,"y":0.2031}},{"id":"inferior_frontal_sulcus","name":"Inferior frontal sulcus","prompts":["Inferior frontal sulcus"],"objects":["Inferior frontal sulcus"],"dot":{"x":0.2132,"y":0.3126}},{"id":"lateral_sulcus","name":"Lateral sulcus (Sylvian fissure)","prompts":["Lateral sulcus (Sylvian fissure)"],"objects":["Lateral sulcus (Sylvian fissure)"],"dot":{"x":0.4667,"y":0.4267}},{"id":"superior_temporal_sulcus","name":"Superior temporal sulcus","prompts":["Superior temporal sulcus"],"objects":["Superior temporal sulcus"],"dot":{"x":0.6368,"y":0.4621}},{"id":"inferior_temporal_sulcus","name":"Inferior temporal sulcus","prompts":["Inferior temporal sulcus"],"objects":["Inferior temporal sulcus"],"dot":{"x":0.6132,"y":0.6008}},{"id":"intraparietal_sulcus","name":"Intraparietal sulcus","prompts":["Intraparietal sulcus"],"objects":["Intraparietal sulcus"],"dot":{"x":0.7452,"y":0.239}}],"caption":"Brain, left lateral view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"sys-brain-sulci-lateral-left","build":"379945f4eb","entry":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","nav":["Nervous System","Head and Neck","Brain"],"structures":9,"path":"scenes/sys_brain_sulci_lateral_left","url":"sulci-cerebral-hemisphere-left-lateral"},"scene":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","image":"image.b647f8021e.jpg","size":[2000,1780],"hitmap":"hitmap.01b0074f45.png","hitmap_colors":{"Central sulcus":[224,224,161],"Precentral sulcus":[224,224,94],"Postcentral sulcus":[224,224,31],"Superior frontal sulcus":[224,161,224],"Inferior frontal sulcus":[224,161,161],"Lateral sulcus (Sylvian fissure)":[224,161,94],"Superior temporal sulcus":[224,161,31],"Inferior temporal sulcus":[224,94,224],"Intraparietal sulcus":[224,94,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"central_sulcus","name":"Central sulcus","prompts":["Central sulcus"],"objects":["Central sulcus"],"dot":{"x":0.4973,"y":0.234}},{"id":"precentral_sulcus","name":"Precentral sulcus","prompts":["Precentral sulcus"],"objects":["Precentral sulcus"],"dot":{"x":0.4908,"y":0.1902}},{"id":"postcentral_sulcus","name":"Postcentral sulcus","prompts":["Postcentral sulcus"],"objects":["Postcentral sulcus"],"dot":{"x":0.6258,"y":0.2042}},{"id":"superior_frontal_sulcus","name":"Superior frontal sulcus","prompts":["Superior frontal sulcus"],"objects":["Superior frontal sulcus"],"dot":{"x":0.3197,"y":0.2031}},{"id":"inferior_frontal_sulcus","name":"Inferior frontal sulcus","prompts":["Inferior frontal sulcus"],"objects":["Inferior frontal sulcus"],"dot":{"x":0.2132,"y":0.3126}},{"id":"lateral_sulcus","name":"Lateral sulcus (Sylvian fissure)","prompts":["Lateral sulcus (Sylvian fissure)"],"objects":["Lateral sulcus (Sylvian fissure)"],"dot":{"x":0.4667,"y":0.4267}},{"id":"superior_temporal_sulcus","name":"Superior temporal sulcus","prompts":["Superior temporal sulcus"],"objects":["Superior temporal sulcus"],"dot":{"x":0.6368,"y":0.4621}},{"id":"inferior_temporal_sulcus","name":"Inferior temporal sulcus","prompts":["Inferior temporal sulcus"],"objects":["Inferior temporal sulcus"],"dot":{"x":0.6132,"y":0.6008}},{"id":"intraparietal_sulcus","name":"Intraparietal sulcus","prompts":["Intraparietal sulcus"],"objects":["Intraparietal sulcus"],"dot":{"x":0.7452,"y":0.239}}],"caption":"Brain, left lateral view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -454,11 +461,41 @@ a.btn { display: inline-block; text-decoration: none; }
     window.scrollTo(0, 0);
     // The page of a quiz carries its own scene (AQ.scene, written by site_build.py), so the quiz never waits
     // for, or depends on, a second file. Only an old cached page still fetches scene.json.
-    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) { startScene(entry, base, AQ.scene); return; }
+    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) {
+      if (LOOKS) { $("looks").hidden = false; showLook(lookWanted(), false); }
+      else startScene(entry, base, AQ.scene);
+      return;
+    }
     fetch(base + "/scene.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (scene) { startScene(entry, base, scene); })
       .catch(function () { quizProblem("This quiz could not be loaded. Check your connection and reload the page."); });
   }
+  // ONE QUIZ, TWO LOOKS (Colin, 2026-11-25: "make a setting for the quiz taker to choose natural or colored quiz").
+  // A quiz that has a color-coded twin carries it as AQ.alt; the switch above the picture starts the quiz again
+  // with the other picture. The choice is remembered for the next quiz that has both. "#color" in the address
+  // opens the color-coded one (that is where the twin's old address sends people).
+  var LOOKS = (AQ.scene && AQ.entry && AQ.alt && AQ.alt.scene && AQ.alt.entry && typeof AQ.alt.entry.id === "string")
+    ? { natural: { entry: AQ.entry, scene: AQ.scene }, color: { entry: AQ.alt.entry, scene: AQ.alt.scene } } : null;
+  if (LOOKS) LOOKS.color.entry.slug = slugOf(LOOKS.color.entry.id);
+  function lookWanted() {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (h === "color" || h === "natural") return h;
+    return store("aq.look") === "color" ? "color" : "natural";
+  }
+  function lookNow() { return LOOKS && Q && Q.entry === LOOKS.color.entry ? "color" : "natural"; }
+  function showLook(which, remember) {
+    if (!LOOKS) return;
+    var L = which === "color" ? LOOKS.color : LOOKS.natural;
+    if (remember) store("aq.look", which === "color" ? "color" : "natural");
+    $("look-natural").setAttribute("aria-pressed", String(which !== "color"));
+    $("look-color").setAttribute("aria-pressed", String(which === "color"));
+    stopClock();
+    startScene(L.entry, ROOT + (safePath(String(L.entry.path || "")) || ""), L.scene);
+    $("quiz-title").textContent = typeof AQ.scene.title === "string" ? AQ.scene.title : "";   // the quiz keeps its own name
+  }
+  function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
+  $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
+  $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -619,7 +656,7 @@ a.btn { display: inline-block; text-decoration: none; }
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
     act.appendChild(again);
-    var k = order.indexOf(Q.entry), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
     if (next) {
       var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next);
       act.appendChild(nx);
@@ -736,8 +773,8 @@ a.btn { display: inline-block; text-decoration: none; }
       return;
     }
     if (AQ.quiz) {
-      if (Q && Q.entry && Q.entry.slug === AQ.quiz) {               // already running from the page's own data
-        if (byslug.has(AQ.quiz)) Q.entry = byslug.get(AQ.quiz);   // the menu's own entry, so "next quiz" finds it
+      if (LOOKS && Q && (h === "color" || h === "natural") && h !== lookNow()) showLook(h, true);
+      if (Q && Q.entry && (Q.entry.slug === AQ.quiz || (LOOKS && Q.entry === LOOKS.color.entry))) {   // already running from the page's own data
         markCurrent(AQ.quiz);
       } else if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
       else showHome("That quiz is no longer here. Pick another from the menu.");

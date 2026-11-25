@@ -81,6 +81,12 @@ a { color: inherit; }
   .shell.menu-closed .menu { transition-delay: 0.2s, 0s; }
 }
 .shell.booting, .shell.booting .menu { transition: none !important; }
+/* one quiz, two looks: natural or color-coded picture */
+.looks { display: inline-flex; margin: 2px 0 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.looks button { border: 0; background: var(--page); color: var(--ink); padding: 6px 14px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.looks button + button { border-left: 1px solid var(--line); }
+.looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
@@ -241,6 +247,7 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 0.6740">
         <h1 class="caption"><span class="qt" id="quiz-title">Ligaments of the hip joint and pelvis (anterior)</span><span id="caption">Right hip and pelvis, anterior view</span></h1>
+        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Ligaments of the hip joint and pelvis (anterior)" src="../../scenes/sys_hip_pelvis_ligaments_anterior/image.d88023fa3e.jpg" width="1348" height="2000">
           <canvas id="glow"></canvas>
@@ -279,7 +286,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"sys-hip-pelvis-ligaments-anterior","build":"f6c7fce5f4","entry":{"id":"sys_hip_pelvis_ligaments_anterior","title":"Ligaments of the hip joint and pelvis (anterior)","region":"lower_limb","lab":"Hip Joint","view":"anterior","nav":["Joints and Ligaments","Lower Body","Hip"],"structures":11,"path":"scenes/sys_hip_pelvis_ligaments_anterior","url":"ligaments-hip-joint-pelvis-anterior"},"scene":{"id":"sys_hip_pelvis_ligaments_anterior","title":"Ligaments of the hip joint and pelvis (anterior)","region":"lower_limb","lab":"Hip Joint","view":"anterior","image":"image.d88023fa3e.jpg","size":[1348,2000],"hitmap":"hitmap.ca7309bd82.png","hitmap_colors":{"Descending part of iliofemoral ligament.r":[31,31,94],"Transverse part of iliofemoral ligament.r":[31,31,161],"Pubofemoral ligament.r":[31,31,224],"Anterior sacro-iliac ligament.r":[31,94,31],"Iliolumbar ligament.r":[31,94,94],"Sacrospinous ligament.r":[31,94,161],"Sacrotuberous ligament.r":[31,94,224],"Obturator membrane.r":[31,161,31],"Superior pubic ligament":[31,161,94],"Inferior pubic ligament":[31,161,161],"Interpubic disc":[31,161,224]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"iliofemoral_ligament_descending_part","name":"Iliofemoral ligament, descending (medial) part","prompts":["Iliofemoral ligament, descending (medial) part"],"objects":["Descending part of iliofemoral ligament.r"],"dot":{"x":0.3023,"y":0.7119}},{"id":"iliofemoral_ligament_transverse_part","name":"Iliofemoral ligament, transverse (lateral) part","prompts":["Iliofemoral ligament, transverse (lateral) part"],"objects":["Transverse part of iliofemoral ligament.r"],"dot":{"x":0.2385,"y":0.6893}},{"id":"pubofemoral_ligament","name":"Pubofemoral ligament","prompts":["Pubofemoral ligament"],"objects":["Pubofemoral ligament.r"],"dot":{"x":0.4351,"y":0.7768}},{"id":"anterior_sacro_iliac_ligament","name":"Anterior sacroiliac ligament","prompts":["Anterior sacroiliac ligament"],"objects":["Anterior sacro-iliac ligament.r"],"dot":{"x":0.5234,"y":0.3897}},{"id":"iliolumbar_ligament","name":"Iliolumbar ligament","prompts":["Iliolumbar ligament"],"objects":["Iliolumbar ligament.r"],"dot":{"x":0.4863,"y":0.1807}},{"id":"sacrospinous_ligament","name":"Sacrospinous ligament","prompts":["Sacrospinous ligament"],"objects":["Sacrospinous ligament.r"],"dot":{"x":0.6191,"y":0.5917}},{"id":"sacrotuberous_ligament","name":"Sacrotuberous ligament","prompts":["Sacrotuberous ligament"],"objects":["Sacrotuberous ligament.r"],"dot":{"x":0.6406,"y":0.6512}},{"id":"obturator_membrane","name":"Obturator membrane","prompts":["Obturator membrane"],"objects":["Obturator membrane.r"],"dot":{"x":0.6131,"y":0.7752}},{"id":"superior_pubic_ligament","name":"Superior pubic ligament","prompts":["Superior pubic ligament"],"objects":["Superior pubic ligament"],"dot":{"x":0.8067,"y":0.7262}},{"id":"inferior_pubic_ligament","name":"Inferior pubic ligament","prompts":["Inferior pubic ligament"],"objects":["Inferior pubic ligament"],"dot":{"x":0.8898,"y":0.7877}},{"id":"interpubic_disc","name":"Interpubic disc (pubic symphysis)","prompts":["Interpubic disc (pubic symphysis)"],"objects":["Interpubic disc"],"dot":{"x":0.855,"y":0.7588}}],"caption":"Right hip and pelvis, anterior view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"sys-hip-pelvis-ligaments-anterior","build":"379945f4eb","entry":{"id":"sys_hip_pelvis_ligaments_anterior","title":"Ligaments of the hip joint and pelvis (anterior)","region":"lower_limb","lab":"Hip Joint","view":"anterior","nav":["Joints and Ligaments","Lower Body","Hip"],"structures":11,"path":"scenes/sys_hip_pelvis_ligaments_anterior","url":"ligaments-hip-joint-pelvis-anterior"},"scene":{"id":"sys_hip_pelvis_ligaments_anterior","title":"Ligaments of the hip joint and pelvis (anterior)","region":"lower_limb","lab":"Hip Joint","view":"anterior","image":"image.d88023fa3e.jpg","size":[1348,2000],"hitmap":"hitmap.ca7309bd82.png","hitmap_colors":{"Descending part of iliofemoral ligament.r":[31,31,94],"Transverse part of iliofemoral ligament.r":[31,31,161],"Pubofemoral ligament.r":[31,31,224],"Anterior sacro-iliac ligament.r":[31,94,31],"Iliolumbar ligament.r":[31,94,94],"Sacrospinous ligament.r":[31,94,161],"Sacrotuberous ligament.r":[31,94,224],"Obturator membrane.r":[31,161,31],"Superior pubic ligament":[31,161,94],"Inferior pubic ligament":[31,161,161],"Interpubic disc":[31,161,224]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"iliofemoral_ligament_descending_part","name":"Iliofemoral ligament, descending (medial) part","prompts":["Iliofemoral ligament, descending (medial) part"],"objects":["Descending part of iliofemoral ligament.r"],"dot":{"x":0.3023,"y":0.7119}},{"id":"iliofemoral_ligament_transverse_part","name":"Iliofemoral ligament, transverse (lateral) part","prompts":["Iliofemoral ligament, transverse (lateral) part"],"objects":["Transverse part of iliofemoral ligament.r"],"dot":{"x":0.2385,"y":0.6893}},{"id":"pubofemoral_ligament","name":"Pubofemoral ligament","prompts":["Pubofemoral ligament"],"objects":["Pubofemoral ligament.r"],"dot":{"x":0.4351,"y":0.7768}},{"id":"anterior_sacro_iliac_ligament","name":"Anterior sacroiliac ligament","prompts":["Anterior sacroiliac ligament"],"objects":["Anterior sacro-iliac ligament.r"],"dot":{"x":0.5234,"y":0.3897}},{"id":"iliolumbar_ligament","name":"Iliolumbar ligament","prompts":["Iliolumbar ligament"],"objects":["Iliolumbar ligament.r"],"dot":{"x":0.4863,"y":0.1807}},{"id":"sacrospinous_ligament","name":"Sacrospinous ligament","prompts":["Sacrospinous ligament"],"objects":["Sacrospinous ligament.r"],"dot":{"x":0.6191,"y":0.5917}},{"id":"sacrotuberous_ligament","name":"Sacrotuberous ligament","prompts":["Sacrotuberous ligament"],"objects":["Sacrotuberous ligament.r"],"dot":{"x":0.6406,"y":0.6512}},{"id":"obturator_membrane","name":"Obturator membrane","prompts":["Obturator membrane"],"objects":["Obturator membrane.r"],"dot":{"x":0.6131,"y":0.7752}},{"id":"superior_pubic_ligament","name":"Superior pubic ligament","prompts":["Superior pubic ligament"],"objects":["Superior pubic ligament"],"dot":{"x":0.8067,"y":0.7262}},{"id":"inferior_pubic_ligament","name":"Inferior pubic ligament","prompts":["Inferior pubic ligament"],"objects":["Inferior pubic ligament"],"dot":{"x":0.8898,"y":0.7877}},{"id":"interpubic_disc","name":"Interpubic disc (pubic symphysis)","prompts":["Interpubic disc (pubic symphysis)"],"objects":["Interpubic disc"],"dot":{"x":0.855,"y":0.7588}}],"caption":"Right hip and pelvis, anterior view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -453,11 +460,41 @@ a.btn { display: inline-block; text-decoration: none; }
     window.scrollTo(0, 0);
     // The page of a quiz carries its own scene (AQ.scene, written by site_build.py), so the quiz never waits
     // for, or depends on, a second file. Only an old cached page still fetches scene.json.
-    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) { startScene(entry, base, AQ.scene); return; }
+    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) {
+      if (LOOKS) { $("looks").hidden = false; showLook(lookWanted(), false); }
+      else startScene(entry, base, AQ.scene);
+      return;
+    }
     fetch(base + "/scene.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (scene) { startScene(entry, base, scene); })
       .catch(function () { quizProblem("This quiz could not be loaded. Check your connection and reload the page."); });
   }
+  // ONE QUIZ, TWO LOOKS (Colin, 2026-11-25: "make a setting for the quiz taker to choose natural or colored quiz").
+  // A quiz that has a color-coded twin carries it as AQ.alt; the switch above the picture starts the quiz again
+  // with the other picture. The choice is remembered for the next quiz that has both. "#color" in the address
+  // opens the color-coded one (that is where the twin's old address sends people).
+  var LOOKS = (AQ.scene && AQ.entry && AQ.alt && AQ.alt.scene && AQ.alt.entry && typeof AQ.alt.entry.id === "string")
+    ? { natural: { entry: AQ.entry, scene: AQ.scene }, color: { entry: AQ.alt.entry, scene: AQ.alt.scene } } : null;
+  if (LOOKS) LOOKS.color.entry.slug = slugOf(LOOKS.color.entry.id);
+  function lookWanted() {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (h === "color" || h === "natural") return h;
+    return store("aq.look") === "color" ? "color" : "natural";
+  }
+  function lookNow() { return LOOKS && Q && Q.entry === LOOKS.color.entry ? "color" : "natural"; }
+  function showLook(which, remember) {
+    if (!LOOKS) return;
+    var L = which === "color" ? LOOKS.color : LOOKS.natural;
+    if (remember) store("aq.look", which === "color" ? "color" : "natural");
+    $("look-natural").setAttribute("aria-pressed", String(which !== "color"));
+    $("look-color").setAttribute("aria-pressed", String(which === "color"));
+    stopClock();
+    startScene(L.entry, ROOT + (safePath(String(L.entry.path || "")) || ""), L.scene);
+    $("quiz-title").textContent = typeof AQ.scene.title === "string" ? AQ.scene.title : "";   // the quiz keeps its own name
+  }
+  function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
+  $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
+  $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -618,7 +655,7 @@ a.btn { display: inline-block; text-decoration: none; }
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
     act.appendChild(again);
-    var k = order.indexOf(Q.entry), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
     if (next) {
       var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next);
       act.appendChild(nx);
@@ -735,8 +772,8 @@ a.btn { display: inline-block; text-decoration: none; }
       return;
     }
     if (AQ.quiz) {
-      if (Q && Q.entry && Q.entry.slug === AQ.quiz) {               // already running from the page's own data
-        if (byslug.has(AQ.quiz)) Q.entry = byslug.get(AQ.quiz);   // the menu's own entry, so "next quiz" finds it
+      if (LOOKS && Q && (h === "color" || h === "natural") && h !== lookNow()) showLook(h, true);
+      if (Q && Q.entry && (Q.entry.slug === AQ.quiz || (LOOKS && Q.entry === LOOKS.color.entry))) {   // already running from the page's own data
         markCurrent(AQ.quiz);
       } else if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
       else showHome("That quiz is no longer here. Pick another from the menu.");

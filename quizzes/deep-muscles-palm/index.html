@@ -81,6 +81,12 @@ a { color: inherit; }
   .shell.menu-closed .menu { transition-delay: 0.2s, 0s; }
 }
 .shell.booting, .shell.booting .menu { transition: none !important; }
+/* one quiz, two looks: natural or color-coded picture */
+.looks { display: inline-flex; margin: 2px 0 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.looks button { border: 0; background: var(--page); color: var(--ink); padding: 6px 14px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.looks button + button { border-left: 1px solid var(--line); }
+.looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
@@ -241,6 +247,7 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 0.7580">
         <h1 class="caption"><span class="qt" id="quiz-title">Deep muscles of the palm (palmar)</span><span id="caption">Right hand, palmar view</span></h1>
+        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Deep muscles of the palm (palmar)" src="../../scenes/ul_hand_deep_muscles_palmar/image.44b0927577.jpg" width="1516" height="2000">
           <canvas id="glow"></canvas>
@@ -276,7 +283,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"ul-hand-deep-muscles-palmar","build":"f6c7fce5f4","entry":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","nav":["Muscular System","Upper Body","Hand"],"structures":5,"path":"scenes/ul_hand_deep_muscles_palmar","url":"deep-muscles-palm"},"scene":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","image":"image.44b0927577.jpg","size":[1516,2000],"hitmap":"hitmap.210946d7de.png","hitmap_colors":{"Opponens pollicis muscle.r":[31,31,94],"Opponens digiti minimi muscle of hand.r":[31,31,161],"Oblique head of adductor pollicis.r":[31,31,224],"Transverse head of adductor pollicis.r":[31,94,31],"Dorsal interossei muscles of hand.r":[31,94,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"opponens_pollicis_muscle","name":"Opponens pollicis muscle","prompts":["Opponens pollicis muscle"],"objects":["Opponens pollicis muscle.r"],"dot":{"x":0.4133,"y":0.2923}},{"id":"opponens_digiti_minimi_muscle","name":"Opponens digiti minimi muscle","prompts":["Opponens digiti minimi muscle"],"objects":["Opponens digiti minimi muscle of hand.r"],"dot":{"x":0.7912,"y":0.3772}},{"id":"oblique_head_of_adductor_pollicis_muscle","name":"Oblique head of adductor pollicis muscle","prompts":["Oblique head of adductor pollicis muscle"],"objects":["Oblique head of adductor pollicis.r"],"dot":{"x":0.4542,"y":0.3262}},{"id":"transverse_head_of_adductor_pollicis_muscle","name":"Transverse head of adductor pollicis muscle","prompts":["Transverse head of adductor pollicis muscle"],"objects":["Transverse head of adductor pollicis.r"],"dot":{"x":0.4469,"y":0.4338}},{"id":"dorsal_interossei_muscles","name":"Dorsal interossei muscles","prompts":["Dorsal interossei muscles"],"objects":["Dorsal interossei muscles of hand.r"],"dot":{"x":0.621,"y":0.5377}}],"caption":"Right hand, palmar view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"ul-hand-deep-muscles-palmar","build":"379945f4eb","entry":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","nav":["Muscular System","Upper Body","Hand"],"structures":5,"path":"scenes/ul_hand_deep_muscles_palmar","url":"deep-muscles-palm"},"scene":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","image":"image.44b0927577.jpg","size":[1516,2000],"hitmap":"hitmap.210946d7de.png","hitmap_colors":{"Opponens pollicis muscle.r":[31,31,94],"Opponens digiti minimi muscle of hand.r":[31,31,161],"Oblique head of adductor pollicis.r":[31,31,224],"Transverse head of adductor pollicis.r":[31,94,31],"Dorsal interossei muscles of hand.r":[31,94,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"opponens_pollicis_muscle","name":"Opponens pollicis muscle","prompts":["Opponens pollicis muscle"],"objects":["Opponens pollicis muscle.r"],"dot":{"x":0.4133,"y":0.2923}},{"id":"opponens_digiti_minimi_muscle","name":"Opponens digiti minimi muscle","prompts":["Opponens digiti minimi muscle"],"objects":["Opponens digiti minimi muscle of hand.r"],"dot":{"x":0.7912,"y":0.3772}},{"id":"oblique_head_of_adductor_pollicis_muscle","name":"Oblique head of adductor pollicis muscle","prompts":["Oblique head of adductor pollicis muscle"],"objects":["Oblique head of adductor pollicis.r"],"dot":{"x":0.4542,"y":0.3262}},{"id":"transverse_head_of_adductor_pollicis_muscle","name":"Transverse head of adductor pollicis muscle","prompts":["Transverse head of adductor pollicis muscle"],"objects":["Transverse head of adductor pollicis.r"],"dot":{"x":0.4469,"y":0.4338}},{"id":"dorsal_interossei_muscles","name":"Dorsal interossei muscles","prompts":["Dorsal interossei muscles"],"objects":["Dorsal interossei muscles of hand.r"],"dot":{"x":0.621,"y":0.5377}}],"caption":"Right hand, palmar view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -450,11 +457,41 @@ a.btn { display: inline-block; text-decoration: none; }
     window.scrollTo(0, 0);
     // The page of a quiz carries its own scene (AQ.scene, written by site_build.py), so the quiz never waits
     // for, or depends on, a second file. Only an old cached page still fetches scene.json.
-    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) { startScene(entry, base, AQ.scene); return; }
+    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) {
+      if (LOOKS) { $("looks").hidden = false; showLook(lookWanted(), false); }
+      else startScene(entry, base, AQ.scene);
+      return;
+    }
     fetch(base + "/scene.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (scene) { startScene(entry, base, scene); })
       .catch(function () { quizProblem("This quiz could not be loaded. Check your connection and reload the page."); });
   }
+  // ONE QUIZ, TWO LOOKS (Colin, 2026-11-25: "make a setting for the quiz taker to choose natural or colored quiz").
+  // A quiz that has a color-coded twin carries it as AQ.alt; the switch above the picture starts the quiz again
+  // with the other picture. The choice is remembered for the next quiz that has both. "#color" in the address
+  // opens the color-coded one (that is where the twin's old address sends people).
+  var LOOKS = (AQ.scene && AQ.entry && AQ.alt && AQ.alt.scene && AQ.alt.entry && typeof AQ.alt.entry.id === "string")
+    ? { natural: { entry: AQ.entry, scene: AQ.scene }, color: { entry: AQ.alt.entry, scene: AQ.alt.scene } } : null;
+  if (LOOKS) LOOKS.color.entry.slug = slugOf(LOOKS.color.entry.id);
+  function lookWanted() {
+    var h = (location.hash || "").replace(/^#/, "");
+    if (h === "color" || h === "natural") return h;
+    return store("aq.look") === "color" ? "color" : "natural";
+  }
+  function lookNow() { return LOOKS && Q && Q.entry === LOOKS.color.entry ? "color" : "natural"; }
+  function showLook(which, remember) {
+    if (!LOOKS) return;
+    var L = which === "color" ? LOOKS.color : LOOKS.natural;
+    if (remember) store("aq.look", which === "color" ? "color" : "natural");
+    $("look-natural").setAttribute("aria-pressed", String(which !== "color"));
+    $("look-color").setAttribute("aria-pressed", String(which === "color"));
+    stopClock();
+    startScene(L.entry, ROOT + (safePath(String(L.entry.path || "")) || ""), L.scene);
+    $("quiz-title").textContent = typeof AQ.scene.title === "string" ? AQ.scene.title : "";   // the quiz keeps its own name
+  }
+  function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
+  $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
+  $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -615,7 +652,7 @@ a.btn { display: inline-block; text-decoration: none; }
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
     act.appendChild(again);
-    var k = order.indexOf(Q.entry), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
     if (next) {
       var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next);
       act.appendChild(nx);
@@ -732,8 +769,8 @@ a.btn { display: inline-block; text-decoration: none; }
       return;
     }
     if (AQ.quiz) {
-      if (Q && Q.entry && Q.entry.slug === AQ.quiz) {               // already running from the page's own data
-        if (byslug.has(AQ.quiz)) Q.entry = byslug.get(AQ.quiz);   // the menu's own entry, so "next quiz" finds it
+      if (LOOKS && Q && (h === "color" || h === "natural") && h !== lookNow()) showLook(h, true);
+      if (Q && Q.entry && (Q.entry.slug === AQ.quiz || (LOOKS && Q.entry === LOOKS.color.entry))) {   // already running from the page's own data
         markCurrent(AQ.quiz);
       } else if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
       else showHome("That quiz is no longer here. Pick another from the menu.");
