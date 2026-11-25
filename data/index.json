@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T17:23:19+00:00",
+ "generated": "2026-11-25T17:27:47+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -118,6 +118,21 @@
    "structures": 6,
    "path": "scenes/sk_vertebral_column_lateral_right",
    "url": "regions-vertebral-column-right-lateral"
+  },
+  {
+   "id": "ul_acromioclavicular_coracoid_ligaments_anterior",
+   "title": "Ligaments, capsule and rotator cuff of the shoulder (anterior)",
+   "region": "upper_limb",
+   "lab": "Shoulder Joint, Scapular Muscles, and Posterior Arm",
+   "view": "anterior",
+   "nav": [
+    "Joints and Ligaments",
+    "Upper Body",
+    "Shoulder"
+   ],
+   "structures": 8,
+   "path": "scenes/ul_acromioclavicular_coracoid_ligaments_anterior",
+   "url": "ligaments-capsule-rotator-cuff-shoulder-anterior"
   },
   {
    "id": "jt_pelvis_ligaments_posterior",
