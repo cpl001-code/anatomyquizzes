@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T16:12:06+00:00",
+ "generated": "2026-11-25T16:45:10+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -45,6 +45,21 @@
  },
  "scenes": [
   {
+   "id": "sk_skull_bones_lateral_right",
+   "title": "Bones of the skull (right lateral)",
+   "region": "head_and_neck",
+   "lab": "Skull",
+   "view": "lateral_right",
+   "nav": [
+    "Skeletal System",
+    "Head and Neck",
+    "Skull"
+   ],
+   "structures": 10,
+   "path": "scenes/sk_skull_bones_lateral_right",
+   "url": "bones-skull-right-lateral"
+  },
+  {
    "id": "ul_hand_bones_carpals_metacarpals_anterior",
    "title": "Carpal bones and metacarpals (palmar)",
    "region": "upper_limb",
@@ -75,6 +90,21 @@
    "url": "phalanges-hand-palmar"
   },
   {
+   "id": "sk_bony_pelvis_anterior_colour",
+   "title": "Bones of the pelvis (anterior, color-coded)",
+   "region": "pelvis_and_perineum",
+   "lab": "Bony Pelvis",
+   "view": "anterior",
+   "nav": [
+    "Skeletal System",
+    "Pelvis",
+    "Bony Pelvis"
+   ],
+   "structures": 9,
+   "path": "scenes/sk_bony_pelvis_anterior_colour",
+   "url": "bones-pelvis-anterior-color-coded"
+  },
+  {
    "id": "sk_vertebral_column_lateral_right",
    "title": "Regions of the vertebral column (right lateral)",
    "region": "back_and_spinal_cord",
@@ -88,6 +118,21 @@
    "structures": 6,
    "path": "scenes/sk_vertebral_column_lateral_right",
    "url": "regions-vertebral-column-right-lateral"
+  },
+  {
+   "id": "jt_pelvis_ligaments_posterior",
+   "title": "Ligaments of the pelvis and sacroiliac joint (posterior)",
+   "region": "pelvis_and_perineum",
+   "lab": "Pelvis",
+   "view": "posterior",
+   "nav": [
+    "Joints and Ligaments",
+    "Pelvis",
+    "Pelvic Ligaments"
+   ],
+   "structures": 7,
+   "path": "scenes/jt_pelvis_ligaments_posterior",
+   "url": "ligaments-pelvis-sacroiliac-joint-posterior"
   },
   {
    "id": "sys_hip_pelvis_ligaments_anterior",
@@ -268,6 +313,21 @@
    "structures": 5,
    "path": "scenes/ul_hand_deep_muscles_palmar",
    "url": "deep-muscles-palm"
+  },
+  {
+   "id": "mu_back_deep_muscles_posterior",
+   "title": "Deep muscles of the back: erector spinae and splenius (posterior)",
+   "region": "back_and_spinal_cord",
+   "lab": "Deep Back",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Back",
+    "Deep Back"
+   ],
+   "structures": 10,
+   "path": "scenes/mu_back_deep_muscles_posterior",
+   "url": "deep-muscles-back-erector-spinae-splenius-posterior"
   },
   {
    "id": "sys_brain_gyri_lateral_left",
@@ -478,6 +538,21 @@
    "structures": 6,
    "path": "scenes/sys_urinary_tract_anterior",
    "url": "kidneys-ureters-urinary-bladder-anterior"
+  },
+  {
+   "id": "en_pituitary_pineal_brain_medial",
+   "title": "Pituitary and pineal glands and the midline of the brain (medial view)",
+   "region": "head_and_neck",
+   "lab": "Pituitary and Pineal Glands",
+   "view": "lateral_left",
+   "nav": [
+    "Endocrine System",
+    "Head and Neck",
+    "Pituitary and Pineal Glands"
+   ],
+   "structures": 15,
+   "path": "scenes/en_pituitary_pineal_brain_medial",
+   "url": "pituitary-pineal-glands-midline-brain-medial-view"
   },
   {
    "id": "sys_thyroid_parathyroid_posterior",
