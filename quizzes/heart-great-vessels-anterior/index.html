@@ -167,6 +167,22 @@ a.btn { display: inline-block; text-decoration: none; }
 .line { margin: 0; max-width: 34ch; }
 .line.quiet { color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+/* after-quiz blurb: the words about one structure, beside the picture (a sheet at the bottom on a phone) */
+.blurb { align-self: stretch; max-width: 46ch; padding-top: 12px; border-top: 1px solid var(--line); max-height: max(220px, calc(100vh - var(--bar) - 290px)); overflow: auto; overscroll-behavior: contain; }
+.blurb-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.blurb h3 { margin: 0 0 8px; font: 700 20px/1.2 var(--font); text-wrap: balance; }
+.blurb .x { flex: none; width: 32px; height: 32px; margin: -5px -4px 0 0; padding: 0; border: 0; background: none; border-radius: 8px; font-size: 24px; line-height: 1; color: var(--muted); }
+.blurb .x:hover { background: var(--mist); color: var(--ink); }
+.blurb dl { margin: 0; }
+.blurb dt, .blurb .hy-h { margin: 10px 0 1px; font: 700 12.5px/1.3 var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.blurb dt:first-child { margin-top: 0; }
+.blurb dd { margin: 0; font-size: 16px; line-height: 1.4; }
+.blurb ul { margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.4; }
+.blurb li + li { margin-top: 4px; }
+@media (min-width: 821px) {
+  .panel.reading { padding-top: 4px; }
+  .panel.reading .final { font-size: 40px; }
+}
 
 /* ---- the words under a quiz, and the list of every quiz ---- */
 .more { max-width: 43rem; margin: 72px auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
@@ -207,6 +223,8 @@ a.btn { display: inline-block; text-decoration: none; }
   .word.live { min-height: 2.2em; }
   .clock { font-size: 24px; }
   .final { font-size: 44px; }
+  .blurb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; max-width: none; max-height: 46vh; padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--page); border-top: 2px solid var(--ink); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.14); }
+  .panel.reading #blurb-tip { display: none; }
 }
 </style>
 <!-- Google tag (Colin's container, 2026-11-24) -->
@@ -302,7 +320,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"sys-heart-great-vessels-anterior","build":"379945f4eb","entry":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","nav":["Cardiovascular System","Thorax","Heart"],"structures":26,"path":"scenes/sys_heart_great_vessels_anterior","url":"heart-great-vessels-anterior"},"scene":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","image":"image.b873e74cf4.jpg","size":[1488,2000],"hitmap":"hitmap.365253dd2d.png","hitmap_colors":{"Right atrium":[31,31,94],"Right ventricle":[31,31,161],"Left ventricle":[31,31,224],"Left atrium":[31,94,31],"Pulmonary trunk":[31,94,94],"Ascending aorta":[31,94,161],"Aortic arch":[31,94,224],"Superior vena cava":[31,161,31],"Brachiocephalic trunk":[31,161,94],"Left common carotid artery":[31,161,161],"Left subclavian artery":[31,161,224],"Right subclavian artery":[31,224,31],"Right coronary artery":[31,224,94],"Anterior interventricular artery":[31,224,161],"Great cardiac vein":[31,224,224],"Inferior vena cava (thoracic part)":[94,31,31],"Thoracic aorta":[94,31,94],"Abdominal aorta":[94,31,161],"Internal jugular vein.r":[94,94,31],"Internal jugular vein.l":[94,94,94],"Right subclavian vein":[94,94,161],"Left subclavian vein":[94,94,224],"Right brachiocephalic vein":[94,161,31],"Left brachiocephalic vein":[94,161,94],"Right common carotid artery":[94,161,161],"Right marginal branch (of right coronary artery)":[161,94,224],"Diagonal branch (of left anterior descending)":[161,94,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"right_atrium","name":"Right atrium","prompts":["Right atrium"],"objects":["Right atrium"],"dot":{"x":0.2017,"y":0.5461}},{"id":"right_ventricle","name":"Right ventricle","prompts":["Right ventricle"],"objects":["Right ventricle"],"dot":{"x":0.5205,"y":0.7043}},{"id":"left_ventricle","name":"Left ventricle","prompts":["Left ventricle"],"objects":["Left ventricle"],"dot":{"x":0.8481,"y":0.6946}},{"id":"left_atrium","name":"Left atrium","prompts":["Left atrium"],"objects":["Left atrium"],"dot":{"x":0.6999,"y":0.4818}},{"id":"pulmonary_trunk","name":"Pulmonary trunk","prompts":["Pulmonary trunk"],"objects":["Pulmonary trunk"],"dot":{"x":0.54,"y":0.3802}},{"id":"ascending_aorta","name":"Ascending aorta","prompts":["Ascending aorta"],"objects":["Ascending aorta"],"dot":{"x":0.3753,"y":0.3463}},{"id":"aortic_arch","name":"Aortic arch","prompts":["Aortic arch"],"objects":["Aortic arch"],"dot":{"x":0.4609,"y":0.1951}},{"id":"superior_vena_cava","name":"Superior vena cava","prompts":["Superior vena cava"],"objects":["Superior vena cava"],"dot":{"x":0.2477,"y":0.3033}},{"id":"brachiocephalic_trunk","name":"Brachiocephalic trunk","prompts":["Brachiocephalic trunk"],"objects":["Brachiocephalic trunk"],"dot":{"x":0.3108,"y":0.0882}},{"id":"left_common_carotid_artery","name":"Left common carotid artery","prompts":["Left common carotid artery"],"objects":["Left common carotid artery"],"dot":{"x":0.4654,"y":0.0302}},{"id":"left_subclavian_artery","name":"Left subclavian artery","prompts":["Left subclavian artery"],"objects":["Left subclavian artery"],"dot":{"x":0.6376,"y":0.0331}},{"id":"right_subclavian_artery","name":"Right subclavian artery","prompts":["Right subclavian artery"],"objects":["Right subclavian artery"],"dot":{"x":0.0938,"y":0.0503}},{"id":"right_coronary_artery","name":"Right coronary artery","prompts":["Right coronary artery"],"objects":["Right coronary artery"],"dot":{"x":0.1217,"y":0.5002}},{"id":"anterior_interventricular_artery","name":"Anterior interventricular artery (left anterior descending)","prompts":["Anterior interventricular artery (left anterior descending)"],"objects":["Anterior interventricular artery"],"dot":{"x":0.8588,"y":0.5807}},{"id":"great_cardiac_vein","name":"Great cardiac vein","prompts":["Great cardiac vein"],"objects":["Great cardiac vein"],"dot":{"x":0.9138,"y":0.6726}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (thoracic part)"],"dot":{"x":0.2947,"y":0.9127}},{"id":"descending_aorta","name":"Descending (thoracic) aorta","prompts":["Descending (thoracic) aorta"],"objects":["Thoracic aorta","Abdominal aorta"],"dot":{"x":0.4224,"y":0.9343}},{"id":"right_internal_jugular_vein","name":"Right internal jugular vein","prompts":["Right internal jugular vein"],"objects":["Internal jugular vein.r"],"dot":{"x":0.2013,"y":0.0283}},{"id":"left_internal_jugular_vein","name":"Left internal jugular vein","prompts":["Left internal jugular vein"],"objects":["Internal jugular vein.l"],"dot":{"x":0.5185,"y":0.0227}},{"id":"right_subclavian_vein","name":"Right subclavian vein","prompts":["Right subclavian vein"],"objects":["Right subclavian vein"],"dot":{"x":0.0931,"y":0.0772}},{"id":"left_subclavian_vein","name":"Left subclavian vein","prompts":["Left subclavian vein"],"objects":["Left subclavian vein"],"dot":{"x":0.7302,"y":0.0813}},{"id":"right_brachiocephalic_vein","name":"Right brachiocephalic vein","prompts":["Right brachiocephalic vein"],"objects":["Right brachiocephalic vein"],"dot":{"x":0.2221,"y":0.1298}},{"id":"left_brachiocephalic_vein","name":"Left brachiocephalic vein","prompts":["Left brachiocephalic vein"],"objects":["Left brachiocephalic vein"],"dot":{"x":0.3787,"y":0.1432}},{"id":"right_common_carotid_artery","name":"Right common carotid artery","prompts":["Right common carotid artery"],"objects":["Right common carotid artery"],"dot":{"x":0.2577,"y":0.0297}},{"id":"right_marginal_branch","name":"Right marginal branch (of right coronary artery)","prompts":["Right marginal branch (of right coronary artery)"],"objects":["Right marginal branch (of right coronary artery)"],"dot":{"x":0.1808,"y":0.8449}},{"id":"diagonal_branch_of_lad","name":"Diagonal branch (of left anterior descending)","prompts":["Diagonal branch (of left anterior descending)"],"objects":["Diagonal branch (of left anterior descending)"],"dot":{"x":0.9281,"y":0.8094}}],"caption":"Heart, anterior view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"sys-heart-great-vessels-anterior","build":"df1d8adfe8","entry":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","nav":["Cardiovascular System","Thorax","Heart"],"structures":26,"path":"scenes/sys_heart_great_vessels_anterior","url":"heart-great-vessels-anterior"},"scene":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","image":"image.b873e74cf4.jpg","size":[1488,2000],"hitmap":"hitmap.365253dd2d.png","hitmap_colors":{"Right atrium":[31,31,94],"Right ventricle":[31,31,161],"Left ventricle":[31,31,224],"Left atrium":[31,94,31],"Pulmonary trunk":[31,94,94],"Ascending aorta":[31,94,161],"Aortic arch":[31,94,224],"Superior vena cava":[31,161,31],"Brachiocephalic trunk":[31,161,94],"Left common carotid artery":[31,161,161],"Left subclavian artery":[31,161,224],"Right subclavian artery":[31,224,31],"Right coronary artery":[31,224,94],"Anterior interventricular artery":[31,224,161],"Great cardiac vein":[31,224,224],"Inferior vena cava (thoracic part)":[94,31,31],"Thoracic aorta":[94,31,94],"Abdominal aorta":[94,31,161],"Internal jugular vein.r":[94,94,31],"Internal jugular vein.l":[94,94,94],"Right subclavian vein":[94,94,161],"Left subclavian vein":[94,94,224],"Right brachiocephalic vein":[94,161,31],"Left brachiocephalic vein":[94,161,94],"Right common carotid artery":[94,161,161],"Right marginal branch (of right coronary artery)":[161,94,224],"Diagonal branch (of left anterior descending)":[161,94,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"right_atrium","name":"Right atrium","prompts":["Right atrium"],"objects":["Right atrium"],"dot":{"x":0.2017,"y":0.5461}},{"id":"right_ventricle","name":"Right ventricle","prompts":["Right ventricle"],"objects":["Right ventricle"],"dot":{"x":0.5205,"y":0.7043}},{"id":"left_ventricle","name":"Left ventricle","prompts":["Left ventricle"],"objects":["Left ventricle"],"dot":{"x":0.8481,"y":0.6946}},{"id":"left_atrium","name":"Left atrium","prompts":["Left atrium"],"objects":["Left atrium"],"dot":{"x":0.6999,"y":0.4818}},{"id":"pulmonary_trunk","name":"Pulmonary trunk","prompts":["Pulmonary trunk"],"objects":["Pulmonary trunk"],"dot":{"x":0.54,"y":0.3802}},{"id":"ascending_aorta","name":"Ascending aorta","prompts":["Ascending aorta"],"objects":["Ascending aorta"],"dot":{"x":0.3753,"y":0.3463}},{"id":"aortic_arch","name":"Aortic arch","prompts":["Aortic arch"],"objects":["Aortic arch"],"dot":{"x":0.4609,"y":0.1951}},{"id":"superior_vena_cava","name":"Superior vena cava","prompts":["Superior vena cava"],"objects":["Superior vena cava"],"dot":{"x":0.2477,"y":0.3033}},{"id":"brachiocephalic_trunk","name":"Brachiocephalic trunk","prompts":["Brachiocephalic trunk"],"objects":["Brachiocephalic trunk"],"dot":{"x":0.3108,"y":0.0882}},{"id":"left_common_carotid_artery","name":"Left common carotid artery","prompts":["Left common carotid artery"],"objects":["Left common carotid artery"],"dot":{"x":0.4654,"y":0.0302}},{"id":"left_subclavian_artery","name":"Left subclavian artery","prompts":["Left subclavian artery"],"objects":["Left subclavian artery"],"dot":{"x":0.6376,"y":0.0331}},{"id":"right_subclavian_artery","name":"Right subclavian artery","prompts":["Right subclavian artery"],"objects":["Right subclavian artery"],"dot":{"x":0.0938,"y":0.0503}},{"id":"right_coronary_artery","name":"Right coronary artery","prompts":["Right coronary artery"],"objects":["Right coronary artery"],"dot":{"x":0.1217,"y":0.5002}},{"id":"anterior_interventricular_artery","name":"Anterior interventricular artery (left anterior descending)","prompts":["Anterior interventricular artery (left anterior descending)"],"objects":["Anterior interventricular artery"],"dot":{"x":0.8588,"y":0.5807}},{"id":"great_cardiac_vein","name":"Great cardiac vein","prompts":["Great cardiac vein"],"objects":["Great cardiac vein"],"dot":{"x":0.9138,"y":0.6726}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (thoracic part)"],"dot":{"x":0.2947,"y":0.9127}},{"id":"descending_aorta","name":"Descending (thoracic) aorta","prompts":["Descending (thoracic) aorta"],"objects":["Thoracic aorta","Abdominal aorta"],"dot":{"x":0.4224,"y":0.9343}},{"id":"right_internal_jugular_vein","name":"Right internal jugular vein","prompts":["Right internal jugular vein"],"objects":["Internal jugular vein.r"],"dot":{"x":0.2013,"y":0.0283}},{"id":"left_internal_jugular_vein","name":"Left internal jugular vein","prompts":["Left internal jugular vein"],"objects":["Internal jugular vein.l"],"dot":{"x":0.5185,"y":0.0227}},{"id":"right_subclavian_vein","name":"Right subclavian vein","prompts":["Right subclavian vein"],"objects":["Right subclavian vein"],"dot":{"x":0.0931,"y":0.0772}},{"id":"left_subclavian_vein","name":"Left subclavian vein","prompts":["Left subclavian vein"],"objects":["Left subclavian vein"],"dot":{"x":0.7302,"y":0.0813}},{"id":"right_brachiocephalic_vein","name":"Right brachiocephalic vein","prompts":["Right brachiocephalic vein"],"objects":["Right brachiocephalic vein"],"dot":{"x":0.2221,"y":0.1298}},{"id":"left_brachiocephalic_vein","name":"Left brachiocephalic vein","prompts":["Left brachiocephalic vein"],"objects":["Left brachiocephalic vein"],"dot":{"x":0.3787,"y":0.1432}},{"id":"right_common_carotid_artery","name":"Right common carotid artery","prompts":["Right common carotid artery"],"objects":["Right common carotid artery"],"dot":{"x":0.2577,"y":0.0297}},{"id":"right_marginal_branch","name":"Right marginal branch (of right coronary artery)","prompts":["Right marginal branch (of right coronary artery)"],"objects":["Right marginal branch (of right coronary artery)"],"dot":{"x":0.1808,"y":0.8449}},{"id":"diagonal_branch_of_lad","name":"Diagonal branch (of left anterior descending)","prompts":["Diagonal branch (of left anterior descending)"],"objects":["Diagonal branch (of left anterior descending)"],"dot":{"x":0.9281,"y":0.8094}}],"caption":"Heart, anterior view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -583,7 +601,7 @@ a.btn { display: inline-block; text-decoration: none; }
   function promptFor(s) { return (Array.isArray(s.prompts) && s.prompts[0]) || s.name; }
 
   function renderReady() {
-    var p = $("panel"); p.textContent = "";
+    var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
     if (!Q.list.length) { p.appendChild(el("p", "line", "This quiz has no dots yet.")); return; }
     if (Q.broken) { p.appendChild(el("p", "line", "The image could not be loaded. Check your connection and reload the page.")); return; }
     var go = el("button", "btn", Q.loaded ? "Start" : "Loading image…"); go.type = "button"; go.id = "start";
@@ -600,7 +618,7 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start");
     clearGlow(); clearTag();
     Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = false; });
-    var p = $("panel"); p.textContent = "";
+    var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
     var w = el("p", "word live"); w.id = "word"; w.setAttribute("aria-live", "polite");
     p.appendChild(w);
     var m = el("div", "meter");
@@ -667,6 +685,7 @@ a.btn { display: inline-block; text-decoration: none; }
     p.appendChild(el("p", "final", clockText(ms, true)));
     p.appendChild(el("p", "line", "All " + n + " found" + (Q.misses ? " with " + Q.misses + (Q.misses === 1 ? " miss." : " misses.") : " without a miss.")));
     if (prev && isFinite(prev.ms)) p.appendChild(el("p", "line quiet", isBest ? "New best time." : "Your best: " + clockText(prev.ms, true)));
+    if (Q.list.some(hasBlurb)) { var tip = el("p", "line quiet", "Click any dot to read about it."); tip.id = "blurb-tip"; p.appendChild(tip); }
     var act = el("div", "actions");
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
@@ -685,7 +704,43 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.dots.forEach(function (d, id) { d.classList.toggle("picked", id === s.id); });
     if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
     glow(s); tagAt(s);
+    showBlurb(s);
     say(s.name);
+  }
+
+  // AFTER-QUIZ BLURBS (Colin, 2026-11-25: "when the quiz is over, you can click on a bone or muscle etc and you
+  // get a blurb of its insertion, origin, and function, and then any HY step 1/2 associations"). The words come
+  // inside the scene (structure.blurb = {rows: [[label, text]], hy: [text]}); the build puts them there only
+  // once he has approved them. A structure without words shows its name on the picture, as before.
+  function hasBlurb(s) { return !!(s && s.blurb && Array.isArray(s.blurb.rows) && s.blurb.rows.length); }
+  function closeBlurb() { var b = $("blurb"); if (b) b.remove(); $("panel").classList.remove("reading"); }
+  function showBlurb(s) {
+    closeBlurb();
+    if (!hasBlurb(s)) return;
+    var box = el("div", "blurb"); box.id = "blurb";
+    box.setAttribute("role", "region"); box.setAttribute("aria-label", "About " + s.name); box.tabIndex = -1;
+    var head = el("div", "blurb-head"); head.appendChild(el("h3", null, s.name));
+    var x = el("button", "x", "\u00d7"); x.type = "button"; x.id = "blurb-close"; x.setAttribute("aria-label", "Close");
+    x.addEventListener("click", closeBlurb);
+    head.appendChild(x); box.appendChild(head);
+    var dl = el("dl");
+    s.blurb.rows.slice(0, 8).forEach(function (r) {
+      if (!Array.isArray(r) || typeof r[0] !== "string" || typeof r[1] !== "string") return;
+      dl.appendChild(el("dt", null, r[0])); dl.appendChild(el("dd", null, r[1]));
+    });
+    box.appendChild(dl);
+    var hy = (Array.isArray(s.blurb.hy) ? s.blurb.hy : []).filter(function (t) { return typeof t === "string" && t; }).slice(0, 6);
+    if (hy.length) {
+      box.appendChild(el("p", "hy-h", "High yield"));
+      var ul = el("ul", "hy"); hy.forEach(function (t) { ul.appendChild(el("li", null, t)); }); box.appendChild(ul);
+    }
+    $("panel").classList.add("reading");
+    $("panel").appendChild(box);
+    // On a phone the words are a sheet over the bottom of the screen: keep the dot he tapped in view above it.
+    if (getComputedStyle(box).position === "fixed") {
+      var d = Q.dots.get(s.id), over = d ? d.getBoundingClientRect().bottom + 28 - box.getBoundingClientRect().top : 0;
+      if (over > 0) window.scrollBy(0, over);
+    }
   }
 
   // --- highlight: the structure's own pixels (from the click map), re-tinted
@@ -761,7 +816,7 @@ a.btn { display: inline-block; text-decoration: none; }
   function clearGlow() { $("glow").classList.remove("on"); }
   function tagAt(s) {
     clearTag();
-    var left = s.dot.x > 0.55, t = el("span", "tag" + (left ? " left" : ""), s.name);
+    var left = s.dot.x > 0.5, t = el("span", "tag" + (left ? " left" : ""), s.name);   // 0.5: a long name beside a dot just right of the middle ran off a phone screen
     if (left) t.style.right = ((1 - s.dot.x) * 100) + "%"; else t.style.left = (s.dot.x * 100) + "%";
     t.style.top = (s.dot.y * 100) + "%";
     $("stage").appendChild(t);
@@ -800,6 +855,7 @@ a.btn { display: inline-block; text-decoration: none; }
   $("scrim").addEventListener("click", function () { setMenu(false); });
   $("browse").addEventListener("click", function () { setMenu(true, true); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && PHONE.matches && menuOpen()) setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("blurb")) closeBlurb(); });
   PHONE.addEventListener("change", function () { setMenu(PHONE.matches ? false : store("aq.menu") !== "closed"); });
   window.addEventListener("hashchange", route);
 

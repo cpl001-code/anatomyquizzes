@@ -167,6 +167,22 @@ a.btn { display: inline-block; text-decoration: none; }
 .line { margin: 0; max-width: 34ch; }
 .line.quiet { color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+/* after-quiz blurb: the words about one structure, beside the picture (a sheet at the bottom on a phone) */
+.blurb { align-self: stretch; max-width: 46ch; padding-top: 12px; border-top: 1px solid var(--line); max-height: max(220px, calc(100vh - var(--bar) - 290px)); overflow: auto; overscroll-behavior: contain; }
+.blurb-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.blurb h3 { margin: 0 0 8px; font: 700 20px/1.2 var(--font); text-wrap: balance; }
+.blurb .x { flex: none; width: 32px; height: 32px; margin: -5px -4px 0 0; padding: 0; border: 0; background: none; border-radius: 8px; font-size: 24px; line-height: 1; color: var(--muted); }
+.blurb .x:hover { background: var(--mist); color: var(--ink); }
+.blurb dl { margin: 0; }
+.blurb dt, .blurb .hy-h { margin: 10px 0 1px; font: 700 12.5px/1.3 var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.blurb dt:first-child { margin-top: 0; }
+.blurb dd { margin: 0; font-size: 16px; line-height: 1.4; }
+.blurb ul { margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.4; }
+.blurb li + li { margin-top: 4px; }
+@media (min-width: 821px) {
+  .panel.reading { padding-top: 4px; }
+  .panel.reading .final { font-size: 40px; }
+}
 
 /* ---- the words under a quiz, and the list of every quiz ---- */
 .more { max-width: 43rem; margin: 72px auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
@@ -207,6 +223,8 @@ a.btn { display: inline-block; text-decoration: none; }
   .word.live { min-height: 2.2em; }
   .clock { font-size: 24px; }
   .final { font-size: 44px; }
+  .blurb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; max-width: none; max-height: 46vh; padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--page); border-top: 2px solid var(--ink); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.14); }
+  .panel.reading #blurb-tip { display: none; }
 }
 </style>
 <!-- Google tag (Colin's container, 2026-11-24) -->
@@ -286,7 +304,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"ul-acromioclavicular-coracoid-ligaments-anterior","build":"379945f4eb","entry":{"id":"ul_acromioclavicular_coracoid_ligaments_anterior","title":"Ligaments, capsule and rotator cuff of the shoulder (anterior)","region":"upper_limb","lab":"Shoulder Joint, Scapular Muscles, and Posterior Arm","view":"anterior","nav":["Joints and Ligaments","Upper Body","Shoulder"],"structures":8,"path":"scenes/ul_acromioclavicular_coracoid_ligaments_anterior","url":"ligaments-capsule-rotator-cuff-shoulder-anterior"},"scene":{"id":"ul_acromioclavicular_coracoid_ligaments_anterior","title":"Ligaments, capsule and rotator cuff of the shoulder (anterior)","region":"upper_limb","lab":"Shoulder Joint, Scapular Muscles, and Posterior Arm","view":"anterior","image":"image.b777fa33dc.jpg","size":[2000,1250],"hitmap":"hitmap.78fb7cff21.png","hitmap_colors":{"Acromioclavicular ligament.r":[31,31,94],"Coraco-acromial ligament.r":[31,31,161],"Trapezoid ligament.r":[31,31,224],"Conoid ligament.r":[31,94,31],"Transverse humeral ligament.r":[31,94,94],"Articular capsule of glenohumeral joint.r":[31,94,161],"Supraspinatus muscle.r":[31,94,224],"Subscapularis muscle.r":[31,161,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"acromioclavicular_ligament","name":"Acromioclavicular ligament","prompts":["Acromioclavicular ligament"],"objects":["Acromioclavicular ligament.r"],"dot":{"x":0.4308,"y":0.2972}},{"id":"coracoacromial_ligament","name":"Coracoacromial ligament","prompts":["Coracoacromial ligament"],"objects":["Coraco-acromial ligament.r"],"dot":{"x":0.4918,"y":0.4444}},{"id":"trapezoid_ligament","name":"Trapezoid ligament","prompts":["Trapezoid ligament"],"objects":["Trapezoid ligament.r"],"dot":{"x":0.6552,"y":0.4052}},{"id":"conoid_ligament","name":"Conoid ligament","prompts":["Conoid ligament"],"objects":["Conoid ligament.r"],"dot":{"x":0.7438,"y":0.4452}},{"id":"transverse_humeral_ligament","name":"Transverse humeral ligament","prompts":["Transverse humeral ligament"],"objects":["Transverse humeral ligament.r"],"dot":{"x":0.2182,"y":0.662}},{"id":"joint_capsule_of_shoulder","name":"Joint capsule of the shoulder (glenohumeral joint)","prompts":["Joint capsule of the shoulder (glenohumeral joint)"],"objects":["Articular capsule of glenohumeral joint.r"],"dot":{"x":0.3992,"y":0.5844}},{"id":"supraspinatus_muscle","name":"Supraspinatus muscle","prompts":["Supraspinatus muscle"],"objects":["Supraspinatus muscle.r"],"dot":{"x":0.2377,"y":0.4876}},{"id":"subscapularis_muscle","name":"Subscapularis muscle","prompts":["Subscapularis muscle"],"objects":["Subscapularis muscle.r"],"dot":{"x":0.6452,"y":0.81}}],"caption":"Right shoulder, anterior view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"ul-acromioclavicular-coracoid-ligaments-anterior","build":"df1d8adfe8","entry":{"id":"ul_acromioclavicular_coracoid_ligaments_anterior","title":"Ligaments, capsule and rotator cuff of the shoulder (anterior)","region":"upper_limb","lab":"Shoulder Joint, Scapular Muscles, and Posterior Arm","view":"anterior","nav":["Joints and Ligaments","Upper Body","Shoulder"],"structures":8,"path":"scenes/ul_acromioclavicular_coracoid_ligaments_anterior","url":"ligaments-capsule-rotator-cuff-shoulder-anterior"},"scene":{"id":"ul_acromioclavicular_coracoid_ligaments_anterior","title":"Ligaments, capsule and rotator cuff of the shoulder (anterior)","region":"upper_limb","lab":"Shoulder Joint, Scapular Muscles, and Posterior Arm","view":"anterior","image":"image.b777fa33dc.jpg","size":[2000,1250],"hitmap":"hitmap.78fb7cff21.png","hitmap_colors":{"Acromioclavicular ligament.r":[31,31,94],"Coraco-acromial ligament.r":[31,31,161],"Trapezoid ligament.r":[31,31,224],"Conoid ligament.r":[31,94,31],"Transverse humeral ligament.r":[31,94,94],"Articular capsule of glenohumeral joint.r":[31,94,161],"Supraspinatus muscle.r":[31,94,224],"Subscapularis muscle.r":[31,161,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"acromioclavicular_ligament","name":"Acromioclavicular ligament","prompts":["Acromioclavicular ligament"],"objects":["Acromioclavicular ligament.r"],"dot":{"x":0.4308,"y":0.2972}},{"id":"coracoacromial_ligament","name":"Coracoacromial ligament","prompts":["Coracoacromial ligament"],"objects":["Coraco-acromial ligament.r"],"dot":{"x":0.4918,"y":0.4444}},{"id":"trapezoid_ligament","name":"Trapezoid ligament","prompts":["Trapezoid ligament"],"objects":["Trapezoid ligament.r"],"dot":{"x":0.6552,"y":0.4052}},{"id":"conoid_ligament","name":"Conoid ligament","prompts":["Conoid ligament"],"objects":["Conoid ligament.r"],"dot":{"x":0.7438,"y":0.4452}},{"id":"transverse_humeral_ligament","name":"Transverse humeral ligament","prompts":["Transverse humeral ligament"],"objects":["Transverse humeral ligament.r"],"dot":{"x":0.2182,"y":0.662}},{"id":"joint_capsule_of_shoulder","name":"Joint capsule of the shoulder (glenohumeral joint)","prompts":["Joint capsule of the shoulder (glenohumeral joint)"],"objects":["Articular capsule of glenohumeral joint.r"],"dot":{"x":0.3992,"y":0.5844}},{"id":"supraspinatus_muscle","name":"Supraspinatus muscle","prompts":["Supraspinatus muscle"],"objects":["Supraspinatus muscle.r"],"dot":{"x":0.2377,"y":0.4876}},{"id":"subscapularis_muscle","name":"Subscapularis muscle","prompts":["Subscapularis muscle"],"objects":["Subscapularis muscle.r"],"dot":{"x":0.6452,"y":0.81}}],"caption":"Right shoulder, anterior view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -567,7 +585,7 @@ a.btn { display: inline-block; text-decoration: none; }
   function promptFor(s) { return (Array.isArray(s.prompts) && s.prompts[0]) || s.name; }
 
   function renderReady() {
-    var p = $("panel"); p.textContent = "";
+    var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
     if (!Q.list.length) { p.appendChild(el("p", "line", "This quiz has no dots yet.")); return; }
     if (Q.broken) { p.appendChild(el("p", "line", "The image could not be loaded. Check your connection and reload the page.")); return; }
     var go = el("button", "btn", Q.loaded ? "Start" : "Loading image…"); go.type = "button"; go.id = "start";
@@ -584,7 +602,7 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start");
     clearGlow(); clearTag();
     Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = false; });
-    var p = $("panel"); p.textContent = "";
+    var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
     var w = el("p", "word live"); w.id = "word"; w.setAttribute("aria-live", "polite");
     p.appendChild(w);
     var m = el("div", "meter");
@@ -651,6 +669,7 @@ a.btn { display: inline-block; text-decoration: none; }
     p.appendChild(el("p", "final", clockText(ms, true)));
     p.appendChild(el("p", "line", "All " + n + " found" + (Q.misses ? " with " + Q.misses + (Q.misses === 1 ? " miss." : " misses.") : " without a miss.")));
     if (prev && isFinite(prev.ms)) p.appendChild(el("p", "line quiet", isBest ? "New best time." : "Your best: " + clockText(prev.ms, true)));
+    if (Q.list.some(hasBlurb)) { var tip = el("p", "line quiet", "Click any dot to read about it."); tip.id = "blurb-tip"; p.appendChild(tip); }
     var act = el("div", "actions");
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
@@ -669,7 +688,43 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.dots.forEach(function (d, id) { d.classList.toggle("picked", id === s.id); });
     if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
     glow(s); tagAt(s);
+    showBlurb(s);
     say(s.name);
+  }
+
+  // AFTER-QUIZ BLURBS (Colin, 2026-11-25: "when the quiz is over, you can click on a bone or muscle etc and you
+  // get a blurb of its insertion, origin, and function, and then any HY step 1/2 associations"). The words come
+  // inside the scene (structure.blurb = {rows: [[label, text]], hy: [text]}); the build puts them there only
+  // once he has approved them. A structure without words shows its name on the picture, as before.
+  function hasBlurb(s) { return !!(s && s.blurb && Array.isArray(s.blurb.rows) && s.blurb.rows.length); }
+  function closeBlurb() { var b = $("blurb"); if (b) b.remove(); $("panel").classList.remove("reading"); }
+  function showBlurb(s) {
+    closeBlurb();
+    if (!hasBlurb(s)) return;
+    var box = el("div", "blurb"); box.id = "blurb";
+    box.setAttribute("role", "region"); box.setAttribute("aria-label", "About " + s.name); box.tabIndex = -1;
+    var head = el("div", "blurb-head"); head.appendChild(el("h3", null, s.name));
+    var x = el("button", "x", "\u00d7"); x.type = "button"; x.id = "blurb-close"; x.setAttribute("aria-label", "Close");
+    x.addEventListener("click", closeBlurb);
+    head.appendChild(x); box.appendChild(head);
+    var dl = el("dl");
+    s.blurb.rows.slice(0, 8).forEach(function (r) {
+      if (!Array.isArray(r) || typeof r[0] !== "string" || typeof r[1] !== "string") return;
+      dl.appendChild(el("dt", null, r[0])); dl.appendChild(el("dd", null, r[1]));
+    });
+    box.appendChild(dl);
+    var hy = (Array.isArray(s.blurb.hy) ? s.blurb.hy : []).filter(function (t) { return typeof t === "string" && t; }).slice(0, 6);
+    if (hy.length) {
+      box.appendChild(el("p", "hy-h", "High yield"));
+      var ul = el("ul", "hy"); hy.forEach(function (t) { ul.appendChild(el("li", null, t)); }); box.appendChild(ul);
+    }
+    $("panel").classList.add("reading");
+    $("panel").appendChild(box);
+    // On a phone the words are a sheet over the bottom of the screen: keep the dot he tapped in view above it.
+    if (getComputedStyle(box).position === "fixed") {
+      var d = Q.dots.get(s.id), over = d ? d.getBoundingClientRect().bottom + 28 - box.getBoundingClientRect().top : 0;
+      if (over > 0) window.scrollBy(0, over);
+    }
   }
 
   // --- highlight: the structure's own pixels (from the click map), re-tinted
@@ -745,7 +800,7 @@ a.btn { display: inline-block; text-decoration: none; }
   function clearGlow() { $("glow").classList.remove("on"); }
   function tagAt(s) {
     clearTag();
-    var left = s.dot.x > 0.55, t = el("span", "tag" + (left ? " left" : ""), s.name);
+    var left = s.dot.x > 0.5, t = el("span", "tag" + (left ? " left" : ""), s.name);   // 0.5: a long name beside a dot just right of the middle ran off a phone screen
     if (left) t.style.right = ((1 - s.dot.x) * 100) + "%"; else t.style.left = (s.dot.x * 100) + "%";
     t.style.top = (s.dot.y * 100) + "%";
     $("stage").appendChild(t);
@@ -784,6 +839,7 @@ a.btn { display: inline-block; text-decoration: none; }
   $("scrim").addEventListener("click", function () { setMenu(false); });
   $("browse").addEventListener("click", function () { setMenu(true, true); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && PHONE.matches && menuOpen()) setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("blurb")) closeBlurb(); });
   PHONE.addEventListener("change", function () { setMenu(PHONE.matches ? false : store("aq.menu") !== "closed"); });
   window.addEventListener("hashchange", route);
 

@@ -167,6 +167,22 @@ a.btn { display: inline-block; text-decoration: none; }
 .line { margin: 0; max-width: 34ch; }
 .line.quiet { color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+/* after-quiz blurb: the words about one structure, beside the picture (a sheet at the bottom on a phone) */
+.blurb { align-self: stretch; max-width: 46ch; padding-top: 12px; border-top: 1px solid var(--line); max-height: max(220px, calc(100vh - var(--bar) - 290px)); overflow: auto; overscroll-behavior: contain; }
+.blurb-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.blurb h3 { margin: 0 0 8px; font: 700 20px/1.2 var(--font); text-wrap: balance; }
+.blurb .x { flex: none; width: 32px; height: 32px; margin: -5px -4px 0 0; padding: 0; border: 0; background: none; border-radius: 8px; font-size: 24px; line-height: 1; color: var(--muted); }
+.blurb .x:hover { background: var(--mist); color: var(--ink); }
+.blurb dl { margin: 0; }
+.blurb dt, .blurb .hy-h { margin: 10px 0 1px; font: 700 12.5px/1.3 var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.blurb dt:first-child { margin-top: 0; }
+.blurb dd { margin: 0; font-size: 16px; line-height: 1.4; }
+.blurb ul { margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.4; }
+.blurb li + li { margin-top: 4px; }
+@media (min-width: 821px) {
+  .panel.reading { padding-top: 4px; }
+  .panel.reading .final { font-size: 40px; }
+}
 
 /* ---- the words under a quiz, and the list of every quiz ---- */
 .more { max-width: 43rem; margin: 72px auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
@@ -207,6 +223,8 @@ a.btn { display: inline-block; text-decoration: none; }
   .word.live { min-height: 2.2em; }
   .clock { font-size: 24px; }
   .final { font-size: 44px; }
+  .blurb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; max-width: none; max-height: 46vh; padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--page); border-top: 2px solid var(--ink); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.14); }
+  .panel.reading #blurb-tip { display: none; }
 }
 </style>
 <!-- Google tag (Colin's container, 2026-11-24) -->
@@ -293,7 +311,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"en-pituitary-pineal-brain-medial","build":"379945f4eb","entry":{"id":"en_pituitary_pineal_brain_medial","title":"Pituitary and pineal glands and the midline of the brain (medial view)","region":"head_and_neck","lab":"Pituitary and Pineal Glands","view":"lateral_left","nav":["Endocrine System","Head and Neck","Pituitary and Pineal Glands"],"structures":15,"path":"scenes/en_pituitary_pineal_brain_medial","url":"pituitary-pineal-glands-midline-brain-medial-view"},"scene":{"id":"en_pituitary_pineal_brain_medial","title":"Pituitary and pineal glands and the midline of the brain (medial view)","region":"head_and_neck","lab":"Pituitary and Pineal Glands","view":"lateral_left","image":"image.8efde9070f.jpg","size":[2000,1898],"hitmap":"hitmap.16126f8b85.png","hitmap_colors":{"Adenohypophysis":[31,31,94],"Neurohypophysis":[31,31,161],"Pineal gland":[31,31,224],"Hypothalamus":[31,94,31],"Thalamus.r":[31,94,94],"Corpus callosum":[31,94,161],"Septum pellucidum":[31,94,224],"Fornix.r":[31,161,31],"Mamillary body.r":[31,161,161],"Midbrain.r":[31,161,224],"Base of peduncle.r":[94,31,161],"Pons.r":[31,224,161],"Medulla oblongata.r":[31,224,224],"Pyramid of medulla oblongata.r":[94,31,31],"Anterior quadrangular lobule.r":[94,31,94],"Biventral lobule.r":[94,31,224],"Central lobule":[94,94,31],"Culmen":[94,94,94],"Declive":[94,94,161],"Flocculus.r":[94,94,224],"Folium of vermis":[94,161,31],"Gracile lobule.r":[94,161,94],"Inferior semilunar lobule.r":[94,161,161],"Lingula of cerebellum":[94,161,224],"Nodule of vermis":[94,224,31],"Peduncle of flocculus.r":[94,224,94],"Posterior quadrangular lobule.r":[94,224,161],"Pyramis of vermis":[94,224,224],"Superior cerebellar peduncle.r":[161,31,31],"Superior semilunar lobule.r":[161,31,94],"Tonsil of cerebellum.r":[161,31,161],"Tuber of vermis":[161,31,224],"Uvula of vermis":[161,94,31],"Wing of central lobule.r":[161,94,94],"Cingulate gyrus (Posteroventral part*).r":[161,94,161],"Cingulate gyrus and sulcus (Middle anterior part).r":[161,94,224],"Cingulate gyrus and sulcus (Middle posterior part).r":[161,161,31],"Cingulate gyrus and sulcus (Posterior dorsal part).r":[161,161,94],"Infundibulum (pituitary stalk)":[161,161,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"adenohypophysis","name":"Anterior pituitary (adenohypophysis)","prompts":["Anterior pituitary (adenohypophysis)"],"objects":["Adenohypophysis"],"dot":{"x":0.2432,"y":0.4697}},{"id":"neurohypophysis","name":"Posterior pituitary (neurohypophysis)","prompts":["Posterior pituitary (neurohypophysis)"],"objects":["Neurohypophysis"],"dot":{"x":0.2682,"y":0.4797}},{"id":"pineal_gland","name":"Pineal gland","prompts":["Pineal gland"],"objects":["Pineal gland"],"dot":{"x":0.5258,"y":0.3612}},{"id":"hypothalamus","name":"Hypothalamus","prompts":["Hypothalamus"],"objects":["Hypothalamus"],"dot":{"x":0.2886,"y":0.3466}},{"id":"thalamus","name":"Thalamus","prompts":["Thalamus"],"objects":["Thalamus.r"],"dot":{"x":0.2651,"y":0.5764}},{"id":"corpus_callosum","name":"Corpus callosum","prompts":["Corpus callosum"],"objects":["Corpus callosum"],"dot":{"x":0.4183,"y":0.1325}},{"id":"septum_pellucidum","name":"Septum pellucidum","prompts":["Septum pellucidum"],"objects":["Septum pellucidum"],"dot":{"x":0.2873,"y":0.1994}},{"id":"fornix","name":"Fornix","prompts":["Fornix"],"objects":["Fornix.r"],"dot":{"x":0.3837,"y":0.2316}},{"id":"mammillary_body","name":"Mammillary body","prompts":["Mammillary body"],"objects":["Mamillary body.r"],"dot":{"x":0.3347,"y":0.3886}},{"id":"midbrain","name":"Midbrain","prompts":["Midbrain"],"objects":["Midbrain.r","Base of peduncle.r"],"dot":{"x":0.4158,"y":0.4118}},{"id":"pons","name":"Pons","prompts":["Pons"],"objects":["Pons.r"],"dot":{"x":0.4318,"y":0.5445}},{"id":"medulla_oblongata","name":"Medulla oblongata","prompts":["Medulla oblongata"],"objects":["Medulla oblongata.r","Pyramid of medulla oblongata.r"],"dot":{"x":0.5148,"y":0.7516}},{"id":"cerebellum","name":"Cerebellum","prompts":["Cerebellum"],"objects":["Anterior quadrangular lobule.r","Biventral lobule.r","Central lobule","Culmen","Declive","Flocculus.r","Folium of vermis","Gracile lobule.r","Inferior semilunar lobule.r","Lingula of cerebellum","Nodule of vermis","Peduncle of flocculus.r","Posterior quadrangular lobule.r","Pyramis of vermis","Superior cerebellar peduncle.r","Superior semilunar lobule.r","Tonsil of cerebellum.r","Tuber of vermis","Uvula of vermis","Wing of central lobule.r"],"dot":{"x":0.6783,"y":0.5666}},{"id":"cingulate_gyrus","name":"Cingulate gyrus","prompts":["Cingulate gyrus"],"objects":["Cingulate gyrus (Posteroventral part*).r","Cingulate gyrus and sulcus (Middle anterior part).r","Cingulate gyrus and sulcus (Middle posterior part).r","Cingulate gyrus and sulcus (Posterior dorsal part).r"],"dot":{"x":0.4427,"y":0.0519}},{"id":"infundibulum","name":"Infundibulum (pituitary stalk)","prompts":["Infundibulum (pituitary stalk)"],"objects":["Infundibulum (pituitary stalk)"],"dot":{"x":0.2802,"y":0.4154}}],"caption":"Right half of the brain, medial view (the front of the head is on the left)"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"en-pituitary-pineal-brain-medial","build":"df1d8adfe8","entry":{"id":"en_pituitary_pineal_brain_medial","title":"Pituitary and pineal glands and the midline of the brain (medial view)","region":"head_and_neck","lab":"Pituitary and Pineal Glands","view":"lateral_left","nav":["Endocrine System","Head and Neck","Pituitary and Pineal Glands"],"structures":15,"path":"scenes/en_pituitary_pineal_brain_medial","url":"pituitary-pineal-glands-midline-brain-medial-view"},"scene":{"id":"en_pituitary_pineal_brain_medial","title":"Pituitary and pineal glands and the midline of the brain (medial view)","region":"head_and_neck","lab":"Pituitary and Pineal Glands","view":"lateral_left","image":"image.8efde9070f.jpg","size":[2000,1898],"hitmap":"hitmap.16126f8b85.png","hitmap_colors":{"Adenohypophysis":[31,31,94],"Neurohypophysis":[31,31,161],"Pineal gland":[31,31,224],"Hypothalamus":[31,94,31],"Thalamus.r":[31,94,94],"Corpus callosum":[31,94,161],"Septum pellucidum":[31,94,224],"Fornix.r":[31,161,31],"Mamillary body.r":[31,161,161],"Midbrain.r":[31,161,224],"Base of peduncle.r":[94,31,161],"Pons.r":[31,224,161],"Medulla oblongata.r":[31,224,224],"Pyramid of medulla oblongata.r":[94,31,31],"Anterior quadrangular lobule.r":[94,31,94],"Biventral lobule.r":[94,31,224],"Central lobule":[94,94,31],"Culmen":[94,94,94],"Declive":[94,94,161],"Flocculus.r":[94,94,224],"Folium of vermis":[94,161,31],"Gracile lobule.r":[94,161,94],"Inferior semilunar lobule.r":[94,161,161],"Lingula of cerebellum":[94,161,224],"Nodule of vermis":[94,224,31],"Peduncle of flocculus.r":[94,224,94],"Posterior quadrangular lobule.r":[94,224,161],"Pyramis of vermis":[94,224,224],"Superior cerebellar peduncle.r":[161,31,31],"Superior semilunar lobule.r":[161,31,94],"Tonsil of cerebellum.r":[161,31,161],"Tuber of vermis":[161,31,224],"Uvula of vermis":[161,94,31],"Wing of central lobule.r":[161,94,94],"Cingulate gyrus (Posteroventral part*).r":[161,94,161],"Cingulate gyrus and sulcus (Middle anterior part).r":[161,94,224],"Cingulate gyrus and sulcus (Middle posterior part).r":[161,161,31],"Cingulate gyrus and sulcus (Posterior dorsal part).r":[161,161,94],"Infundibulum (pituitary stalk)":[161,161,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"adenohypophysis","name":"Anterior pituitary (adenohypophysis)","prompts":["Anterior pituitary (adenohypophysis)"],"objects":["Adenohypophysis"],"dot":{"x":0.2432,"y":0.4697}},{"id":"neurohypophysis","name":"Posterior pituitary (neurohypophysis)","prompts":["Posterior pituitary (neurohypophysis)"],"objects":["Neurohypophysis"],"dot":{"x":0.2682,"y":0.4797}},{"id":"pineal_gland","name":"Pineal gland","prompts":["Pineal gland"],"objects":["Pineal gland"],"dot":{"x":0.5258,"y":0.3612}},{"id":"hypothalamus","name":"Hypothalamus","prompts":["Hypothalamus"],"objects":["Hypothalamus"],"dot":{"x":0.2886,"y":0.3466}},{"id":"thalamus","name":"Thalamus","prompts":["Thalamus"],"objects":["Thalamus.r"],"dot":{"x":0.2651,"y":0.5764}},{"id":"corpus_callosum","name":"Corpus callosum","prompts":["Corpus callosum"],"objects":["Corpus callosum"],"dot":{"x":0.4183,"y":0.1325}},{"id":"septum_pellucidum","name":"Septum pellucidum","prompts":["Septum pellucidum"],"objects":["Septum pellucidum"],"dot":{"x":0.2873,"y":0.1994}},{"id":"fornix","name":"Fornix","prompts":["Fornix"],"objects":["Fornix.r"],"dot":{"x":0.3837,"y":0.2316}},{"id":"mammillary_body","name":"Mammillary body","prompts":["Mammillary body"],"objects":["Mamillary body.r"],"dot":{"x":0.3347,"y":0.3886}},{"id":"midbrain","name":"Midbrain","prompts":["Midbrain"],"objects":["Midbrain.r","Base of peduncle.r"],"dot":{"x":0.4158,"y":0.4118}},{"id":"pons","name":"Pons","prompts":["Pons"],"objects":["Pons.r"],"dot":{"x":0.4318,"y":0.5445}},{"id":"medulla_oblongata","name":"Medulla oblongata","prompts":["Medulla oblongata"],"objects":["Medulla oblongata.r","Pyramid of medulla oblongata.r"],"dot":{"x":0.5148,"y":0.7516}},{"id":"cerebellum","name":"Cerebellum","prompts":["Cerebellum"],"objects":["Anterior quadrangular lobule.r","Biventral lobule.r","Central lobule","Culmen","Declive","Flocculus.r","Folium of vermis","Gracile lobule.r","Inferior semilunar lobule.r","Lingula of cerebellum","Nodule of vermis","Peduncle of flocculus.r","Posterior quadrangular lobule.r","Pyramis of vermis","Superior cerebellar peduncle.r","Superior semilunar lobule.r","Tonsil of cerebellum.r","Tuber of vermis","Uvula of vermis","Wing of central lobule.r"],"dot":{"x":0.6783,"y":0.5666}},{"id":"cingulate_gyrus","name":"Cingulate gyrus","prompts":["Cingulate gyrus"],"objects":["Cingulate gyrus (Posteroventral part*).r","Cingulate gyrus and sulcus (Middle anterior part).r","Cingulate gyrus and sulcus (Middle posterior part).r","Cingulate gyrus and sulcus (Posterior dorsal part).r"],"dot":{"x":0.4427,"y":0.0519}},{"id":"infundibulum","name":"Infundibulum (pituitary stalk)","prompts":["Infundibulum (pituitary stalk)"],"objects":["Infundibulum (pituitary stalk)"],"dot":{"x":0.2802,"y":0.4154}}],"caption":"Right half of the brain, medial view (the front of the head is on the left)"}};</script>
 <script>
 (function () {
   "use strict";
@@ -574,7 +592,7 @@ a.btn { display: inline-block; text-decoration: none; }
   function promptFor(s) { return (Array.isArray(s.prompts) && s.prompts[0]) || s.name; }
 
   function renderReady() {
-    var p = $("panel"); p.textContent = "";
+    var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
     if (!Q.list.length) { p.appendChild(el("p", "line", "This quiz has no dots yet.")); return; }
     if (Q.broken) { p.appendChild(el("p", "line", "The image could not be loaded. Check your connection and reload the page.")); return; }
     var go = el("button", "btn", Q.loaded ? "Start" : "Loading image…"); go.type = "button"; go.id = "start";
@@ -591,7 +609,7 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start");
     clearGlow(); clearTag();
     Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = false; });
-    var p = $("panel"); p.textContent = "";
+    var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
     var w = el("p", "word live"); w.id = "word"; w.setAttribute("aria-live", "polite");
     p.appendChild(w);
     var m = el("div", "meter");
@@ -658,6 +676,7 @@ a.btn { display: inline-block; text-decoration: none; }
     p.appendChild(el("p", "final", clockText(ms, true)));
     p.appendChild(el("p", "line", "All " + n + " found" + (Q.misses ? " with " + Q.misses + (Q.misses === 1 ? " miss." : " misses.") : " without a miss.")));
     if (prev && isFinite(prev.ms)) p.appendChild(el("p", "line quiet", isBest ? "New best time." : "Your best: " + clockText(prev.ms, true)));
+    if (Q.list.some(hasBlurb)) { var tip = el("p", "line quiet", "Click any dot to read about it."); tip.id = "blurb-tip"; p.appendChild(tip); }
     var act = el("div", "actions");
     var again = el("button", "btn", "Play again"); again.type = "button"; again.id = "again";
     again.addEventListener("click", begin);
@@ -676,7 +695,43 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.dots.forEach(function (d, id) { d.classList.toggle("picked", id === s.id); });
     if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
     glow(s); tagAt(s);
+    showBlurb(s);
     say(s.name);
+  }
+
+  // AFTER-QUIZ BLURBS (Colin, 2026-11-25: "when the quiz is over, you can click on a bone or muscle etc and you
+  // get a blurb of its insertion, origin, and function, and then any HY step 1/2 associations"). The words come
+  // inside the scene (structure.blurb = {rows: [[label, text]], hy: [text]}); the build puts them there only
+  // once he has approved them. A structure without words shows its name on the picture, as before.
+  function hasBlurb(s) { return !!(s && s.blurb && Array.isArray(s.blurb.rows) && s.blurb.rows.length); }
+  function closeBlurb() { var b = $("blurb"); if (b) b.remove(); $("panel").classList.remove("reading"); }
+  function showBlurb(s) {
+    closeBlurb();
+    if (!hasBlurb(s)) return;
+    var box = el("div", "blurb"); box.id = "blurb";
+    box.setAttribute("role", "region"); box.setAttribute("aria-label", "About " + s.name); box.tabIndex = -1;
+    var head = el("div", "blurb-head"); head.appendChild(el("h3", null, s.name));
+    var x = el("button", "x", "\u00d7"); x.type = "button"; x.id = "blurb-close"; x.setAttribute("aria-label", "Close");
+    x.addEventListener("click", closeBlurb);
+    head.appendChild(x); box.appendChild(head);
+    var dl = el("dl");
+    s.blurb.rows.slice(0, 8).forEach(function (r) {
+      if (!Array.isArray(r) || typeof r[0] !== "string" || typeof r[1] !== "string") return;
+      dl.appendChild(el("dt", null, r[0])); dl.appendChild(el("dd", null, r[1]));
+    });
+    box.appendChild(dl);
+    var hy = (Array.isArray(s.blurb.hy) ? s.blurb.hy : []).filter(function (t) { return typeof t === "string" && t; }).slice(0, 6);
+    if (hy.length) {
+      box.appendChild(el("p", "hy-h", "High yield"));
+      var ul = el("ul", "hy"); hy.forEach(function (t) { ul.appendChild(el("li", null, t)); }); box.appendChild(ul);
+    }
+    $("panel").classList.add("reading");
+    $("panel").appendChild(box);
+    // On a phone the words are a sheet over the bottom of the screen: keep the dot he tapped in view above it.
+    if (getComputedStyle(box).position === "fixed") {
+      var d = Q.dots.get(s.id), over = d ? d.getBoundingClientRect().bottom + 28 - box.getBoundingClientRect().top : 0;
+      if (over > 0) window.scrollBy(0, over);
+    }
   }
 
   // --- highlight: the structure's own pixels (from the click map), re-tinted
@@ -752,7 +807,7 @@ a.btn { display: inline-block; text-decoration: none; }
   function clearGlow() { $("glow").classList.remove("on"); }
   function tagAt(s) {
     clearTag();
-    var left = s.dot.x > 0.55, t = el("span", "tag" + (left ? " left" : ""), s.name);
+    var left = s.dot.x > 0.5, t = el("span", "tag" + (left ? " left" : ""), s.name);   // 0.5: a long name beside a dot just right of the middle ran off a phone screen
     if (left) t.style.right = ((1 - s.dot.x) * 100) + "%"; else t.style.left = (s.dot.x * 100) + "%";
     t.style.top = (s.dot.y * 100) + "%";
     $("stage").appendChild(t);
@@ -791,6 +846,7 @@ a.btn { display: inline-block; text-decoration: none; }
   $("scrim").addEventListener("click", function () { setMenu(false); });
   $("browse").addEventListener("click", function () { setMenu(true, true); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && PHONE.matches && menuOpen()) setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("blurb")) closeBlurb(); });
   PHONE.addEventListener("change", function () { setMenu(PHONE.matches ? false : store("aq.menu") !== "closed"); });
   window.addEventListener("hashchange", route);
 

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T18:11:29+00:00",
+ "generated": "2026-11-25T18:43:19+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -90,8 +90,8 @@
    "url": "phalanges-hand-palmar"
   },
   {
-   "id": "sk_bony_pelvis_anterior_colour",
-   "title": "Bones of the pelvis (anterior, color-coded)",
+   "id": "sk_bony_pelvis_anterior",
+   "title": "Bones of the pelvis (anterior)",
    "region": "pelvis_and_perineum",
    "lab": "Bony Pelvis",
    "view": "anterior",
@@ -101,8 +101,8 @@
     "Bony Pelvis"
    ],
    "structures": 9,
-   "path": "scenes/sk_bony_pelvis_anterior_colour",
-   "url": "bones-pelvis-anterior-color-coded"
+   "path": "scenes/sk_bony_pelvis_anterior",
+   "url": "bones-pelvis-anterior"
   },
   {
    "id": "sk_vertebral_column_lateral_right",
