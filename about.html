@@ -74,6 +74,13 @@ p { margin: 0 0 18px; }
   h2 { margin-top: 48px; }
 }
 </style>
+<!-- Google tag (Colin's container, 2026-11-24) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-W2GT69MV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
 </head>
 <body>
 <header class="bar">
@@ -82,74 +89,47 @@ p { margin: 0 0 18px; }
 </header>
 
 <main>
-  <h1>Medical education shouldn't be so expensive.</h1>
-  <p class="lead">This site is free. Here is what a medical student in the United States is already paying.</p>
+  <h1>Anatomy is hard and medical education shouldn't be so expensive.</h1>
+  <p class="lead">Tuition and living expenses for med school (4 years) can reach ~$400k</p>
 
   <section class="bill" aria-label="What medical school costs">
-    <h3>Tuition</h3>
-    <dl>
-      <div class="row"><dt>One year at a public school, in state<small>Median tuition, fees and health insurance, 2025&ndash;26</small></dt><dd>$43,648</dd></div>
-      <div class="row"><dt>One year at a private school<small>Median tuition, fees and health insurance, 2025&ndash;26</small></dt><dd>$74,661</dd></div>
-      <div class="row"><dt>All four years at a public school<small>Median cost of attendance with living expenses, class of 2026</small></dt><dd>$297,745</dd></div>
-      <div class="row"><dt>All four years at a private school<small>Median cost of attendance with living expenses, class of 2026</small></dt><dd>$408,150</dd></div>
-    </dl>
-    <p class="src">Source: Association of American Medical Colleges, <a href="https://www.aamc.org/data/tuitionandstudentfees/">Tuition and Student Fees Reports</a> and the <a href="https://store.aamc.org/medical-student-education-debt-costs-and-loan-repayment-fact-card-for-the-class-of-2025.html">Debt, Costs, and Loan Repayment Fact Card</a> (October 2025).</p>
-
     <h3>Getting in</h3>
     <dl>
-      <div class="row"><dt>MCAT registration<small>2027 testing year</small></dt><dd>$360</dd></div>
-      <div class="row"><dt>AMCAS application, first school<small>2027 cycle</small></dt><dd>$180</dd></div>
-      <div class="row"><dt>Each school after the first<small>A 16-school list comes to $900, before each school's own secondary fee</small></dt><dd>$48</dd></div>
+      <div class="row"><dt>MCAT</dt><dd>$360</dd></div>
+      <div class="row"><dt>AMCAS application</dt><dd>$180</dd></div>
+      <div class="row"><dt>Adding schools to application</dt><dd>$48</dd></div>
     </dl>
-    <p class="src">Sources: AAMC, <a href="https://students-residents.aamc.org/register-mcat-exam/mcat-scheduling-fees">MCAT Scheduling Fees</a> and <a href="https://students-residents.aamc.org/financial-aid/article/the-cost-of-applying-to-medical-school/">The Cost of Applying to Medical School</a>.</p>
-
     <h3>Licensing exams</h3>
     <dl>
       <div class="row"><dt>USMLE Step 1</dt><dd>$695</dd></div>
       <div class="row"><dt>USMLE Step 2 CK</dt><dd>$695</dd></div>
       <div class="row"><dt>USMLE Step 3</dt><dd>$955</dd></div>
-      <div class="row"><dt>All three</dt><dd>$2,345</dd></div>
     </dl>
-    <p class="src">Source: NBME, <a href="https://www.nbme.org/examinees/united-states-medical-licensing-exam-usmle">USMLE fees for 2026 and 2027</a>.</p>
-
-    <h3>Study resources</h3>
+    <h3>Study resources (1 year)</h3>
     <dl>
-      <div class="row"><dt>UWorld question bank for one Step exam<small>360 days of access; 30 days is $349</small></dt><dd>$579</dd></div>
-      <div class="row"><dt>Sketchy Medical<small>12 months</small></dt><dd>$449.99</dd></div>
-      <div class="row"><dt>AMBOSS Student Life<small>One payment, through the first year of residency</small></dt><dd>$1,199</dd></div>
+      <div class="row"><dt>UWorld qbank</dt><dd>$579</dd></div>
+      <div class="row"><dt>Sketchy</dt><dd>$449.99</dd></div>
+      <div class="row"><dt>AMBOSS</dt><dd>$448</dd></div>
     </dl>
-    <p class="src">Sources: prices listed by <a href="https://medical.uworld.com/usmle/usmle-step-2-ck/">UWorld</a> (Step 2 CK), <a href="https://www.sketchy.com/explore/medical">Sketchy</a> and <a href="https://www.amboss.com/us/students/student-life">AMBOSS</a>, November 2026.</p>
-
-    <h3>Applying to residency</h3>
-    <dl>
-      <div class="row"><dt>Each of the first 30 programs in a specialty<small>ERAS, 2027 season</small></dt><dd>$11</dd></div>
-      <div class="row"><dt>Each program after that<small>40 programs in one specialty comes to $630</small></dt><dd>$30</dd></div>
-      <div class="row"><dt>USMLE transcript<small>Once per season</small></dt><dd>$70</dd></div>
-    </dl>
-    <p class="src">Source: AAMC, <a href="https://students-residents.aamc.org/applying-residency/article/fees-eras-residency-applications/">Fees for ERAS Residency Applications</a>.</p>
-
-    <p class="note">Fees change every year, and fee assistance exists for some of them. The links go to each organization's current numbers.</p>
+    <p class="note">.. and don&rsquo;t forget working for free doing research plus applying to residency and list goes on and on.</p>
   </section>
 
   <h2>Why I built this</h2>
-  <p>I'm a medical student. Anki is an invaluable resource for medical students, but for anatomy I found it super slow. The inspiration for this site came from a few online quizzes that made it really easy to learn structures quickly. There just weren't many of them, and the images were very low quality.</p>
-  <p>I wanted quizzes like that for the entire anatomy curriculum, with high-quality images.</p>
+  <p>I'm currently a second-year medical student. Anatomy is a defining part of the medical school curriculum, especially if your school uses cadavers. Anki is an invaluable resource, but I found it to be an inefficient way to study for anatomy. The inspiration for this site came from a few online quizzes that made it easy to learn structures quickly. There weren't many of them, and the images were very low quality.</p>
+  <p>So I wanted quizzes like that for the entire anatomy curriculum, with high-quality images.</p>
 
   <h2>How the images are made</h2>
-  <p>I used Z-Anatomy, an open 3D atlas of the human body, to build a database of body parts and how they connect. I then wrote a program in Blender that renders anatomically correct images from that model, one group of structures at a time.</p>
-  <p>An image model adds the finer surface detail on top of each render: muscle fibers, tendon, the texture of bone. Every finished image is checked against the original render so that no structure moves or changes shape, and I review each one before it goes on the site.</p>
+  <p>I used Z-Anatomy, an open 3D atlas of the human body, to build a database of body parts and the connections between them. Sort of like the human atlas project, but not as serious. Then I wrote a program in Blender that renders images using that database. An imaging engine adds the finer surface detail (muscle fibers, tendon, the texture of bone). I review each one before it goes on the site.</p>
 
   <section class="fix">
-    <h2>See a mistake?</h2>
-    <p>I have tried to personally verify the accuracy of every image. If you see an error, let me know and I will get it fixed.</p>
+    <h2>See a mistake or want me to add something?</h2>
+    <p>I have tried to personally verify the accuracy of every image &ndash; but I am only HUMAN. If you see an error, let me know and I will get it fixed. To get this cool free resource out there expeditiously, it will remain a work in progress, and I will continue to add more systems and anatomical groups until complete. Suggestions and feedback are welcome.</p>
     <p id="contact">Email <a href="mailto:support@anatomyquizzes.com">support@anatomyquizzes.com</a>.</p>
-    <p>These quizzes are for study. Check anything important against your course materials.</p>
   </section>
 
   <section class="credits">
     <h2>Credits</h2>
-    <p>3D anatomy from <a href="https://github.com/Z-Anatomy/Models-of-human-anatomy">Z-Anatomy</a>, the libre 3D atlas of anatomy (CC BY-SA 4.0), which is built on BodyParts3D by The Database Center for Life Science (CC BY-SA 2.1 Japan). The images on this site are derived from those models and are shared under the same license, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
-    <p>Rendered in Blender. Surface detail added with an image model. Set in Source Sans 3 (SIL Open Font License).</p>
+    <p>3D anatomy from <a href="https://github.com/Z-Anatomy/Models-of-human-anatomy">Z-Anatomy</a>, the libre 3D atlas of anatomy (CC BY-SA 4.0). Built on BodyParts3D by The Database Center for Life Science (CC BY-SA 2.1 Japan). The images on this site are derived from those models and are shared under the same license, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Rendered in Blender.</p>
   </section>
 </main>
 </body>

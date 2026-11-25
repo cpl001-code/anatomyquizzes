@@ -170,6 +170,13 @@ a.btn { display: inline-block; text-decoration: none; }
   .final { font-size: 44px; }
 }
 </style>
+<!-- Google tag (Colin's container, 2026-11-24) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-W2GT69MV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
 </head>
 <body>
 <header class="bar">
@@ -372,6 +379,16 @@ a.btn { display: inline-block; text-decoration: none; }
       .catch(function () { showHome("That quiz could not be loaded. Check your connection and try again."); });
   }
 
+  // Which quizzes get played (Colin, 2026-11-24): one event when a quiz is
+  // started and one when it is finished, read by his Google tag.
+  function track(name, extra) {
+    try {
+      var d = { event: name, quiz_id: (Q && Q.scene && Q.scene.id) || "", quiz_title: (Q && Q.scene && Q.scene.title) || "" };
+      if (extra) Object.keys(extra).forEach(function (k) { d[k] = extra[k]; });
+      (window.dataLayer = window.dataLayer || []).push(d);
+    } catch (e) {}
+  }
+
   function startScene(entry, base, scene) {
     var list = (Array.isArray(scene.structures) ? scene.structures : []).filter(function (s) {
       return s && typeof s.id === "string" && s.dot && isFinite(s.dot.x) && isFinite(s.dot.y);
@@ -436,7 +453,7 @@ a.btn { display: inline-block; text-decoration: none; }
 
   function begin() {
     if (!Q || !Q.loaded) return;
-    Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0;
+    Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start");
     clearGlow(); clearTag();
     Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = false; });
     var p = $("panel"); p.textContent = "";
@@ -492,7 +509,7 @@ a.btn { display: inline-block; text-decoration: none; }
   function finish() {
     var ms = performance.now() - Q.t0;
     stopClock();
-    Q.state = "done";
+    Q.state = "done"; track("quiz_complete", { misses: Q.misses });
     var key = "aq.time." + Q.entry.slug, prev = store(key);
     var isBest = !prev || !isFinite(prev.ms) || ms < prev.ms;
     if (isBest) {
