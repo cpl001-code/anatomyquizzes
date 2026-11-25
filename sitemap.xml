@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://anatomyquizzes.com/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://anatomyquizzes.com/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://anatomyquizzes.com/quizzes/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/carpal-bones-metacarpals-palmar/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/phalanges-hand-palmar/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://anatomyquizzes.com/quizzes/regions-vertebral-column-right-lateral/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/ligaments-hip-joint-pelvis-anterior/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/ligaments-menisci-knee-posterior/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/superficial-muscles-pectoral-region-shoulder-anterior/</loc><lastmod>2026-11-24</lastmod></url>
@@ -17,11 +19,15 @@
   <url><loc>https://anatomyquizzes.com/quizzes/deep-muscles-palm/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/gyri-cerebral-hemisphere-left-lateral/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/gyri-cerebral-hemisphere-left-lateral-color-coded/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://anatomyquizzes.com/quizzes/lobes-cerebral-hemisphere-left-lateral-color-coded/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://anatomyquizzes.com/quizzes/sulci-cerebral-hemisphere-left-lateral/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/heart-great-vessels-anterior/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/abdominal-aorta-branches-anterior/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://anatomyquizzes.com/quizzes/larynx-trachea-anterior/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/lobes-lungs-anterior/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/trachea-bronchial-tree-anterior/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/organs-digestive-tract-anterior/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://anatomyquizzes.com/quizzes/segments-liver-anterior-color-coded/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/stomach-duodenum-pancreas-spleen-anterior-liver-removed/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/right-kidney-hilum-anterior/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://anatomyquizzes.com/quizzes/kidneys-ureters-urinary-bladder-anterior/</loc><lastmod>2026-11-24</lastmod></url>

@@ -32,7 +32,9 @@
    Since 2026-11-25 every quiz is its own page (/quizzes/<name>/), made from
    this template by pipeline/bin/site_build.py, which fills in the marks in
    double braces. Below the quiz each page says in plain words what the quiz
-   covers, and the home page lists every quiz as an ordinary link. */
+   covers. The list of every quiz as ordinary links is its own page,
+   /quizzes/, reached from the foot of the menu: the owner wants the home
+   page kept clean (2026-11-25). */
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 200 900; font-display: swap; src: url("../../fonts/source-sans-3-latin-wght-normal.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: italic; font-weight: 200 900; font-display: swap; src: url("../../fonts/source-sans-3-latin-wght-italic.woff2") format("woff2"); }
 :root {
@@ -101,7 +103,8 @@ details[open] > summary > .chev { transform: rotate(45deg) translate(-2px, -2px)
 .part .leaf { padding-left: 57px; }
 .leaf .best { flex: none; color: var(--muted); font-size: 13px; font-weight: 400; font-variant-numeric: tabular-nums; }
 .leaf[aria-current="page"] { background: var(--page); border-left-color: var(--ink); font-weight: 700; }
-.about-link { align-self: flex-start; margin: 14px 18px 18px; padding: 0; border: 0; background: none; color: var(--muted); font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 14px 18px 18px; color: var(--muted); font-size: 14px; }
+.foot-links a { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---- main ---- */
 main { min-width: 0; padding: 22px clamp(16px, 3vw, 36px) 28px; }
@@ -170,7 +173,7 @@ a.btn { display: inline-block; text-decoration: none; }
 .more .links li, .all li { padding: 4px 0; }
 .more .links a, .all a { text-underline-offset: 3px; }
 .more .fine { color: var(--muted); font-size: 15px; }
-.all { margin: 56px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
+.all { margin: 34px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
 .all h3 { font: 700 16px/1.3 var(--font); color: var(--muted); margin: 18px 0 4px; }
 
 
@@ -221,7 +224,7 @@ a.btn { display: inline-block; text-decoration: none; }
     <div class="menu-inner">
       <h2>What are you studying?</h2>
       <div class="tree" id="tree"></div>
-      <a class="about-link" id="about-btn" href="../../about.html">About and credits</a>
+      <p class="foot-links"><a id="all-link" href="../../quizzes/">All quizzes</a><a id="about-btn" href="../../about.html">About and credits</a></p>
     </div>
   </nav>
   <button type="button" class="scrim" id="scrim" aria-label="Close the menu" hidden></button>
@@ -283,6 +286,9 @@ a.btn { display: inline-block; text-decoration: none; }
       <ul class="links">
         <li><a href="../gyri-cerebral-hemisphere-left-lateral/">Gyri of the cerebral hemisphere (left lateral)</a></li>
         <li><a href="../gyri-cerebral-hemisphere-left-lateral-color-coded/">Gyri of the cerebral hemisphere (left lateral, color-coded)</a></li>
+        <li><a href="../lobes-cerebral-hemisphere-left-lateral-color-coded/">Lobes of the cerebral hemisphere (left lateral, color-coded)</a></li>
+        <li><a href="../sulci-cerebral-hemisphere-left-lateral/">Sulci of the cerebral hemisphere (left lateral)</a></li>
+        <li><a href="../larynx-trachea-anterior/">Larynx and trachea (anterior)</a></li>
         <li><a href="../suprarenal-glands-pancreas-anterior/">Suprarenal glands and pancreas (anterior)</a></li>
       </ul>
       <p class="fine">3D anatomy from Z-Anatomy, the libre 3D atlas of anatomy, built on BodyParts3D (CC BY-SA 4.0). Rendered in Blender; an imaging engine adds the finer surface detail. Every image is reviewed by the site&#x27;s author, a second-year medical student, before it goes on the site. <a href="../../about.html">About and credits</a></p>

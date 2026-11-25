@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T02:11:10+00:00",
+ "generated": "2026-11-25T16:12:06+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -73,6 +73,21 @@
    "structures": 14,
    "path": "scenes/ul_hand_bones_phalanges_anterior",
    "url": "phalanges-hand-palmar"
+  },
+  {
+   "id": "sk_vertebral_column_lateral_right",
+   "title": "Regions of the vertebral column (right lateral)",
+   "region": "back_and_spinal_cord",
+   "lab": "Vertebral Column",
+   "view": "lateral_right",
+   "nav": [
+    "Skeletal System",
+    "Back",
+    "Vertebral Column"
+   ],
+   "structures": 6,
+   "path": "scenes/sk_vertebral_column_lateral_right",
+   "url": "regions-vertebral-column-right-lateral"
   },
   {
    "id": "sys_hip_pelvis_ligaments_anterior",
@@ -285,6 +300,36 @@
    "url": "gyri-cerebral-hemisphere-left-lateral-color-coded"
   },
   {
+   "id": "sys_brain_lobes_lateral_left_colour",
+   "title": "Lobes of the cerebral hemisphere (left lateral, color-coded)",
+   "region": "head_and_neck",
+   "lab": "Brain",
+   "view": "lateral_left",
+   "nav": [
+    "Nervous System",
+    "Head and Neck",
+    "Brain"
+   ],
+   "structures": 4,
+   "path": "scenes/sys_brain_lobes_lateral_left_colour",
+   "url": "lobes-cerebral-hemisphere-left-lateral-color-coded"
+  },
+  {
+   "id": "sys_brain_sulci_lateral_left",
+   "title": "Sulci of the cerebral hemisphere (left lateral)",
+   "region": "head_and_neck",
+   "lab": "Brain",
+   "view": "lateral_left",
+   "nav": [
+    "Nervous System",
+    "Head and Neck",
+    "Brain"
+   ],
+   "structures": 9,
+   "path": "scenes/sys_brain_sulci_lateral_left",
+   "url": "sulci-cerebral-hemisphere-left-lateral"
+  },
+  {
    "id": "sys_heart_great_vessels_anterior",
    "title": "Heart and great vessels (anterior)",
    "region": "thorax",
@@ -313,6 +358,21 @@
    "structures": 25,
    "path": "scenes/sys_abdominal_aorta_branches_anterior",
    "url": "abdominal-aorta-branches-anterior"
+  },
+  {
+   "id": "rs_larynx_anterior",
+   "title": "Larynx and trachea (anterior)",
+   "region": "head_and_neck",
+   "lab": "Larynx",
+   "view": "anterior",
+   "nav": [
+    "Respiratory System",
+    "Head and Neck",
+    "Larynx"
+   ],
+   "structures": 9,
+   "path": "scenes/rs_larynx_anterior",
+   "url": "larynx-trachea-anterior"
   },
   {
    "id": "sys_lungs_lobes_anterior",
@@ -358,6 +418,21 @@
    "structures": 11,
    "path": "scenes/sys_abdominal_viscera_anterior",
    "url": "organs-digestive-tract-anterior"
+  },
+  {
+   "id": "dg_liver_segments_anterior_colour",
+   "title": "Segments of the liver (anterior, color-coded)",
+   "region": "abdomen",
+   "lab": "Liver",
+   "view": "anterior",
+   "nav": [
+    "Digestive System",
+    "Abdomen",
+    "Liver"
+   ],
+   "structures": 7,
+   "path": "scenes/dg_liver_segments_anterior_colour",
+   "url": "segments-liver-anterior-color-coded"
   },
   {
    "id": "sys_stomach_pancreas_spleen_anterior",
