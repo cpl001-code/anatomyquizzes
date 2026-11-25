@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T16:45:10+00:00",
+ "generated": "2026-11-25T17:09:51+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -390,6 +390,21 @@
    "url": "sulci-cerebral-hemisphere-left-lateral"
   },
   {
+   "id": "sys_circle_of_willis_inferior",
+   "title": "Circle of Willis and arteries at the base of the brain (inferior)",
+   "region": "head_and_neck",
+   "lab": "Brain",
+   "view": "inferior",
+   "nav": [
+    "Nervous System",
+    "Head and Neck",
+    "Brain"
+   ],
+   "structures": 20,
+   "path": "scenes/sys_circle_of_willis_inferior",
+   "url": "circle-of-willis-arteries-base-of-brain-inferior"
+  },
+  {
    "id": "sys_heart_great_vessels_anterior",
    "title": "Heart and great vessels (anterior)",
    "region": "thorax",
@@ -535,7 +550,7 @@
     "Abdomen",
     "Kidneys and Bladder"
    ],
-   "structures": 6,
+   "structures": 7,
    "path": "scenes/sys_urinary_tract_anterior",
    "url": "kidneys-ureters-urinary-bladder-anterior"
   },
