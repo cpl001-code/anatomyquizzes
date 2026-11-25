@@ -116,6 +116,9 @@ main { min-width: 0; padding: 22px clamp(16px, 3vw, 36px) 28px; }
 .home .big { font: 800 clamp(34px, 4.8vw, 60px)/1.03 var(--font); letter-spacing: -0.02em; margin: 7vh 0 14px; max-width: 13ch; text-wrap: balance; }
 .home p { margin: 0 0 20px; max-width: 44ch; color: var(--muted); }
 .home .problem { color: var(--no); }
+/* the landing page is one line in the middle of the page (Colin, 2026-11-25: "center the Pick a quiz from the menu") */
+.home.landing { min-height: calc(100vh - var(--bar) - 50px); min-height: calc(100dvh - var(--bar) - 50px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-bottom: 12vh; }
+.home.landing .big { margin: 0 0 18px; }
 .btn { border: 2px solid var(--ink); background: var(--ink); color: #ffffff; border-radius: 999px; padding: 10px 26px; font-weight: 700; font-size: 17px; }
 .btn.ghost { background: none; color: var(--ink); }
 .btn[disabled] { background: var(--mist-2); border-color: var(--mist-2); color: var(--muted); cursor: default; }
@@ -252,9 +255,8 @@ a.btn { display: inline-block; text-decoration: none; }
   <button type="button" class="scrim" id="scrim" aria-label="Close the menu" hidden></button>
 
   <main>
-    <section class="home" id="home">
+    <section class="home landing" id="home">
       <h1 class="big">Pick a quiz from the menu.</h1>
-      <p id="home-how">Each quiz is one image. A structure's name appears and you click its dot. The clock stops when you have found them all.</p>
       <p class="problem" id="home-problem" hidden></p>
       <button type="button" class="btn" id="browse">Choose a quiz</button>
 
