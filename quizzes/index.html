@@ -193,6 +193,20 @@ a.btn { display: inline-block; text-decoration: none; }
 .more ul, .all ul { margin: 0 0 14px; padding: 0; list-style: none; }
 .more .names { columns: 2 15rem; column-gap: 32px; }
 .more .names li { break-inside: avoid; padding: 3px 0; }
+/* Study notes: the after-quiz notes as text on the page, closed until clicked (Colin, 2026-11-25) */
+.more details.notes { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.more details.notes summary { display: flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; }
+.more details.notes summary::-webkit-details-marker { display: none; }
+.more details.notes summary h2 { margin: 0; }
+.more details.notes summary::after { content: ""; width: 9px; height: 9px; margin-top: -5px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.more details.notes[open] summary::after { margin-top: 5px; transform: rotate(-135deg); }
+.more .note { margin-top: 24px; }
+.more .note h3 { margin: 0 0 6px; font: 700 18px/1.25 var(--font); }
+.more .note dl { margin: 0; }
+.more .note dt, .more .note .hy-h { margin: 9px 0 1px; max-width: none; font: 700 12.5px/1.3 var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.more .note dd { margin: 0; max-width: 62ch; }
+.more .note ul.hy { margin: 0; padding-left: 18px; list-style: disc; }
+.more .note ul.hy li { padding: 2px 0; max-width: 60ch; }
 .more .links li, .all li { padding: 4px 0; }
 .more .links a, .all a { text-underline-offset: 3px; }
 .more .fine { color: var(--muted); font-size: 15px; }
@@ -260,24 +274,24 @@ a.btn { display: inline-block; text-decoration: none; }
       <p class="problem" id="home-problem" hidden></p>
       <button type="button" class="btn" id="browse">Choose a quiz</button>
       <nav class="all" aria-label="All quizzes">
-        <h3>Skeletal System</h3>
+        <h3 id="skeletal-system">Skeletal System</h3>
         <ul>
-          <li><a href="../quizzes/bones-skull-right-lateral/">Bones of the skull (right lateral)</a></li>
-          <li><a href="../quizzes/carpal-bones-metacarpals-palmar/">Carpal bones and metacarpals (palmar)</a></li>
+          <li id="skeletal-system-head-neck"><a href="../quizzes/bones-skull-right-lateral/">Bones of the skull (right lateral)</a></li>
+          <li id="skeletal-system-upper-body"><a href="../quizzes/carpal-bones-metacarpals-palmar/">Carpal bones and metacarpals (palmar)</a></li>
           <li><a href="../quizzes/phalanges-hand-palmar/">Phalanges of the hand (palmar)</a></li>
-          <li><a href="../quizzes/bones-pelvis-anterior/">Bones of the pelvis (anterior)</a></li>
-          <li><a href="../quizzes/regions-vertebral-column-right-lateral/">Regions of the vertebral column (right lateral)</a></li>
+          <li id="skeletal-system-pelvis"><a href="../quizzes/bones-pelvis-anterior/">Bones of the pelvis (anterior)</a></li>
+          <li id="skeletal-system-back"><a href="../quizzes/regions-vertebral-column-right-lateral/">Regions of the vertebral column (right lateral)</a></li>
         </ul>
-        <h3>Joints and Ligaments</h3>
+        <h3 id="joints-ligaments">Joints and Ligaments</h3>
         <ul>
-          <li><a href="../quizzes/ligaments-capsule-rotator-cuff-shoulder-anterior/">Ligaments, capsule and rotator cuff of the shoulder (anterior)</a></li>
-          <li><a href="../quizzes/ligaments-pelvis-sacroiliac-joint-posterior/">Ligaments of the pelvis and sacroiliac joint (posterior)</a></li>
-          <li><a href="../quizzes/ligaments-hip-joint-pelvis-anterior/">Ligaments of the hip joint and pelvis (anterior)</a></li>
+          <li id="joints-ligaments-upper-body"><a href="../quizzes/ligaments-capsule-rotator-cuff-shoulder-anterior/">Ligaments, capsule and rotator cuff of the shoulder (anterior)</a></li>
+          <li id="joints-ligaments-pelvis"><a href="../quizzes/ligaments-pelvis-sacroiliac-joint-posterior/">Ligaments of the pelvis and sacroiliac joint (posterior)</a></li>
+          <li id="joints-ligaments-lower-body"><a href="../quizzes/ligaments-hip-joint-pelvis-anterior/">Ligaments of the hip joint and pelvis (anterior)</a></li>
           <li><a href="../quizzes/ligaments-menisci-knee-posterior/">Ligaments and menisci of the knee (posterior)</a></li>
         </ul>
-        <h3>Muscular System</h3>
+        <h3 id="muscular-system">Muscular System</h3>
         <ul>
-          <li><a href="../quizzes/superficial-muscles-pectoral-region-shoulder-anterior/">Superficial muscles of the pectoral region and shoulder (anterior)</a></li>
+          <li id="muscular-system-upper-body"><a href="../quizzes/superficial-muscles-pectoral-region-shoulder-anterior/">Superficial muscles of the pectoral region and shoulder (anterior)</a></li>
           <li><a href="../quizzes/deep-muscles-pectoral-region-axilla-anterior/">Deep muscles of the pectoral region and axilla (anterior)</a></li>
           <li><a href="../quizzes/superficial-muscles-back-shoulder-posterior/">Superficial muscles of the back and shoulder (posterior)</a></li>
           <li><a href="../quizzes/scapular-posterior-arm-muscles/">Scapular and posterior arm muscles (posterior)</a></li>
@@ -287,43 +301,43 @@ a.btn { display: inline-block; text-decoration: none; }
           <li><a href="../quizzes/muscles-posterior-forearm/">Muscles of the posterior forearm (posterior)</a></li>
           <li><a href="../quizzes/thenar-hypothenar-muscles-palmar/">Thenar and hypothenar muscles (palmar)</a></li>
           <li><a href="../quizzes/deep-muscles-palm/">Deep muscles of the palm (palmar)</a></li>
-          <li><a href="../quizzes/deep-muscles-back-erector-spinae-splenius-posterior/">Deep muscles of the back: erector spinae and splenius (posterior)</a></li>
+          <li id="muscular-system-back"><a href="../quizzes/deep-muscles-back-erector-spinae-splenius-posterior/">Deep muscles of the back: erector spinae and splenius (posterior)</a></li>
         </ul>
-        <h3>Nervous System</h3>
+        <h3 id="nervous-system">Nervous System</h3>
         <ul>
-          <li><a href="../quizzes/gyri-cerebral-hemisphere-left-lateral/">Gyri of the cerebral hemisphere (left lateral)</a></li>
+          <li id="nervous-system-head-neck"><a href="../quizzes/gyri-cerebral-hemisphere-left-lateral/">Gyri of the cerebral hemisphere (left lateral)</a></li>
           <li><a href="../quizzes/lobes-cerebral-hemisphere-left-lateral-color-coded/">Lobes of the cerebral hemisphere (left lateral, color-coded)</a></li>
           <li><a href="../quizzes/sulci-cerebral-hemisphere-left-lateral/">Sulci of the cerebral hemisphere (left lateral)</a></li>
           <li><a href="../quizzes/circle-of-willis-arteries-base-of-brain-inferior/">Circle of Willis and arteries at the base of the brain (inferior)</a></li>
         </ul>
-        <h3>Cardiovascular System</h3>
+        <h3 id="cardiovascular-system">Cardiovascular System</h3>
         <ul>
-          <li><a href="../quizzes/heart-great-vessels-anterior/">Heart and great vessels (anterior)</a></li>
+          <li id="cardiovascular-system-thorax"><a href="../quizzes/heart-great-vessels-anterior/">Heart and great vessels (anterior)</a></li>
           <li><a href="../quizzes/heart-chambers-coronary-vessels-posterior/">Heart, chambers and coronary vessels (posterior)</a></li>
-          <li><a href="../quizzes/abdominal-aorta-branches-anterior/">Abdominal aorta and its branches (anterior)</a></li>
+          <li id="cardiovascular-system-abdomen"><a href="../quizzes/abdominal-aorta-branches-anterior/">Abdominal aorta and its branches (anterior)</a></li>
         </ul>
-        <h3>Respiratory System</h3>
+        <h3 id="respiratory-system">Respiratory System</h3>
         <ul>
-          <li><a href="../quizzes/larynx-trachea-anterior/">Larynx and trachea (anterior)</a></li>
-          <li><a href="../quizzes/lobes-lungs-anterior/">Lobes of the lungs (anterior)</a></li>
+          <li id="respiratory-system-head-neck"><a href="../quizzes/larynx-trachea-anterior/">Larynx and trachea (anterior)</a></li>
+          <li id="respiratory-system-thorax"><a href="../quizzes/lobes-lungs-anterior/">Lobes of the lungs (anterior)</a></li>
           <li><a href="../quizzes/trachea-bronchial-tree-anterior/">Trachea and bronchial tree (anterior)</a></li>
         </ul>
-        <h3>Digestive System</h3>
+        <h3 id="digestive-system">Digestive System</h3>
         <ul>
-          <li><a href="../quizzes/organs-digestive-tract-anterior/">Organs of the digestive tract (anterior)</a></li>
+          <li id="digestive-system-abdomen"><a href="../quizzes/organs-digestive-tract-anterior/">Organs of the digestive tract (anterior)</a></li>
           <li><a href="../quizzes/segments-liver-anterior-color-coded/">Segments of the liver (anterior, color-coded)</a></li>
           <li><a href="../quizzes/stomach-duodenum-pancreas-spleen-anterior-liver-removed/">Stomach, duodenum, pancreas and spleen (anterior, liver removed)</a></li>
         </ul>
-        <h3>Urinary System</h3>
+        <h3 id="urinary-system">Urinary System</h3>
         <ul>
-          <li><a href="../quizzes/right-kidney-hilum-anterior/">Right kidney and its hilum (anterior)</a></li>
+          <li id="urinary-system-abdomen"><a href="../quizzes/right-kidney-hilum-anterior/">Right kidney and its hilum (anterior)</a></li>
           <li><a href="../quizzes/kidneys-ureters-urinary-bladder-anterior/">Kidneys, ureters and urinary bladder (anterior)</a></li>
         </ul>
-        <h3>Endocrine System</h3>
+        <h3 id="endocrine-system">Endocrine System</h3>
         <ul>
-          <li><a href="../quizzes/pituitary-pineal-glands-midline-brain-medial-view/">Pituitary and pineal glands and the midline of the brain (medial view)</a></li>
+          <li id="endocrine-system-head-neck"><a href="../quizzes/pituitary-pineal-glands-midline-brain-medial-view/">Pituitary and pineal glands and the midline of the brain (medial view)</a></li>
           <li><a href="../quizzes/thyroid-parathyroid-glands-posterior/">Thyroid and parathyroid glands (posterior)</a></li>
-          <li><a href="../quizzes/suprarenal-glands-pancreas-anterior/">Suprarenal glands and pancreas (anterior)</a></li>
+          <li id="endocrine-system-abdomen"><a href="../quizzes/suprarenal-glands-pancreas-anterior/">Suprarenal glands and pancreas (anterior)</a></li>
         </ul>
       </nav>
     </section>

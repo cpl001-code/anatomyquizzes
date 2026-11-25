@@ -14,9 +14,9 @@
 <meta property="og:title" content="Sulci of the cerebral hemisphere (left lateral) – Labeling Quiz">
 <meta property="og:description" content="Free timed labeling quiz: Sulci of the cerebral hemisphere (left lateral). Click each of 9 structures on a detailed 3D image: Central sulcus and more.">
 <meta property="og:url" content="https://anatomyquizzes.com/quizzes/sulci-cerebral-hemisphere-left-lateral/">
-<meta property="og:image" content="https://anatomyquizzes.com/scenes/sys_brain_sulci_lateral_left/image.b647f8021e.jpg">
+<meta property="og:image" content="https://anatomyquizzes.com/scenes/sys_brain_sulci_lateral_left/image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Quiz","name":"Sulci of the cerebral hemisphere (left lateral)","description":"Free timed labeling quiz: Sulci of the cerebral hemisphere (left lateral). Click each of 9 structures on a detailed 3D image: Central sulcus and more.","url":"https://anatomyquizzes.com/quizzes/sulci-cerebral-hemisphere-left-lateral/","image":"https://anatomyquizzes.com/scenes/sys_brain_sulci_lateral_left/image.b647f8021e.jpg","inLanguage":"en","isAccessibleForFree":true,"learningResourceType":"Labeling quiz","about":{"@type":"Thing","name":"Human anatomy: Brain"},"license":"https://creativecommons.org/licenses/by-sa/4.0/","publisher":{"@type":"Organization","name":"Free Anatomy Quizzes","url":"https://anatomyquizzes.com/"}}</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Quiz","name":"Sulci of the cerebral hemisphere (left lateral)","description":"Free timed labeling quiz: Sulci of the cerebral hemisphere (left lateral). Click each of 9 structures on a detailed 3D image: Central sulcus and more.","url":"https://anatomyquizzes.com/quizzes/sulci-cerebral-hemisphere-left-lateral/","image":"https://anatomyquizzes.com/scenes/sys_brain_sulci_lateral_left/sulci-cerebral-hemisphere-left-lateral.b647f8021e.webp","inLanguage":"en","isAccessibleForFree":true,"learningResourceType":"Labeling quiz","about":{"@type":"Thing","name":"Human anatomy: Brain"},"license":"https://creativecommons.org/licenses/by-sa/4.0/","publisher":{"@type":"Organization","name":"Free Anatomy Quizzes","url":"https://anatomyquizzes.com/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Nervous System","item":"https://anatomyquizzes.com/quizzes/#nervous-system"},{"@type":"ListItem","position":2,"name":"Head and Neck","item":"https://anatomyquizzes.com/quizzes/#nervous-system-head-neck"},{"@type":"ListItem","position":3,"name":"Sulci of the cerebral hemisphere (left lateral)"}]},{"@context":"https://schema.org","@type":"ImageObject","contentUrl":"https://anatomyquizzes.com/scenes/sys_brain_sulci_lateral_left/sulci-cerebral-hemisphere-left-lateral.b647f8021e.webp","name":"Sulci of the cerebral hemisphere (left lateral)","license":"https://creativecommons.org/licenses/by-sa/4.0/","acquireLicensePage":"https://anatomyquizzes.com/about.html","creditText":"Free Anatomy Quizzes. 3D anatomy from Z-Anatomy, built on BodyParts3D.","creator":{"@type":"Organization","name":"Free Anatomy Quizzes"}}]</script>
 <link rel="preload" href="../../fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='7'/%3E%3C/svg%3E">
 <style>
@@ -196,6 +196,20 @@ a.btn { display: inline-block; text-decoration: none; }
 .more ul, .all ul { margin: 0 0 14px; padding: 0; list-style: none; }
 .more .names { columns: 2 15rem; column-gap: 32px; }
 .more .names li { break-inside: avoid; padding: 3px 0; }
+/* Study notes: the after-quiz notes as text on the page, closed until clicked (Colin, 2026-11-25) */
+.more details.notes { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.more details.notes summary { display: flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; }
+.more details.notes summary::-webkit-details-marker { display: none; }
+.more details.notes summary h2 { margin: 0; }
+.more details.notes summary::after { content: ""; width: 9px; height: 9px; margin-top: -5px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.more details.notes[open] summary::after { margin-top: 5px; transform: rotate(-135deg); }
+.more .note { margin-top: 24px; }
+.more .note h3 { margin: 0 0 6px; font: 700 18px/1.25 var(--font); }
+.more .note dl { margin: 0; }
+.more .note dt, .more .note .hy-h { margin: 9px 0 1px; max-width: none; font: 700 12.5px/1.3 var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.more .note dd { margin: 0; max-width: 62ch; }
+.more .note ul.hy { margin: 0; padding-left: 18px; list-style: disc; }
+.more .note ul.hy li { padding: 2px 0; max-width: 60ch; }
 .more .links li, .all li { padding: 4px 0; }
 .more .links a, .all a { text-underline-offset: 3px; }
 .more .fine { color: var(--muted); font-size: 15px; }
@@ -270,7 +284,7 @@ a.btn { display: inline-block; text-decoration: none; }
         <h1 class="caption"><span class="qt" id="quiz-title">Sulci of the cerebral hemisphere (left lateral)</span><span id="caption">Brain, left lateral view</span></h1>
         <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
-          <img id="plate" alt="Anatomy image: Sulci of the cerebral hemisphere (left lateral)" src="../../scenes/sys_brain_sulci_lateral_left/image.b647f8021e.jpg" width="2000" height="1780">
+          <img id="plate" alt="Anatomy image: Sulci of the cerebral hemisphere (left lateral)" src="../../scenes/sys_brain_sulci_lateral_left/sulci-cerebral-hemisphere-left-lateral.b647f8021e.webp" width="2000" height="1780">
           <canvas id="glow"></canvas>
         </div>
       </div>
@@ -289,6 +303,45 @@ a.btn { display: inline-block; text-decoration: none; }
         <li>Inferior temporal sulcus</li>
         <li>Intraparietal sulcus</li>
       </ul>
+      <details class="notes" id="study-notes">
+        <summary><h2>Study notes</h2></summary>
+        <div class="note">
+          <h3>Central sulcus</h3>
+          <dl><dt>Location</dt><dd>Runs down the lateral surface of the hemisphere from its upper margin toward the lateral sulcus.</dd><dt>Separates</dt><dd>Frontal lobe from parietal lobe, and so the precentral gyrus (motor) from the postcentral gyrus (sensory).</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Precentral sulcus</h3>
+          <dl><dt>Location</dt><dd>In front of the central sulcus and parallel to it.</dd><dt>Separates</dt><dd>Precentral gyrus from the superior, middle and inferior frontal gyri in front of it.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Postcentral sulcus</h3>
+          <dl><dt>Location</dt><dd>Behind the central sulcus and parallel to it.</dd><dt>Separates</dt><dd>Postcentral gyrus from the superior and inferior parietal lobules behind it.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Superior frontal sulcus</h3>
+          <dl><dt>Location</dt><dd>Runs forward across the frontal lobe from the precentral sulcus.</dd><dt>Separates</dt><dd>Superior frontal gyrus from middle frontal gyrus.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Inferior frontal sulcus</h3>
+          <dl><dt>Location</dt><dd>Runs forward across the frontal lobe from the precentral sulcus, below the superior frontal sulcus.</dd><dt>Separates</dt><dd>Middle frontal gyrus from inferior frontal gyrus.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Lateral sulcus (Sylvian fissure)</h3>
+          <dl><dt>Location</dt><dd>Deep cleft that runs back and slightly up on the lateral surface of the hemisphere. The insula lies hidden in its depth.</dd><dt>Separates</dt><dd>Temporal lobe below from the frontal and parietal lobes above.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Superior temporal sulcus</h3>
+          <dl><dt>Location</dt><dd>Runs along the temporal lobe below the lateral sulcus and parallel to it.</dd><dt>Separates</dt><dd>Superior temporal gyrus from middle temporal gyrus.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Inferior temporal sulcus</h3>
+          <dl><dt>Location</dt><dd>Runs along the temporal lobe below the superior temporal sulcus.</dd><dt>Separates</dt><dd>Middle temporal gyrus from inferior temporal gyrus.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Intraparietal sulcus</h3>
+          <dl><dt>Location</dt><dd>Runs back across the parietal lobe from the postcentral sulcus.</dd><dt>Separates</dt><dd>Superior parietal lobule from inferior parietal lobule (the supramarginal and angular gyri).</dd></dl>
+        </div>
+      </details>
     </section>
   </main>
 </div>
@@ -296,7 +349,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"sys-brain-sulci-lateral-left","build":"df1d8adfe8","entry":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","nav":["Nervous System","Head and Neck","Brain"],"structures":9,"path":"scenes/sys_brain_sulci_lateral_left","url":"sulci-cerebral-hemisphere-left-lateral"},"scene":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","image":"image.b647f8021e.jpg","size":[2000,1780],"hitmap":"hitmap.01b0074f45.png","hitmap_colors":{"Central sulcus":[224,224,161],"Precentral sulcus":[224,224,94],"Postcentral sulcus":[224,224,31],"Superior frontal sulcus":[224,161,224],"Inferior frontal sulcus":[224,161,161],"Lateral sulcus (Sylvian fissure)":[224,161,94],"Superior temporal sulcus":[224,161,31],"Inferior temporal sulcus":[224,94,224],"Intraparietal sulcus":[224,94,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"central_sulcus","name":"Central sulcus","prompts":["Central sulcus"],"objects":["Central sulcus"],"dot":{"x":0.4973,"y":0.234},"blurb":{"rows":[["Location","Runs down the lateral surface of the hemisphere from its upper margin toward the lateral sulcus."],["Separates","Frontal lobe from parietal lobe, and so the precentral gyrus (motor) from the postcentral gyrus (sensory)."]]}},{"id":"precentral_sulcus","name":"Precentral sulcus","prompts":["Precentral sulcus"],"objects":["Precentral sulcus"],"dot":{"x":0.4908,"y":0.1902},"blurb":{"rows":[["Location","In front of the central sulcus and parallel to it."],["Separates","Precentral gyrus from the superior, middle and inferior frontal gyri in front of it."]]}},{"id":"postcentral_sulcus","name":"Postcentral sulcus","prompts":["Postcentral sulcus"],"objects":["Postcentral sulcus"],"dot":{"x":0.6258,"y":0.2042},"blurb":{"rows":[["Location","Behind the central sulcus and parallel to it."],["Separates","Postcentral gyrus from the superior and inferior parietal lobules behind it."]]}},{"id":"superior_frontal_sulcus","name":"Superior frontal sulcus","prompts":["Superior frontal sulcus"],"objects":["Superior frontal sulcus"],"dot":{"x":0.3197,"y":0.2031},"blurb":{"rows":[["Location","Runs forward across the frontal lobe from the precentral sulcus."],["Separates","Superior frontal gyrus from middle frontal gyrus."]]}},{"id":"inferior_frontal_sulcus","name":"Inferior frontal sulcus","prompts":["Inferior frontal sulcus"],"objects":["Inferior frontal sulcus"],"dot":{"x":0.2132,"y":0.3126},"blurb":{"rows":[["Location","Runs forward across the frontal lobe from the precentral sulcus, below the superior frontal sulcus."],["Separates","Middle frontal gyrus from inferior frontal gyrus."]]}},{"id":"lateral_sulcus","name":"Lateral sulcus (Sylvian fissure)","prompts":["Lateral sulcus (Sylvian fissure)"],"objects":["Lateral sulcus (Sylvian fissure)"],"dot":{"x":0.4667,"y":0.4267},"blurb":{"rows":[["Location","Deep cleft that runs back and slightly up on the lateral surface of the hemisphere. The insula lies hidden in its depth."],["Separates","Temporal lobe below from the frontal and parietal lobes above."]]}},{"id":"superior_temporal_sulcus","name":"Superior temporal sulcus","prompts":["Superior temporal sulcus"],"objects":["Superior temporal sulcus"],"dot":{"x":0.6368,"y":0.4621},"blurb":{"rows":[["Location","Runs along the temporal lobe below the lateral sulcus and parallel to it."],["Separates","Superior temporal gyrus from middle temporal gyrus."]]}},{"id":"inferior_temporal_sulcus","name":"Inferior temporal sulcus","prompts":["Inferior temporal sulcus"],"objects":["Inferior temporal sulcus"],"dot":{"x":0.6132,"y":0.6008},"blurb":{"rows":[["Location","Runs along the temporal lobe below the superior temporal sulcus."],["Separates","Middle temporal gyrus from inferior temporal gyrus."]]}},{"id":"intraparietal_sulcus","name":"Intraparietal sulcus","prompts":["Intraparietal sulcus"],"objects":["Intraparietal sulcus"],"dot":{"x":0.7452,"y":0.239},"blurb":{"rows":[["Location","Runs back across the parietal lobe from the postcentral sulcus."],["Separates","Superior parietal lobule from inferior parietal lobule (the supramarginal and angular gyri)."]]}}],"caption":"Brain, left lateral view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"sys-brain-sulci-lateral-left","build":"df1d8adfe8","entry":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","nav":["Nervous System","Head and Neck","Brain"],"structures":9,"path":"scenes/sys_brain_sulci_lateral_left","url":"sulci-cerebral-hemisphere-left-lateral"},"scene":{"id":"sys_brain_sulci_lateral_left","title":"Sulci of the cerebral hemisphere (left lateral)","region":"head_and_neck","lab":"Brain","view":"lateral_left","image":"sulci-cerebral-hemisphere-left-lateral.b647f8021e.webp","size":[2000,1780],"hitmap":"hitmap.01b0074f45.png","hitmap_colors":{"Central sulcus":[224,224,161],"Precentral sulcus":[224,224,94],"Postcentral sulcus":[224,224,31],"Superior frontal sulcus":[224,161,224],"Inferior frontal sulcus":[224,161,161],"Lateral sulcus (Sylvian fissure)":[224,161,94],"Superior temporal sulcus":[224,161,31],"Inferior temporal sulcus":[224,94,224],"Intraparietal sulcus":[224,94,161]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"central_sulcus","name":"Central sulcus","prompts":["Central sulcus"],"objects":["Central sulcus"],"dot":{"x":0.4973,"y":0.234},"blurb":{"rows":[["Location","Runs down the lateral surface of the hemisphere from its upper margin toward the lateral sulcus."],["Separates","Frontal lobe from parietal lobe, and so the precentral gyrus (motor) from the postcentral gyrus (sensory)."]]}},{"id":"precentral_sulcus","name":"Precentral sulcus","prompts":["Precentral sulcus"],"objects":["Precentral sulcus"],"dot":{"x":0.4908,"y":0.1902},"blurb":{"rows":[["Location","In front of the central sulcus and parallel to it."],["Separates","Precentral gyrus from the superior, middle and inferior frontal gyri in front of it."]]}},{"id":"postcentral_sulcus","name":"Postcentral sulcus","prompts":["Postcentral sulcus"],"objects":["Postcentral sulcus"],"dot":{"x":0.6258,"y":0.2042},"blurb":{"rows":[["Location","Behind the central sulcus and parallel to it."],["Separates","Postcentral gyrus from the superior and inferior parietal lobules behind it."]]}},{"id":"superior_frontal_sulcus","name":"Superior frontal sulcus","prompts":["Superior frontal sulcus"],"objects":["Superior frontal sulcus"],"dot":{"x":0.3197,"y":0.2031},"blurb":{"rows":[["Location","Runs forward across the frontal lobe from the precentral sulcus."],["Separates","Superior frontal gyrus from middle frontal gyrus."]]}},{"id":"inferior_frontal_sulcus","name":"Inferior frontal sulcus","prompts":["Inferior frontal sulcus"],"objects":["Inferior frontal sulcus"],"dot":{"x":0.2132,"y":0.3126},"blurb":{"rows":[["Location","Runs forward across the frontal lobe from the precentral sulcus, below the superior frontal sulcus."],["Separates","Middle frontal gyrus from inferior frontal gyrus."]]}},{"id":"lateral_sulcus","name":"Lateral sulcus (Sylvian fissure)","prompts":["Lateral sulcus (Sylvian fissure)"],"objects":["Lateral sulcus (Sylvian fissure)"],"dot":{"x":0.4667,"y":0.4267},"blurb":{"rows":[["Location","Deep cleft that runs back and slightly up on the lateral surface of the hemisphere. The insula lies hidden in its depth."],["Separates","Temporal lobe below from the frontal and parietal lobes above."]]}},{"id":"superior_temporal_sulcus","name":"Superior temporal sulcus","prompts":["Superior temporal sulcus"],"objects":["Superior temporal sulcus"],"dot":{"x":0.6368,"y":0.4621},"blurb":{"rows":[["Location","Runs along the temporal lobe below the lateral sulcus and parallel to it."],["Separates","Superior temporal gyrus from middle temporal gyrus."]]}},{"id":"inferior_temporal_sulcus","name":"Inferior temporal sulcus","prompts":["Inferior temporal sulcus"],"objects":["Inferior temporal sulcus"],"dot":{"x":0.6132,"y":0.6008},"blurb":{"rows":[["Location","Runs along the temporal lobe below the superior temporal sulcus."],["Separates","Middle temporal gyrus from inferior temporal gyrus."]]}},{"id":"intraparietal_sulcus","name":"Intraparietal sulcus","prompts":["Intraparietal sulcus"],"objects":["Intraparietal sulcus"],"dot":{"x":0.7452,"y":0.239},"blurb":{"rows":[["Location","Runs back across the parietal lobe from the postcentral sulcus."],["Separates","Superior parietal lobule from inferior parietal lobule (the supramarginal and angular gyri)."]]}}],"caption":"Brain, left lateral view"}};</script>
 <script>
 (function () {
   "use strict";

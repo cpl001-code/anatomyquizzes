@@ -14,9 +14,9 @@
 <meta property="og:title" content="Deep muscles of the palm (palmar) – Labeling Quiz">
 <meta property="og:description" content="Free timed labeling quiz: Deep muscles of the palm (palmar). Click each of 5 structures on a detailed 3D image: Opponens pollicis muscle and more.">
 <meta property="og:url" content="https://anatomyquizzes.com/quizzes/deep-muscles-palm/">
-<meta property="og:image" content="https://anatomyquizzes.com/scenes/ul_hand_deep_muscles_palmar/image.44b0927577.jpg">
+<meta property="og:image" content="https://anatomyquizzes.com/scenes/ul_hand_deep_muscles_palmar/image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Quiz","name":"Deep muscles of the palm (palmar)","description":"Free timed labeling quiz: Deep muscles of the palm (palmar). Click each of 5 structures on a detailed 3D image: Opponens pollicis muscle and more.","url":"https://anatomyquizzes.com/quizzes/deep-muscles-palm/","image":"https://anatomyquizzes.com/scenes/ul_hand_deep_muscles_palmar/image.44b0927577.jpg","inLanguage":"en","isAccessibleForFree":true,"learningResourceType":"Labeling quiz","about":{"@type":"Thing","name":"Human anatomy: Hand"},"license":"https://creativecommons.org/licenses/by-sa/4.0/","publisher":{"@type":"Organization","name":"Free Anatomy Quizzes","url":"https://anatomyquizzes.com/"}}</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Quiz","name":"Deep muscles of the palm (palmar)","description":"Free timed labeling quiz: Deep muscles of the palm (palmar). Click each of 5 structures on a detailed 3D image: Opponens pollicis muscle and more.","url":"https://anatomyquizzes.com/quizzes/deep-muscles-palm/","image":"https://anatomyquizzes.com/scenes/ul_hand_deep_muscles_palmar/deep-muscles-palm.44b0927577.webp","inLanguage":"en","isAccessibleForFree":true,"learningResourceType":"Labeling quiz","about":{"@type":"Thing","name":"Human anatomy: Hand"},"license":"https://creativecommons.org/licenses/by-sa/4.0/","publisher":{"@type":"Organization","name":"Free Anatomy Quizzes","url":"https://anatomyquizzes.com/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Muscular System","item":"https://anatomyquizzes.com/quizzes/#muscular-system"},{"@type":"ListItem","position":2,"name":"Upper Body","item":"https://anatomyquizzes.com/quizzes/#muscular-system-upper-body"},{"@type":"ListItem","position":3,"name":"Deep muscles of the palm (palmar)"}]},{"@context":"https://schema.org","@type":"ImageObject","contentUrl":"https://anatomyquizzes.com/scenes/ul_hand_deep_muscles_palmar/deep-muscles-palm.44b0927577.webp","name":"Deep muscles of the palm (palmar)","license":"https://creativecommons.org/licenses/by-sa/4.0/","acquireLicensePage":"https://anatomyquizzes.com/about.html","creditText":"Free Anatomy Quizzes. 3D anatomy from Z-Anatomy, built on BodyParts3D.","creator":{"@type":"Organization","name":"Free Anatomy Quizzes"}}]</script>
 <link rel="preload" href="../../fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='7'/%3E%3C/svg%3E">
 <style>
@@ -196,6 +196,20 @@ a.btn { display: inline-block; text-decoration: none; }
 .more ul, .all ul { margin: 0 0 14px; padding: 0; list-style: none; }
 .more .names { columns: 2 15rem; column-gap: 32px; }
 .more .names li { break-inside: avoid; padding: 3px 0; }
+/* Study notes: the after-quiz notes as text on the page, closed until clicked (Colin, 2026-11-25) */
+.more details.notes { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.more details.notes summary { display: flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; }
+.more details.notes summary::-webkit-details-marker { display: none; }
+.more details.notes summary h2 { margin: 0; }
+.more details.notes summary::after { content: ""; width: 9px; height: 9px; margin-top: -5px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.more details.notes[open] summary::after { margin-top: 5px; transform: rotate(-135deg); }
+.more .note { margin-top: 24px; }
+.more .note h3 { margin: 0 0 6px; font: 700 18px/1.25 var(--font); }
+.more .note dl { margin: 0; }
+.more .note dt, .more .note .hy-h { margin: 9px 0 1px; max-width: none; font: 700 12.5px/1.3 var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.more .note dd { margin: 0; max-width: 62ch; }
+.more .note ul.hy { margin: 0; padding-left: 18px; list-style: disc; }
+.more .note ul.hy li { padding: 2px 0; max-width: 60ch; }
 .more .links li, .all li { padding: 4px 0; }
 .more .links a, .all a { text-underline-offset: 3px; }
 .more .fine { color: var(--muted); font-size: 15px; }
@@ -270,7 +284,7 @@ a.btn { display: inline-block; text-decoration: none; }
         <h1 class="caption"><span class="qt" id="quiz-title">Deep muscles of the palm (palmar)</span><span id="caption">Right hand, palmar view</span></h1>
         <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
         <div class="stage" id="stage">
-          <img id="plate" alt="Anatomy image: Deep muscles of the palm (palmar)" src="../../scenes/ul_hand_deep_muscles_palmar/image.44b0927577.jpg" width="1516" height="2000">
+          <img id="plate" alt="Anatomy image: Deep muscles of the palm (palmar)" src="../../scenes/ul_hand_deep_muscles_palmar/deep-muscles-palm.44b0927577.webp" width="1516" height="2000">
           <canvas id="glow"></canvas>
         </div>
       </div>
@@ -285,6 +299,31 @@ a.btn { display: inline-block; text-decoration: none; }
         <li>Transverse head of adductor pollicis muscle</li>
         <li>Dorsal interossei muscles</li>
       </ul>
+      <details class="notes" id="study-notes">
+        <summary><h2>Study notes</h2></summary>
+        <div class="note">
+          <h3>Opponens pollicis muscle</h3>
+          <dl><dt>Origin</dt><dd>Flexor retinaculum and the tubercle of the trapezium.</dd><dt>Insertion</dt><dd>Lateral side of the 1st metacarpal.</dd><dt>Innervation</dt><dd>Recurrent branch of the median nerve (C8, T1).</dd><dt>Action</dt><dd>Opposes the thumb: draws the 1st metacarpal across the palm and rotates it medially.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Opponens digiti minimi muscle</h3>
+          <dl><dt>Origin</dt><dd>Hook of the hamate and the flexor retinaculum.</dd><dt>Insertion</dt><dd>Medial border of the 5th metacarpal.</dd><dt>Innervation</dt><dd>Deep branch of the ulnar nerve (C8, T1).</dd><dt>Action</dt><dd>Draws the 5th metacarpal forward and rotates it, bringing the little finger toward the thumb.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Oblique head of adductor pollicis muscle</h3>
+          <dl><dt>Origin</dt><dd>Bases of the 2nd and 3rd metacarpals and the capitate.</dd><dt>Insertion</dt><dd>Medial side of the base of the proximal phalanx of the thumb.</dd><dt>Innervation</dt><dd>Deep branch of the ulnar nerve (C8, T1).</dd><dt>Action</dt><dd>Adducts the thumb.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Transverse head of adductor pollicis muscle</h3>
+          <dl><dt>Origin</dt><dd>Anterior surface of the shaft of the 3rd metacarpal.</dd><dt>Insertion</dt><dd>Medial side of the base of the proximal phalanx of the thumb.</dd><dt>Innervation</dt><dd>Deep branch of the ulnar nerve (C8, T1).</dd><dt>Action</dt><dd>Adducts the thumb.</dd></dl>
+        </div>
+        <div class="note">
+          <h3>Dorsal interossei muscles</h3>
+          <dl><dt>Origin</dt><dd>Four muscles, each from the facing sides of two neighboring metacarpals.</dd><dt>Insertion</dt><dd>Bases of the proximal phalanges and the extensor expansions of digits 2 to 4.</dd><dt>Innervation</dt><dd>Deep branch of the ulnar nerve (C8, T1).</dd><dt>Action</dt><dd>Abduct the fingers away from the middle finger. Help flex the metacarpophalangeal joints and extend the interphalangeal joints.</dd></dl>
+          <p class="hy-h">High yield</p>
+          <ul class="hy"><li>DAB and PAD: Dorsal interossei ABduct, Palmar interossei ADduct.</li></ul>
+        </div>
+      </details>
     </section>
   </main>
 </div>
@@ -292,7 +331,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"ul-hand-deep-muscles-palmar","build":"df1d8adfe8","entry":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","nav":["Muscular System","Upper Body","Hand"],"structures":5,"path":"scenes/ul_hand_deep_muscles_palmar","url":"deep-muscles-palm"},"scene":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","image":"image.44b0927577.jpg","size":[1516,2000],"hitmap":"hitmap.210946d7de.png","hitmap_colors":{"Opponens pollicis muscle.r":[31,31,94],"Opponens digiti minimi muscle of hand.r":[31,31,161],"Oblique head of adductor pollicis.r":[31,31,224],"Transverse head of adductor pollicis.r":[31,94,31],"Dorsal interossei muscles of hand.r":[31,94,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"opponens_pollicis_muscle","name":"Opponens pollicis muscle","prompts":["Opponens pollicis muscle"],"objects":["Opponens pollicis muscle.r"],"dot":{"x":0.4133,"y":0.2923},"blurb":{"rows":[["Origin","Flexor retinaculum and the tubercle of the trapezium."],["Insertion","Lateral side of the 1st metacarpal."],["Innervation","Recurrent branch of the median nerve (C8, T1)."],["Action","Opposes the thumb: draws the 1st metacarpal across the palm and rotates it medially."]]}},{"id":"opponens_digiti_minimi_muscle","name":"Opponens digiti minimi muscle","prompts":["Opponens digiti minimi muscle"],"objects":["Opponens digiti minimi muscle of hand.r"],"dot":{"x":0.7912,"y":0.3772},"blurb":{"rows":[["Origin","Hook of the hamate and the flexor retinaculum."],["Insertion","Medial border of the 5th metacarpal."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Draws the 5th metacarpal forward and rotates it, bringing the little finger toward the thumb."]]}},{"id":"oblique_head_of_adductor_pollicis_muscle","name":"Oblique head of adductor pollicis muscle","prompts":["Oblique head of adductor pollicis muscle"],"objects":["Oblique head of adductor pollicis.r"],"dot":{"x":0.4542,"y":0.3262},"blurb":{"rows":[["Origin","Bases of the 2nd and 3rd metacarpals and the capitate."],["Insertion","Medial side of the base of the proximal phalanx of the thumb."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Adducts the thumb."]]}},{"id":"transverse_head_of_adductor_pollicis_muscle","name":"Transverse head of adductor pollicis muscle","prompts":["Transverse head of adductor pollicis muscle"],"objects":["Transverse head of adductor pollicis.r"],"dot":{"x":0.4469,"y":0.4338},"blurb":{"rows":[["Origin","Anterior surface of the shaft of the 3rd metacarpal."],["Insertion","Medial side of the base of the proximal phalanx of the thumb."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Adducts the thumb."]]}},{"id":"dorsal_interossei_muscles","name":"Dorsal interossei muscles","prompts":["Dorsal interossei muscles"],"objects":["Dorsal interossei muscles of hand.r"],"dot":{"x":0.621,"y":0.5377},"blurb":{"rows":[["Origin","Four muscles, each from the facing sides of two neighboring metacarpals."],["Insertion","Bases of the proximal phalanges and the extensor expansions of digits 2 to 4."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Abduct the fingers away from the middle finger. Help flex the metacarpophalangeal joints and extend the interphalangeal joints."]],"hy":["DAB and PAD: Dorsal interossei ABduct, Palmar interossei ADduct."]}}],"caption":"Right hand, palmar view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"ul-hand-deep-muscles-palmar","build":"df1d8adfe8","entry":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","nav":["Muscular System","Upper Body","Hand"],"structures":5,"path":"scenes/ul_hand_deep_muscles_palmar","url":"deep-muscles-palm"},"scene":{"id":"ul_hand_deep_muscles_palmar","title":"Deep muscles of the palm (palmar)","region":"upper_limb","lab":"Wrist Joint and Hand","view":"anterior","image":"deep-muscles-palm.44b0927577.webp","size":[1516,2000],"hitmap":"hitmap.210946d7de.png","hitmap_colors":{"Opponens pollicis muscle.r":[31,31,94],"Opponens digiti minimi muscle of hand.r":[31,31,161],"Oblique head of adductor pollicis.r":[31,31,224],"Transverse head of adductor pollicis.r":[31,94,31],"Dorsal interossei muscles of hand.r":[31,94,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"opponens_pollicis_muscle","name":"Opponens pollicis muscle","prompts":["Opponens pollicis muscle"],"objects":["Opponens pollicis muscle.r"],"dot":{"x":0.4133,"y":0.2923},"blurb":{"rows":[["Origin","Flexor retinaculum and the tubercle of the trapezium."],["Insertion","Lateral side of the 1st metacarpal."],["Innervation","Recurrent branch of the median nerve (C8, T1)."],["Action","Opposes the thumb: draws the 1st metacarpal across the palm and rotates it medially."]]}},{"id":"opponens_digiti_minimi_muscle","name":"Opponens digiti minimi muscle","prompts":["Opponens digiti minimi muscle"],"objects":["Opponens digiti minimi muscle of hand.r"],"dot":{"x":0.7912,"y":0.3772},"blurb":{"rows":[["Origin","Hook of the hamate and the flexor retinaculum."],["Insertion","Medial border of the 5th metacarpal."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Draws the 5th metacarpal forward and rotates it, bringing the little finger toward the thumb."]]}},{"id":"oblique_head_of_adductor_pollicis_muscle","name":"Oblique head of adductor pollicis muscle","prompts":["Oblique head of adductor pollicis muscle"],"objects":["Oblique head of adductor pollicis.r"],"dot":{"x":0.4542,"y":0.3262},"blurb":{"rows":[["Origin","Bases of the 2nd and 3rd metacarpals and the capitate."],["Insertion","Medial side of the base of the proximal phalanx of the thumb."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Adducts the thumb."]]}},{"id":"transverse_head_of_adductor_pollicis_muscle","name":"Transverse head of adductor pollicis muscle","prompts":["Transverse head of adductor pollicis muscle"],"objects":["Transverse head of adductor pollicis.r"],"dot":{"x":0.4469,"y":0.4338},"blurb":{"rows":[["Origin","Anterior surface of the shaft of the 3rd metacarpal."],["Insertion","Medial side of the base of the proximal phalanx of the thumb."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Adducts the thumb."]]}},{"id":"dorsal_interossei_muscles","name":"Dorsal interossei muscles","prompts":["Dorsal interossei muscles"],"objects":["Dorsal interossei muscles of hand.r"],"dot":{"x":0.621,"y":0.5377},"blurb":{"rows":[["Origin","Four muscles, each from the facing sides of two neighboring metacarpals."],["Insertion","Bases of the proximal phalanges and the extensor expansions of digits 2 to 4."],["Innervation","Deep branch of the ulnar nerve (C8, T1)."],["Action","Abduct the fingers away from the middle finger. Help flex the metacarpophalangeal joints and extend the interphalangeal joints."]],"hy":["DAB and PAD: Dorsal interossei ABduct, Palmar interossei ADduct."]}}],"caption":"Right hand, palmar view"}};</script>
 <script>
 (function () {
   "use strict";
