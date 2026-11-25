@@ -252,7 +252,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"","quiz":null};</script>
+<script>window.AQ = {"root":"","quiz":null,"build":"3ac12f755f"};</script>
 <script>
 (function () {
   "use strict";
@@ -424,9 +424,21 @@ a.btn { display: inline-block; text-decoration: none; }
     p.textContent = "";
     p.appendChild(el("p", "line quiet", "Loading…"));
     window.scrollTo(0, 0);
+    // The page of a quiz carries its own scene (AQ.scene, written by site_build.py), so the quiz never waits
+    // for, or depends on, a second file. Only an old cached page still fetches scene.json.
+    if (AQ.scene && AQ.entry && AQ.entry.id === entry.id) { startScene(entry, base, AQ.scene); return; }
     fetch(base + "/scene.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (scene) { startScene(entry, base, scene); })
-      .catch(function () { showHome("That quiz could not be loaded. Check your connection and try again."); });
+      .catch(function () { quizProblem("This quiz could not be loaded. Check your connection and reload the page."); });
+  }
+  // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
+  // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
+  function quizProblem(text) {
+    var p = $("panel");
+    p.textContent = "";
+    p.appendChild(el("p", "line", text));
+    var a = el("a", null, "Reload"); a.href = location.pathname;
+    var w = el("p", "line quiet"); w.appendChild(a); p.appendChild(w);
   }
 
   // Which quizzes get played (Colin, 2026-11-24): one event when a quiz is
@@ -696,7 +708,10 @@ a.btn { display: inline-block; text-decoration: none; }
       return;
     }
     if (AQ.quiz) {
-      if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
+      if (Q && Q.entry && Q.entry.slug === AQ.quiz) {               // already running from the page's own data
+        if (byslug.has(AQ.quiz)) Q.entry = byslug.get(AQ.quiz);   // the menu's own entry, so "next quiz" finds it
+        markCurrent(AQ.quiz);
+      } else if (byslug.has(AQ.quiz)) openQuiz(byslug.get(AQ.quiz));
       else showHome("That quiz is no longer here. Pick another from the menu.");
     } else showHome();
   }
@@ -711,7 +726,14 @@ a.btn { display: inline-block; text-decoration: none; }
   setMenu(PHONE.matches ? false : store("aq.menu") !== "closed");
   requestAnimationFrame(function () { requestAnimationFrame(function () { $("shell").classList.remove("booting"); }); });
 
-  fetch(ROOT + "data/index.json").then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+  // A quiz page starts its quiz at once from what it carries; the menu arrives after.
+  if (AQ.quiz && AQ.scene && AQ.entry && typeof AQ.entry.id === "string") {
+    AQ.entry.slug = slugOf(AQ.entry.id);
+    if (AQ.entry.slug === AQ.quiz) openQuiz(AQ.entry);
+  }
+  // ?v= is the build this page belongs to, so a browser never pairs it with a list kept from an older build.
+  fetch(ROOT + "data/index.json" + (AQ.build ? "?v=" + encodeURIComponent(AQ.build) : ""))
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
       catalog = data || {};
       (Array.isArray(catalog.scenes) ? catalog.scenes : []).forEach(function (s) {
