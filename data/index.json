@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T02:15:15+00:00",
+ "generated": "2026-11-26T03:14:52+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -645,6 +645,21 @@
    "structures": 20,
    "path": "scenes/sys_circle_of_willis_inferior",
    "url": "circle-of-willis-arteries-base-of-brain-inferior"
+  },
+  {
+   "id": "sys_brain_gyri_medial",
+   "title": "Gyri of the medial surface of the cerebral hemisphere (medial view)",
+   "region": "head_and_neck",
+   "lab": "Brain",
+   "view": "lateral_left",
+   "nav": [
+    "Nervous System",
+    "Head and Neck",
+    "Brain"
+   ],
+   "structures": 12,
+   "path": "scenes/sys_brain_gyri_medial",
+   "url": "gyri-medial-surface-cerebral-hemisphere-view"
   },
   {
    "id": "sys_heart_great_vessels_anterior",
