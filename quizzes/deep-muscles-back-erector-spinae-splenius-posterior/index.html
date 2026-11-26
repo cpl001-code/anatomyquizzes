@@ -1119,18 +1119,19 @@ a.btn { display: inline-block; text-decoration: none; }
     var cols = (Array.isArray(s.objects) ? s.objects : []).map(function (o) { return Q.scene.hitmap_colors && Q.scene.hitmap_colors[o]; })
       .filter(function (c) { return Array.isArray(c) && c.length >= 3; });
     var src = Q.hit.data, n = Q.hit.w * Q.hit.h;
-    var id = new ImageData(Q.hit.w, Q.hit.h), out = id.data;
+    var id = new ImageData(Q.hit.w, Q.hit.h), out = id.data, any = 0;
     for (var i = 0; i < n; i++) {
       var r = src[i * 4], gg = src[i * 4 + 1], b = src[i * 4 + 2];
       for (var c = 0; c < cols.length; c++) {
         if (Math.abs(r - cols[c][0]) <= 14 && Math.abs(gg - cols[c][1]) <= 14 && Math.abs(b - cols[c][2]) <= 14) {
-          out[i * 4] = 255; out[i * 4 + 1] = 255; out[i * 4 + 2] = 255; out[i * 4 + 3] = 255; break;
+          out[i * 4] = 255; out[i * 4 + 1] = 255; out[i * 4 + 2] = 255; out[i * 4 + 3] = 255; any++; break;
         }
       }
     }
     m = document.createElement("canvas");
     m.width = Q.hit.w; m.height = Q.hit.h;
     m.getContext("2d").putImageData(id, 0, 0);
+    m.blank = !any;                                        // no pixel of the click map belongs to this answer
     Q.masks.set(s.id, m);
     return m;
   }
@@ -1141,6 +1142,16 @@ a.btn { display: inline-block; text-decoration: none; }
     x.globalAlpha = 1;
     x.globalCompositeOperation = "source-over";
     x.clearRect(0, 0, W, H);
+    if (edge && m.blank) {
+      // Test: an answer with no region of its own in the click map (a point added on a larger bone: the angle of
+      // the mandible) is shown by a yellow spot with a dark edge round its dot, so there is always something
+      // highlighted to name.
+      x.beginPath(); x.arc(s.dot.x * W, s.dot.y * H, Math.max(W, H) * 0.021, 0, Math.PI * 2);
+      x.fillStyle = "rgba(255, 217, 26, 0.62)"; x.fill();
+      x.lineWidth = Math.max(2, Math.round(Math.max(W, H) / 450)); x.strokeStyle = "#000000"; x.stroke();
+      g.classList.add("on");
+      return;
+    }
     var tinted = false;
     if (img.complete && img.naturalWidth) {
       x.globalCompositeOperation = "color";
