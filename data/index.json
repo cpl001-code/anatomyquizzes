@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T00:34:33+00:00",
+ "generated": "2026-11-26T00:48:27+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -422,6 +422,21 @@
    "url": "deep-muscles-back-erector-spinae-splenius-posterior"
   },
   {
+   "id": "mu_gluteal_posterior_thigh_muscles_posterior",
+   "title": "Muscles of the gluteal region and posterior thigh (posterior)",
+   "region": "lower_limb",
+   "lab": "Gluteal Region and Posterior Thigh",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Gluteal Region"
+   ],
+   "structures": 10,
+   "path": "scenes/mu_gluteal_posterior_thigh_muscles_posterior",
+   "url": "muscles-gluteal-region-posterior-thigh"
+  },
+  {
    "id": "mu_gluteal_deep_muscles_posterior",
    "title": "Deep muscles of the gluteal region (posterior)",
    "region": "lower_limb",
@@ -465,6 +480,21 @@
    "structures": 7,
    "path": "scenes/mu_thigh_deep_muscles_anterior",
    "url": "deep-muscles-anterior-medial-thigh"
+  },
+  {
+   "id": "mu_leg_anterior_lateral_muscles_anterior",
+   "title": "Muscles of the anterior and lateral leg (anterior)",
+   "region": "lower_limb",
+   "lab": "Leg",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Leg"
+   ],
+   "structures": 8,
+   "path": "scenes/mu_leg_anterior_lateral_muscles_anterior",
+   "url": "muscles-anterior-lateral-leg"
   },
   {
    "id": "mu_leg_posterior_superficial_muscles_posterior",
