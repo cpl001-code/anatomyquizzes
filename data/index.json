@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T17:32:36+00:00",
+ "generated": "2026-11-26T17:47:05+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -312,7 +312,7 @@
     "Upper Body",
     "Chest and Shoulder"
    ],
-   "structures": 4,
+   "structures": 5,
    "path": "scenes/ul_pectoral_shoulder_superficial_muscles_anterior",
    "url": "superficial-muscles-pectoral-region-shoulder-anterior"
   },
