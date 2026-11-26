@@ -89,6 +89,11 @@ a { color: inherit; }
 .looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
 .looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
+/* STUDY OR TEST (Colin, 2026-11-26: "select between study mode and test mode"). The same kind of switch as the two
+   looks, in one row with it. Study is the quiz as it always was. In Test one structure is highlighted and its name
+   is typed into a box with a dropdown of names. */
+.switches { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 2px 0 10px; }
+.switches .looks { margin: 0; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
 .tree { flex: 1 0 auto; border-bottom: 1px solid var(--line); }
@@ -171,6 +176,30 @@ a.btn { display: inline-block; text-decoration: none; }
 .line { margin: 0; max-width: 34ch; }
 .line.quiet { color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+/* Test: the question, the typing box with its dropdown, and what came of the answer */
+.ask-line { margin: 0; font: 800 clamp(24px, 2.3vw, 34px)/1.12 var(--font); letter-spacing: -0.01em; text-wrap: balance; }
+.answer { position: relative; align-self: stretch; max-width: 27rem; }
+.answer input { display: block; width: 100%; margin: 0; padding: 11px 46px 11px 13px; font: 400 19px/1.3 var(--font); color: var(--ink); background: var(--page); border: 2px solid var(--ink); border-radius: 10px; -webkit-appearance: none; appearance: none; }
+.answer input::placeholder { color: var(--muted); opacity: 1; }
+.answer input.ok { border-color: var(--ok); }
+.answer input.no { border-color: var(--no); }
+.answer input:disabled { opacity: 1; -webkit-text-fill-color: var(--ink); }
+.answer input:disabled::placeholder { color: transparent; -webkit-text-fill-color: transparent; }
+.answer .drop { position: absolute; right: 5px; top: 5px; width: 38px; height: calc(100% - 10px); padding: 0; border: 0; background: none; border-radius: 7px; display: grid; place-items: center; }
+.answer .drop:hover { background: var(--mist); }
+.answer .drop::before { content: ""; width: 9px; height: 9px; margin-top: -5px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.answer .drop[disabled] { visibility: hidden; }
+.answer ul { position: absolute; z-index: 40; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px 0; list-style: none; max-height: min(44vh, 330px); overflow-y: auto; overscroll-behavior: contain; background: var(--page); border: 1px solid var(--ink); border-radius: 10px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14); }
+.answer li { padding: 7px 13px; font-size: 17px; line-height: 1.25; cursor: pointer; }
+.answer li:hover { background: var(--mist); }
+.answer li[aria-selected="true"] { background: var(--mist-2); }
+.verdict { margin: 0; min-height: 1.45em; max-width: 34ch; }
+.verdict.ok { color: var(--ok); font-weight: 700; }
+.verdict.no b { font-weight: 800; }
+.verdict.no .lead { color: var(--no); font-weight: 700; }
+.verdict.hint { color: var(--muted); }
+.dot.asked::before { background: #000000; box-shadow: 0 0 0 1.5px #ffffff, 0 0 0 4px #000000, 0 0 0 5.5px #ffffff; }
+.dot.missed::before { background: var(--no); box-shadow: 0 0 0 1.5px #ffffff, 0 0 0 3.5px var(--no); }
 /* after-quiz blurb: the words about one structure, beside the picture (a sheet at the bottom on a phone) */
 .blurb { align-self: stretch; max-width: 46ch; padding-top: 12px; border-top: 1px solid var(--line); max-height: max(220px, calc(100vh - var(--bar) - 290px)); overflow: auto; overscroll-behavior: contain; }
 .blurb-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
@@ -244,6 +273,10 @@ a.btn { display: inline-block; text-decoration: none; }
   .final { font-size: 44px; }
   .blurb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; max-width: none; max-height: 46vh; padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--page); border-top: 2px solid var(--ink); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.14); }
   .panel.reading #blurb-tip { display: none; }
+  .switches { margin: 6px 16px 8px; }
+  .ask-line { font-size: clamp(20px, 5.6vw, 26px); }
+  .answer { max-width: none; }
+  .answer ul { max-height: min(38vh, 300px); }
 }
 </style>
 <!-- Google tag (Colin's container, 2026-11-24) -->
@@ -283,7 +316,10 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 0.6200">
         <h1 class="caption"><span class="qt" id="quiz-title">Abdominal aorta and its branches (anterior)</span><span id="caption">Abdomen and pelvis, anterior view</span></h1>
-        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
+        <div class="switches" id="switches">
+          <div class="looks" id="modes" role="group" aria-label="Mode"><button type="button" id="mode-study" aria-pressed="true">Study</button><button type="button" id="mode-test" aria-pressed="false">Test</button></div>
+          <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
+        </div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Abdominal aorta and its branches (anterior)" src="../../scenes/sys_abdominal_aorta_branches_anterior/abdominal-aorta-branches-anterior.e0b2fa6ce0.webp" width="1240" height="2000">
           <canvas id="glow"></canvas>
@@ -422,7 +458,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"sys-abdominal-aorta-branches-anterior","build":"8b152bb4fe","entry":{"id":"sys_abdominal_aorta_branches_anterior","title":"Abdominal aorta and its branches (anterior)","region":"abdomen","lab":"Abdominal Aorta","view":"anterior","nav":["Cardiovascular System","Abdomen","Aorta and Branches"],"structures":25,"path":"scenes/sys_abdominal_aorta_branches_anterior","url":"abdominal-aorta-branches-anterior"},"scene":{"id":"sys_abdominal_aorta_branches_anterior","title":"Abdominal aorta and its branches (anterior)","region":"abdomen","lab":"Abdominal Aorta","view":"anterior","image":"abdominal-aorta-branches-anterior.e0b2fa6ce0.webp","size":[1240,2000],"hitmap":"hitmap.8be17f5850.png","hitmap_colors":{"Abdominal aorta":[31,31,94],"Coeliac trunk":[31,31,161],"Superior mesenteric artery":[31,31,224],"Inferior mesenteric artery":[31,94,31],"Right renal artery":[31,94,94],"Anterior branch of renal artery.r":[31,94,161],"Posterior branch of renal artery.r":[31,94,224],"Left renal artery":[31,161,31],"Anterior branch of renal artery.l":[31,161,94],"Posterior branch of renal artery.l":[31,161,161],"Right testicular artery.r":[31,161,224],"Left testicular artery":[31,224,31],"Common iliac artery.r":[31,224,94],"Common iliac artery.l":[31,224,161],"External iliac artery.r":[31,224,224],"External iliac artery.l":[94,31,31],"Internal iliac artery.r":[94,31,94],"Internal iliac artery.l":[94,31,161],"Inferior vena cava (abdominal part)":[94,31,224],"Common hepatic artery":[94,94,31],"Left gastric artery":[94,94,94],"Splenic artery":[94,94,161],"Median sacral artery":[94,94,224],"Right renal vein":[94,161,31],"Left renal vein":[94,161,94],"Kidney.r":[94,161,161],"Kidney.l":[94,161,224],"Suprarenal gland.r":[94,224,31],"Suprarenal gland.l":[94,224,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"abdominal_aorta","name":"Abdominal aorta","prompts":["Abdominal aorta"],"objects":["Abdominal aorta"],"dot":{"x":0.5222,"y":0.4728},"blurb":{"rows":[["Arises from","Continues the thoracic aorta as it passes through the diaphragm at T12."],["Course","Descends in front of the lumbar vertebrae, on the left of the inferior vena cava, and divides at L4 into the two common iliac arteries."],["Supplies","Three unpaired branches to the gut (celiac trunk, superior mesenteric, and inferior mesenteric arteries) and paired branches to the suprarenal glands, kidneys, gonads, and body wall."]],"hy":["Abdominal aortic aneurysms usually lie below the renal arteries. The main risk factors are smoking, age over 65, male sex, and hypertension."]}},{"id":"coeliac_trunk","name":"Celiac trunk","prompts":["Celiac trunk"],"objects":["Coeliac trunk"],"dot":{"x":0.5359,"y":0.2328},"blurb":{"rows":[["Arises from","Front of the aorta at T12, just below the diaphragm."],["Supplies","The foregut, from the lower esophagus to the middle of the duodenum, with the liver, gallbladder, and pancreas, and the spleen. Its three branches are the left gastric, splenic, and common hepatic arteries."]]}},{"id":"superior_mesenteric_artery","name":"Superior mesenteric artery","prompts":["Superior mesenteric artery"],"objects":["Superior mesenteric artery"],"dot":{"x":0.4641,"y":0.4078},"blurb":{"rows":[["Arises from","Front of the aorta at L1, behind the neck of the pancreas."],["Course","Passes in front of the left renal vein and the third part of the duodenum and enters the mesentery."],["Supplies","The midgut, from the lower duodenum to the first two thirds of the transverse colon."]],"hy":["Superior mesenteric artery syndrome: after marked weight loss the third part of the duodenum is squeezed between this artery and the aorta."]}},{"id":"inferior_mesenteric_artery","name":"Inferior mesenteric artery","prompts":["Inferior mesenteric artery"],"objects":["Inferior mesenteric artery"],"dot":{"x":0.5601,"y":0.5122},"blurb":{"rows":[["Arises from","Front of the aorta at L3."],["Supplies","The hindgut, from the last third of the transverse colon to the rectum, as far down as the pectinate line of the anal canal, through the left colic, sigmoid, and superior rectal arteries."]],"hy":["The splenic flexure lies at the border between the superior and inferior mesenteric territories (a watershed area), so it is vulnerable to ischemia when blood pressure falls."]}},{"id":"right_renal_artery","name":"Right renal artery","prompts":["Right renal artery"],"objects":["Right renal artery","Anterior branch of renal artery.r","Posterior branch of renal artery.r"],"dot":{"x":0.3948,"y":0.3438},"blurb":{"rows":[["Arises from","Side of the aorta at about L1 to L2, just below the superior mesenteric artery."],["Course","The right artery is longer and passes behind the inferior vena cava. At the hilum each artery lies behind its renal vein."],["Supplies","Kidney, with small branches to the suprarenal gland and the ureter."]],"hy":["Renal artery stenosis causes hypertension through renin release. It is due to atherosclerosis in older adults and to fibromuscular dysplasia, typically in young women."]}},{"id":"left_renal_artery","name":"Left renal artery","prompts":["Left renal artery"],"objects":["Left renal artery","Anterior branch of renal artery.l","Posterior branch of renal artery.l"],"dot":{"x":0.6278,"y":0.3237},"blurb":{"rows":[["Arises from","Side of the aorta at about L1 to L2, just below the superior mesenteric artery."],["Course","The right artery is longer and passes behind the inferior vena cava. At the hilum each artery lies behind its renal vein."],["Supplies","Kidney, with small branches to the suprarenal gland and the ureter."]],"hy":["Renal artery stenosis causes hypertension through renin release. It is due to atherosclerosis in older adults and to fibromuscular dysplasia, typically in young women."]}},{"id":"right_testicular_artery","name":"Right testicular artery","prompts":["Right testicular artery"],"objects":["Right testicular artery.r"],"dot":{"x":0.2214,"y":0.5417},"blurb":{"rows":[["Arises from","Front of the aorta at about L2, below the renal arteries."],["Course","Descends on psoas major, crosses in front of the ureter, and runs through the inguinal canal in the spermatic cord."],["Supplies","Testis and epididymis."]]}},{"id":"left_testicular_artery","name":"Left testicular artery","prompts":["Left testicular artery"],"objects":["Left testicular artery"],"dot":{"x":0.6987,"y":0.4969},"blurb":{"rows":[["Arises from","Front of the aorta at about L2, below the renal arteries."],["Course","Descends on psoas major, crosses in front of the ureter, and runs through the inguinal canal in the spermatic cord."],["Supplies","Testis and epididymis."]]}},{"id":"right_common_iliac_artery","name":"Right common iliac artery","prompts":["Right common iliac artery"],"objects":["Common iliac artery.r"],"dot":{"x":0.435,"y":0.637},"blurb":{"rows":[["Arises from","The division of the abdominal aorta at L4."],["Course","Runs down and laterally and divides in front of the sacroiliac joint into the external and internal iliac arteries."],["Supplies","Pelvis and lower limb, through its two branches."]],"hy":["The right common iliac artery can compress the left common iliac vein against the spine, which predisposes to deep vein thrombosis of the left leg (May-Thurner syndrome)."]}},{"id":"left_common_iliac_artery","name":"Left common iliac artery","prompts":["Left common iliac artery"],"objects":["Common iliac artery.l"],"dot":{"x":0.5754,"y":0.6332},"blurb":{"rows":[["Arises from","The division of the abdominal aorta at L4."],["Course","Runs down and laterally and divides in front of the sacroiliac joint into the external and internal iliac arteries."],["Supplies","Pelvis and lower limb, through its two branches."]],"hy":["The right common iliac artery can compress the left common iliac vein against the spine, which predisposes to deep vein thrombosis of the left leg (May-Thurner syndrome)."]}},{"id":"right_external_iliac_artery","name":"Right external iliac artery","prompts":["Right external iliac artery"],"objects":["External iliac artery.r"],"dot":{"x":0.2891,"y":0.8143},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Runs along the medial border of psoas major and passes under the inguinal ligament, where it becomes the femoral artery."],["Supplies","Lower limb. Its inferior epigastric and deep circumflex iliac branches supply the lower anterior abdominal wall."]],"hy":["An indirect inguinal hernia leaves the abdomen lateral to the inferior epigastric vessels; a direct hernia bulges medial to them."]}},{"id":"left_external_iliac_artery","name":"Left external iliac artery","prompts":["Left external iliac artery"],"objects":["External iliac artery.l"],"dot":{"x":0.6988,"y":0.8143},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Runs along the medial border of psoas major and passes under the inguinal ligament, where it becomes the femoral artery."],["Supplies","Lower limb. Its inferior epigastric and deep circumflex iliac branches supply the lower anterior abdominal wall."]],"hy":["An indirect inguinal hernia leaves the abdomen lateral to the inferior epigastric vessels; a direct hernia bulges medial to them."]}},{"id":"right_internal_iliac_artery","name":"Right internal iliac artery","prompts":["Right internal iliac artery"],"objects":["Internal iliac artery.r"],"dot":{"x":0.3569,"y":0.7568},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Descends into the pelvis and divides into an anterior and a posterior division."],["Supplies","Pelvic organs, the perineum, the gluteal region, and the medial side of the thigh."]]}},{"id":"left_internal_iliac_artery","name":"Left internal iliac artery","prompts":["Left internal iliac artery"],"objects":["Internal iliac artery.l"],"dot":{"x":0.631,"y":0.7568},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Descends into the pelvis and divides into an anterior and a posterior division."],["Supplies","Pelvic organs, the perineum, the gluteal region, and the medial side of the thigh."]]}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (abdominal part)"],"dot":{"x":0.4423,"y":0.3118},"blurb":{"rows":[["Drains","Lower limbs, pelvis, abdominal wall, kidneys, suprarenal glands, gonads, and liver. It is formed at L5 by the two common iliac veins."],["Course","Ascends on the right of the aorta and behind the liver and passes through the diaphragm at T8."],["Empties into","Right atrium."]],"hy":["Levels of the openings in the diaphragm: inferior vena cava at T8, esophagus at T10, aorta at T12 (I ate ten eggs at twelve)."]}},{"id":"common_hepatic_artery","name":"Common hepatic artery","prompts":["Common hepatic artery"],"objects":["Common hepatic artery"],"dot":{"x":0.4673,"y":0.2137},"blurb":{"rows":[["Arises from","Celiac trunk."],["Course","Runs to the right along the upper border of the pancreas, gives off the gastroduodenal artery, and continues as the proper hepatic artery."],["Supplies","Liver and gallbladder and, through the gastroduodenal artery and the right gastric artery (a branch of the proper hepatic artery), the stomach, duodenum, and pancreas."]],"hy":["The gastroduodenal artery runs behind the first part of the duodenum, so an ulcer of its posterior wall can erode the artery and bleed heavily."]}},{"id":"left_gastric_artery","name":"Left gastric artery","prompts":["Left gastric artery"],"objects":["Left gastric artery"],"dot":{"x":0.6241,"y":0.1108},"blurb":{"rows":[["Arises from","Celiac trunk, as its smallest branch."],["Course","Ascends to the upper end of the stomach and then runs along the lesser curvature to meet the right gastric artery."],["Supplies","Lesser curvature of the stomach and the lower esophagus."]],"hy":["A gastric ulcer on the lesser curvature can erode this artery and bleed."]}},{"id":"splenic_artery","name":"Splenic artery","prompts":["Splenic artery"],"objects":["Splenic artery"],"dot":{"x":0.6786,"y":0.2313},"blurb":{"rows":[["Arises from","Celiac trunk, as its largest branch."],["Course","Follows a winding course to the left along the upper border of the pancreas, behind the stomach, to the hilum of the spleen."],["Supplies","Spleen, the body and tail of the pancreas, and, through the short gastric and left gastro-omental arteries, the fundus and greater curvature of the stomach."]]}},{"id":"median_sacral_artery","name":"Median sacral artery","prompts":["Median sacral artery"],"objects":["Median sacral artery"],"dot":{"x":0.494,"y":0.6653},"blurb":{"rows":[["Arises from","Back of the aorta, just above its division."],["Course","Descends in the midline in front of L4, L5, the sacrum, and the coccyx."],["Supplies","Lower lumbar vertebrae, sacrum, and coccyx."]]}},{"id":"right_renal_vein","name":"Right renal vein","prompts":["Right renal vein"],"objects":["Right renal vein"],"dot":{"x":0.3915,"y":0.3673},"blurb":{"rows":[["Drains","Kidney. The left vein also receives the left suprarenal and left gonadal veins."],["Course","Lies in front of the renal artery. The left vein is longer and crosses in front of the aorta just below the superior mesenteric artery."],["Empties into","Inferior vena cava."]],"hy":["The left renal vein can be squeezed between the superior mesenteric artery and the aorta (nutcracker syndrome), causing flank pain, blood in the urine, and a left varicocele.","The left gonadal vein drains into the left renal vein and the right one directly into the inferior vena cava, which is why a varicocele is usually on the left."]}},{"id":"left_renal_vein","name":"Left renal vein","prompts":["Left renal vein"],"objects":["Left renal vein"],"dot":{"x":0.552,"y":0.3412},"blurb":{"rows":[["Drains","Kidney. The left vein also receives the left suprarenal and left gonadal veins."],["Course","Lies in front of the renal artery. The left vein is longer and crosses in front of the aorta just below the superior mesenteric artery."],["Empties into","Inferior vena cava."]],"hy":["The left renal vein can be squeezed between the superior mesenteric artery and the aorta (nutcracker syndrome), causing flank pain, blood in the urine, and a left varicocele.","The left gonadal vein drains into the left renal vein and the right one directly into the inferior vena cava, which is why a varicocele is usually on the left."]}},{"id":"right_kidney","name":"Right kidney","prompts":["Right kidney"],"objects":["Kidney.r"],"dot":{"x":0.2456,"y":0.3957},"blurb":{"rows":[["Location","On the back wall of the abdomen behind the peritoneum, from about T12 to L3. The right kidney lies a little lower than the left."],["Function","Filters the blood and makes urine; controls water, salts, acid-base balance, and blood pressure; makes erythropoietin and activates vitamin D."],["Blood supply","Renal artery from the aorta. The renal vein drains into the inferior vena cava."]],"hy":["The left kidney is preferred for transplantation from a living donor because its renal vein is longer.","A horseshoe kidney is held low in the abdomen because it is caught under the inferior mesenteric artery as it ascends."]}},{"id":"left_kidney","name":"Left kidney","prompts":["Left kidney"],"objects":["Kidney.l"],"dot":{"x":0.7552,"y":0.3483},"blurb":{"rows":[["Location","On the back wall of the abdomen behind the peritoneum, from about T12 to L3. The right kidney lies a little lower than the left."],["Function","Filters the blood and makes urine; controls water, salts, acid-base balance, and blood pressure; makes erythropoietin and activates vitamin D."],["Blood supply","Renal artery from the aorta. The renal vein drains into the inferior vena cava."]],"hy":["The left kidney is preferred for transplantation from a living donor because its renal vein is longer.","A horseshoe kidney is held low in the abdomen because it is caught under the inferior mesenteric artery as it ascends."]}},{"id":"right_suprarenal_gland","name":"Right suprarenal gland","prompts":["Right suprarenal gland"],"objects":["Suprarenal gland.r"],"dot":{"x":0.3198,"y":0.2527},"blurb":{"rows":[["Location","On the upper pole of each kidney."],["Function","Cortex, from outside in: aldosterone (zona glomerulosa), cortisol (zona fasciculata), androgens (zona reticularis). Medulla: epinephrine and norepinephrine."],["Blood supply","Superior, middle, and inferior suprarenal arteries. The right suprarenal vein drains into the inferior vena cava and the left into the left renal vein."]],"hy":["The layers of the cortex and their products, from outside in: salt, sugar, sex.","The medulla develops from neural crest cells; a pheochromocytoma is a tumor of its chromaffin cells."]}},{"id":"left_suprarenal_gland","name":"Left suprarenal gland","prompts":["Left suprarenal gland"],"objects":["Suprarenal gland.l"],"dot":{"x":0.6972,"y":0.1988},"blurb":{"rows":[["Location","On the upper pole of each kidney."],["Function","Cortex, from outside in: aldosterone (zona glomerulosa), cortisol (zona fasciculata), androgens (zona reticularis). Medulla: epinephrine and norepinephrine."],["Blood supply","Superior, middle, and inferior suprarenal arteries. The right suprarenal vein drains into the inferior vena cava and the left into the left renal vein."]],"hy":["The layers of the cortex and their products, from outside in: salt, sugar, sex.","The medulla develops from neural crest cells; a pheochromocytoma is a tumor of its chromaffin cells."]}}],"caption":"Abdomen and pelvis, anterior view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"sys-abdominal-aorta-branches-anterior","build":"8b152bb4fe","names":"2684ed393a","entry":{"id":"sys_abdominal_aorta_branches_anterior","title":"Abdominal aorta and its branches (anterior)","region":"abdomen","lab":"Abdominal Aorta","view":"anterior","nav":["Cardiovascular System","Abdomen","Aorta and Branches"],"structures":25,"path":"scenes/sys_abdominal_aorta_branches_anterior","url":"abdominal-aorta-branches-anterior"},"scene":{"id":"sys_abdominal_aorta_branches_anterior","title":"Abdominal aorta and its branches (anterior)","region":"abdomen","lab":"Abdominal Aorta","view":"anterior","image":"abdominal-aorta-branches-anterior.e0b2fa6ce0.webp","size":[1240,2000],"hitmap":"hitmap.8be17f5850.png","hitmap_colors":{"Abdominal aorta":[31,31,94],"Coeliac trunk":[31,31,161],"Superior mesenteric artery":[31,31,224],"Inferior mesenteric artery":[31,94,31],"Right renal artery":[31,94,94],"Anterior branch of renal artery.r":[31,94,161],"Posterior branch of renal artery.r":[31,94,224],"Left renal artery":[31,161,31],"Anterior branch of renal artery.l":[31,161,94],"Posterior branch of renal artery.l":[31,161,161],"Right testicular artery.r":[31,161,224],"Left testicular artery":[31,224,31],"Common iliac artery.r":[31,224,94],"Common iliac artery.l":[31,224,161],"External iliac artery.r":[31,224,224],"External iliac artery.l":[94,31,31],"Internal iliac artery.r":[94,31,94],"Internal iliac artery.l":[94,31,161],"Inferior vena cava (abdominal part)":[94,31,224],"Common hepatic artery":[94,94,31],"Left gastric artery":[94,94,94],"Splenic artery":[94,94,161],"Median sacral artery":[94,94,224],"Right renal vein":[94,161,31],"Left renal vein":[94,161,94],"Kidney.r":[94,161,161],"Kidney.l":[94,161,224],"Suprarenal gland.r":[94,224,31],"Suprarenal gland.l":[94,224,94]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"abdominal_aorta","name":"Abdominal aorta","prompts":["Abdominal aorta"],"objects":["Abdominal aorta"],"dot":{"x":0.5222,"y":0.4728},"blurb":{"rows":[["Arises from","Continues the thoracic aorta as it passes through the diaphragm at T12."],["Course","Descends in front of the lumbar vertebrae, on the left of the inferior vena cava, and divides at L4 into the two common iliac arteries."],["Supplies","Three unpaired branches to the gut (celiac trunk, superior mesenteric, and inferior mesenteric arteries) and paired branches to the suprarenal glands, kidneys, gonads, and body wall."]],"hy":["Abdominal aortic aneurysms usually lie below the renal arteries. The main risk factors are smoking, age over 65, male sex, and hypertension."]}},{"id":"coeliac_trunk","name":"Celiac trunk","prompts":["Celiac trunk"],"objects":["Coeliac trunk"],"dot":{"x":0.5359,"y":0.2328},"blurb":{"rows":[["Arises from","Front of the aorta at T12, just below the diaphragm."],["Supplies","The foregut, from the lower esophagus to the middle of the duodenum, with the liver, gallbladder, and pancreas, and the spleen. Its three branches are the left gastric, splenic, and common hepatic arteries."]]}},{"id":"superior_mesenteric_artery","name":"Superior mesenteric artery","prompts":["Superior mesenteric artery"],"objects":["Superior mesenteric artery"],"dot":{"x":0.4641,"y":0.4078},"blurb":{"rows":[["Arises from","Front of the aorta at L1, behind the neck of the pancreas."],["Course","Passes in front of the left renal vein and the third part of the duodenum and enters the mesentery."],["Supplies","The midgut, from the lower duodenum to the first two thirds of the transverse colon."]],"hy":["Superior mesenteric artery syndrome: after marked weight loss the third part of the duodenum is squeezed between this artery and the aorta."]}},{"id":"inferior_mesenteric_artery","name":"Inferior mesenteric artery","prompts":["Inferior mesenteric artery"],"objects":["Inferior mesenteric artery"],"dot":{"x":0.5601,"y":0.5122},"blurb":{"rows":[["Arises from","Front of the aorta at L3."],["Supplies","The hindgut, from the last third of the transverse colon to the rectum, as far down as the pectinate line of the anal canal, through the left colic, sigmoid, and superior rectal arteries."]],"hy":["The splenic flexure lies at the border between the superior and inferior mesenteric territories (a watershed area), so it is vulnerable to ischemia when blood pressure falls."]}},{"id":"right_renal_artery","name":"Right renal artery","prompts":["Right renal artery"],"objects":["Right renal artery","Anterior branch of renal artery.r","Posterior branch of renal artery.r"],"dot":{"x":0.3948,"y":0.3438},"blurb":{"rows":[["Arises from","Side of the aorta at about L1 to L2, just below the superior mesenteric artery."],["Course","The right artery is longer and passes behind the inferior vena cava. At the hilum each artery lies behind its renal vein."],["Supplies","Kidney, with small branches to the suprarenal gland and the ureter."]],"hy":["Renal artery stenosis causes hypertension through renin release. It is due to atherosclerosis in older adults and to fibromuscular dysplasia, typically in young women."]}},{"id":"left_renal_artery","name":"Left renal artery","prompts":["Left renal artery"],"objects":["Left renal artery","Anterior branch of renal artery.l","Posterior branch of renal artery.l"],"dot":{"x":0.6278,"y":0.3237},"blurb":{"rows":[["Arises from","Side of the aorta at about L1 to L2, just below the superior mesenteric artery."],["Course","The right artery is longer and passes behind the inferior vena cava. At the hilum each artery lies behind its renal vein."],["Supplies","Kidney, with small branches to the suprarenal gland and the ureter."]],"hy":["Renal artery stenosis causes hypertension through renin release. It is due to atherosclerosis in older adults and to fibromuscular dysplasia, typically in young women."]}},{"id":"right_testicular_artery","name":"Right testicular artery","prompts":["Right testicular artery"],"objects":["Right testicular artery.r"],"dot":{"x":0.2214,"y":0.5417},"blurb":{"rows":[["Arises from","Front of the aorta at about L2, below the renal arteries."],["Course","Descends on psoas major, crosses in front of the ureter, and runs through the inguinal canal in the spermatic cord."],["Supplies","Testis and epididymis."]]}},{"id":"left_testicular_artery","name":"Left testicular artery","prompts":["Left testicular artery"],"objects":["Left testicular artery"],"dot":{"x":0.6987,"y":0.4969},"blurb":{"rows":[["Arises from","Front of the aorta at about L2, below the renal arteries."],["Course","Descends on psoas major, crosses in front of the ureter, and runs through the inguinal canal in the spermatic cord."],["Supplies","Testis and epididymis."]]}},{"id":"right_common_iliac_artery","name":"Right common iliac artery","prompts":["Right common iliac artery"],"objects":["Common iliac artery.r"],"dot":{"x":0.435,"y":0.637},"blurb":{"rows":[["Arises from","The division of the abdominal aorta at L4."],["Course","Runs down and laterally and divides in front of the sacroiliac joint into the external and internal iliac arteries."],["Supplies","Pelvis and lower limb, through its two branches."]],"hy":["The right common iliac artery can compress the left common iliac vein against the spine, which predisposes to deep vein thrombosis of the left leg (May-Thurner syndrome)."]}},{"id":"left_common_iliac_artery","name":"Left common iliac artery","prompts":["Left common iliac artery"],"objects":["Common iliac artery.l"],"dot":{"x":0.5754,"y":0.6332},"blurb":{"rows":[["Arises from","The division of the abdominal aorta at L4."],["Course","Runs down and laterally and divides in front of the sacroiliac joint into the external and internal iliac arteries."],["Supplies","Pelvis and lower limb, through its two branches."]],"hy":["The right common iliac artery can compress the left common iliac vein against the spine, which predisposes to deep vein thrombosis of the left leg (May-Thurner syndrome)."]}},{"id":"right_external_iliac_artery","name":"Right external iliac artery","prompts":["Right external iliac artery"],"objects":["External iliac artery.r"],"dot":{"x":0.2891,"y":0.8143},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Runs along the medial border of psoas major and passes under the inguinal ligament, where it becomes the femoral artery."],["Supplies","Lower limb. Its inferior epigastric and deep circumflex iliac branches supply the lower anterior abdominal wall."]],"hy":["An indirect inguinal hernia leaves the abdomen lateral to the inferior epigastric vessels; a direct hernia bulges medial to them."]}},{"id":"left_external_iliac_artery","name":"Left external iliac artery","prompts":["Left external iliac artery"],"objects":["External iliac artery.l"],"dot":{"x":0.6988,"y":0.8143},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Runs along the medial border of psoas major and passes under the inguinal ligament, where it becomes the femoral artery."],["Supplies","Lower limb. Its inferior epigastric and deep circumflex iliac branches supply the lower anterior abdominal wall."]],"hy":["An indirect inguinal hernia leaves the abdomen lateral to the inferior epigastric vessels; a direct hernia bulges medial to them."]}},{"id":"right_internal_iliac_artery","name":"Right internal iliac artery","prompts":["Right internal iliac artery"],"objects":["Internal iliac artery.r"],"dot":{"x":0.3569,"y":0.7568},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Descends into the pelvis and divides into an anterior and a posterior division."],["Supplies","Pelvic organs, the perineum, the gluteal region, and the medial side of the thigh."]]}},{"id":"left_internal_iliac_artery","name":"Left internal iliac artery","prompts":["Left internal iliac artery"],"objects":["Internal iliac artery.l"],"dot":{"x":0.631,"y":0.7568},"blurb":{"rows":[["Arises from","Common iliac artery, in front of the sacroiliac joint."],["Course","Descends into the pelvis and divides into an anterior and a posterior division."],["Supplies","Pelvic organs, the perineum, the gluteal region, and the medial side of the thigh."]]}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (abdominal part)"],"dot":{"x":0.4423,"y":0.3118},"blurb":{"rows":[["Drains","Lower limbs, pelvis, abdominal wall, kidneys, suprarenal glands, gonads, and liver. It is formed at L5 by the two common iliac veins."],["Course","Ascends on the right of the aorta and behind the liver and passes through the diaphragm at T8."],["Empties into","Right atrium."]],"hy":["Levels of the openings in the diaphragm: inferior vena cava at T8, esophagus at T10, aorta at T12 (I ate ten eggs at twelve)."]}},{"id":"common_hepatic_artery","name":"Common hepatic artery","prompts":["Common hepatic artery"],"objects":["Common hepatic artery"],"dot":{"x":0.4673,"y":0.2137},"blurb":{"rows":[["Arises from","Celiac trunk."],["Course","Runs to the right along the upper border of the pancreas, gives off the gastroduodenal artery, and continues as the proper hepatic artery."],["Supplies","Liver and gallbladder and, through the gastroduodenal artery and the right gastric artery (a branch of the proper hepatic artery), the stomach, duodenum, and pancreas."]],"hy":["The gastroduodenal artery runs behind the first part of the duodenum, so an ulcer of its posterior wall can erode the artery and bleed heavily."]}},{"id":"left_gastric_artery","name":"Left gastric artery","prompts":["Left gastric artery"],"objects":["Left gastric artery"],"dot":{"x":0.6241,"y":0.1108},"blurb":{"rows":[["Arises from","Celiac trunk, as its smallest branch."],["Course","Ascends to the upper end of the stomach and then runs along the lesser curvature to meet the right gastric artery."],["Supplies","Lesser curvature of the stomach and the lower esophagus."]],"hy":["A gastric ulcer on the lesser curvature can erode this artery and bleed."]}},{"id":"splenic_artery","name":"Splenic artery","prompts":["Splenic artery"],"objects":["Splenic artery"],"dot":{"x":0.6786,"y":0.2313},"blurb":{"rows":[["Arises from","Celiac trunk, as its largest branch."],["Course","Follows a winding course to the left along the upper border of the pancreas, behind the stomach, to the hilum of the spleen."],["Supplies","Spleen, the body and tail of the pancreas, and, through the short gastric and left gastro-omental arteries, the fundus and greater curvature of the stomach."]]}},{"id":"median_sacral_artery","name":"Median sacral artery","prompts":["Median sacral artery"],"objects":["Median sacral artery"],"dot":{"x":0.494,"y":0.6653},"blurb":{"rows":[["Arises from","Back of the aorta, just above its division."],["Course","Descends in the midline in front of L4, L5, the sacrum, and the coccyx."],["Supplies","Lower lumbar vertebrae, sacrum, and coccyx."]]}},{"id":"right_renal_vein","name":"Right renal vein","prompts":["Right renal vein"],"objects":["Right renal vein"],"dot":{"x":0.3915,"y":0.3673},"blurb":{"rows":[["Drains","Kidney. The left vein also receives the left suprarenal and left gonadal veins."],["Course","Lies in front of the renal artery. The left vein is longer and crosses in front of the aorta just below the superior mesenteric artery."],["Empties into","Inferior vena cava."]],"hy":["The left renal vein can be squeezed between the superior mesenteric artery and the aorta (nutcracker syndrome), causing flank pain, blood in the urine, and a left varicocele.","The left gonadal vein drains into the left renal vein and the right one directly into the inferior vena cava, which is why a varicocele is usually on the left."]}},{"id":"left_renal_vein","name":"Left renal vein","prompts":["Left renal vein"],"objects":["Left renal vein"],"dot":{"x":0.552,"y":0.3412},"blurb":{"rows":[["Drains","Kidney. The left vein also receives the left suprarenal and left gonadal veins."],["Course","Lies in front of the renal artery. The left vein is longer and crosses in front of the aorta just below the superior mesenteric artery."],["Empties into","Inferior vena cava."]],"hy":["The left renal vein can be squeezed between the superior mesenteric artery and the aorta (nutcracker syndrome), causing flank pain, blood in the urine, and a left varicocele.","The left gonadal vein drains into the left renal vein and the right one directly into the inferior vena cava, which is why a varicocele is usually on the left."]}},{"id":"right_kidney","name":"Right kidney","prompts":["Right kidney"],"objects":["Kidney.r"],"dot":{"x":0.2456,"y":0.3957},"blurb":{"rows":[["Location","On the back wall of the abdomen behind the peritoneum, from about T12 to L3. The right kidney lies a little lower than the left."],["Function","Filters the blood and makes urine; controls water, salts, acid-base balance, and blood pressure; makes erythropoietin and activates vitamin D."],["Blood supply","Renal artery from the aorta. The renal vein drains into the inferior vena cava."]],"hy":["The left kidney is preferred for transplantation from a living donor because its renal vein is longer.","A horseshoe kidney is held low in the abdomen because it is caught under the inferior mesenteric artery as it ascends."]}},{"id":"left_kidney","name":"Left kidney","prompts":["Left kidney"],"objects":["Kidney.l"],"dot":{"x":0.7552,"y":0.3483},"blurb":{"rows":[["Location","On the back wall of the abdomen behind the peritoneum, from about T12 to L3. The right kidney lies a little lower than the left."],["Function","Filters the blood and makes urine; controls water, salts, acid-base balance, and blood pressure; makes erythropoietin and activates vitamin D."],["Blood supply","Renal artery from the aorta. The renal vein drains into the inferior vena cava."]],"hy":["The left kidney is preferred for transplantation from a living donor because its renal vein is longer.","A horseshoe kidney is held low in the abdomen because it is caught under the inferior mesenteric artery as it ascends."]}},{"id":"right_suprarenal_gland","name":"Right suprarenal gland","prompts":["Right suprarenal gland"],"objects":["Suprarenal gland.r"],"dot":{"x":0.3198,"y":0.2527},"blurb":{"rows":[["Location","On the upper pole of each kidney."],["Function","Cortex, from outside in: aldosterone (zona glomerulosa), cortisol (zona fasciculata), androgens (zona reticularis). Medulla: epinephrine and norepinephrine."],["Blood supply","Superior, middle, and inferior suprarenal arteries. The right suprarenal vein drains into the inferior vena cava and the left into the left renal vein."]],"hy":["The layers of the cortex and their products, from outside in: salt, sugar, sex.","The medulla develops from neural crest cells; a pheochromocytoma is a tumor of its chromaffin cells."]}},{"id":"left_suprarenal_gland","name":"Left suprarenal gland","prompts":["Left suprarenal gland"],"objects":["Suprarenal gland.l"],"dot":{"x":0.6972,"y":0.1988},"blurb":{"rows":[["Location","On the upper pole of each kidney."],["Function","Cortex, from outside in: aldosterone (zona glomerulosa), cortisol (zona fasciculata), androgens (zona reticularis). Medulla: epinephrine and norepinephrine."],["Blood supply","Superior, middle, and inferior suprarenal arteries. The right suprarenal vein drains into the inferior vena cava and the left into the left renal vein."]],"hy":["The layers of the cortex and their products, from outside in: salt, sugar, sex.","The medulla develops from neural crest cells; a pheochromocytoma is a tumor of its chromaffin cells."]}}],"caption":"Abdomen and pelvis, anterior view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -438,6 +474,8 @@ a.btn { display: inline-block; text-decoration: none; }
   var Q = null;                // the quiz on screen
   var tick = null;             // clock interval
   var PHONE = window.matchMedia("(max-width: 820px)");
+  var MODE = "study";          // "study" (find the named structure) or "test" (name the highlighted one)
+  var NAMES = null;            // every answer name on the site (data/names.json), for the dropdown in Test
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -631,6 +669,268 @@ a.btn { display: inline-block; text-decoration: none; }
   function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
   $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
   $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
+  // STUDY OR TEST (Colin, 2026-11-26: "a feature for every quiz where you can select between study mode and test
+  // mode. study mode is how the quizzes are now but test mode is where the anatomy structure is highlighted yellow
+  // and you have a space to type what it is, with a dropdown menu"). The switch sits above the picture; the choice
+  // is remembered. Switching in the middle of a quiz goes back to Start.
+  //   Test: the structures come one at a time in a random order. The one asked for is tinted yellow with a dark
+  //   edge and its dot is ringed. The name is typed; the dropdown offers every answer name on the SITE that fits
+  //   what has been typed (not just this quiz's short list, which would hand over the answers). One try each: a
+  //   wrong name, or "I don't know", shows the answer and counts as missed. At the end: how many were named.
+  function setMode(m, remember) {
+    MODE = m === "test" ? "test" : "study";
+    if (remember) store("aq.mode", MODE);
+    $("mode-study").setAttribute("aria-pressed", String(MODE === "study"));
+    $("mode-test").setAttribute("aria-pressed", String(MODE === "test"));
+    if (MODE === "test" && AQ.quiz) loadNames();
+    if (Q) restart();
+  }
+  function restart() {                                   // back to the Start button of the quiz on screen
+    stopClock(); closeBlurb(); clearGlow(); clearTag();
+    if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
+    Q.run = (Q.run || 0) + 1;
+    Q.state = "ready";
+    Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = true; });
+    renderReady();
+  }
+  $("mode-study").addEventListener("click", function () { if (MODE !== "study") setMode("study", true); });
+  $("mode-test").addEventListener("click", function () { if (MODE !== "test") setMode("test", true); });
+  function loadNames() {
+    if (NAMES || loadNames.asked) return;
+    loadNames.asked = true;
+    fetch(ROOT + "data/names.json" + (AQ.build ? "?v=" + encodeURIComponent(AQ.names || AQ.build) : ""))
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) {
+        var list = (d && Array.isArray(d.names) ? d.names : []).filter(function (n) { return typeof n === "string" && n; });
+        if (list.length) { NAMES = list; if (Q) Q.pool = null; }
+      })
+      .catch(function () { loadNames.asked = false; });   // until it arrives the dropdown offers this quiz's own names
+  }
+  // A name as it is compared: small letters and digits, one space between words.
+  function norm(t) {
+    t = String(t === undefined || t === null ? "" : t).toLowerCase();
+    if (t.normalize) t = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return t.replace(/[^a-z0-9]+/g, " ").replace(/^ +| +$/g, "");
+  }
+  function sideless(n) { return n.replace(/^(right|left) /, ""); }
+  // What counts as the name of a structure: its name; the name with a bracketed part left out or taken alone
+  // ("Calcaneal (Achilles) tendon": calcaneal tendon, achilles tendon); any other prompt the scene carries.
+  function accepted(s) {
+    var out = [];
+    function add(t) { t = norm(t); if (t && out.indexOf(t) === -1) out.push(t); }
+    [s.name].concat(Array.isArray(s.prompts) ? s.prompts : []).forEach(function (name) {
+      if (typeof name !== "string") return;
+      add(name);
+      var m = /^(.*?)\s*\(([^)]*)\)\s*(.*)$/.exec(name);
+      if (m) { add(m[1] + " " + m[3]); add(m[3] ? m[2] + " " + m[3] : m[2]); }
+    });
+    return out;
+  }
+  // "right": the name fits. "side": the quiz shows both sides and the name lacks one, so it is asked for and
+  // nothing is counted. A quiz that shows one side takes the name with or without a side.
+  function judgeName(s, text) {
+    var got = norm(text), acc = accepted(s);
+    if (!got) return "empty";
+    if (acc.indexOf(got) !== -1) return "right";
+    var own = norm(s.name);
+    if (sideless(own) === own) return acc.indexOf(sideless(got)) !== -1 ? "right" : "wrong";
+    return acc.map(sideless).indexOf(got) !== -1 ? "side" : "wrong";
+  }
+  function pool() {
+    if (Q.pool) return Q.pool;
+    var seen = {}, list = [];
+    (NAMES || []).concat(Q.list.map(function (s) { return s.name; })).forEach(function (n) {
+      var k = norm(n);
+      if (k && !seen[k]) { seen[k] = 1; list.push({ name: n, n: k, words: k.split(" ") }); }
+    });
+    list.sort(function (a, b) { return a.n < b.n ? -1 : a.n > b.n ? 1 : 0; });
+    return (Q.pool = list);
+  }
+  // The names that fit what has been typed: every typed word begins a word of the name. An exact name comes
+  // first, then names that begin with what was typed, then the rest, each group in alphabetical order.
+  function matches(text) {
+    var q = norm(text), all = pool();
+    if (!q) return all.slice();
+    var words = q.split(" "), hits = [];
+    all.forEach(function (it) {
+      var fits = words.every(function (w) { return it.words.some(function (x) { return x.indexOf(w) === 0; }); });
+      if (!fits && it.n.indexOf(q) === -1) return;
+      hits.push({ it: it, rank: it.n === q ? 0 : it.n.indexOf(q) === 0 ? 1 : fits ? 2 : 3 });
+    });
+    hits.sort(function (a, b) { return a.rank - b.rank || (a.it.n < b.it.n ? -1 : a.it.n > b.it.n ? 1 : 0); });
+    return hits.slice(0, 60).map(function (h) { return h.it; });
+  }
+
+  function buildAsk(p) {
+    var line = el("p", "ask-line", "Name the highlighted structure"); line.id = "ask-line";
+    p.appendChild(line);
+    var box = el("div", "answer");
+    var inp = el("input"); inp.type = "text"; inp.id = "answer";
+    inp.setAttribute("role", "combobox"); inp.setAttribute("aria-autocomplete", "list"); inp.setAttribute("aria-expanded", "false");
+    inp.setAttribute("aria-controls", "answer-list"); inp.setAttribute("aria-labelledby", "ask-line");
+    inp.setAttribute("autocomplete", "off"); inp.setAttribute("autocapitalize", "none"); inp.setAttribute("autocorrect", "off");
+    inp.setAttribute("enterkeyhint", "done"); inp.spellcheck = false; inp.placeholder = "Type its name";
+    var drop = el("button", "drop"); drop.type = "button"; drop.id = "answer-drop"; drop.tabIndex = -1; drop.setAttribute("aria-label", "Show all names");
+    var ul = el("ul"); ul.id = "answer-list"; ul.setAttribute("role", "listbox"); ul.setAttribute("aria-label", "Names"); ul.hidden = true;
+    box.appendChild(inp); box.appendChild(drop); box.appendChild(ul);
+    p.appendChild(box);
+    var v = el("p", "verdict"); v.id = "verdict";
+    p.appendChild(v);
+    var act = el("div", "actions");
+    var skip = el("button", "btn ghost", "I don't know"); skip.type = "button"; skip.id = "skip";
+    var next = el("button", "btn", "Next"); next.type = "button"; next.id = "next-one"; next.hidden = true;
+    act.appendChild(skip); act.appendChild(next);
+    p.appendChild(act);
+
+    var shown = [], at = -1;
+    function paintList(list) {
+      // A name is marked ready for Enter only when there is no doubt which one is meant (the only one that fits,
+      // or exactly what was typed): with one try per structure, Enter must never send a name he did not pick.
+      shown = list; at = list.length === 1 || (list.length && list[0].n === norm(inp.value)) ? 0 : -1;
+      ul.textContent = "";
+      list.forEach(function (it, k) {
+        var li = el("li", null, it.name); li.id = "opt-" + k; li.setAttribute("role", "option");
+        li.addEventListener("mousedown", function (e) { e.preventDefault(); });      // the typing box keeps the cursor
+        li.addEventListener("click", function () { choose(it.name); });
+        ul.appendChild(li);
+      });
+      ul.hidden = !list.length; ul.scrollTop = 0;
+      inp.setAttribute("aria-expanded", String(!!list.length));
+      mark();
+    }
+    function mark() {
+      Array.from(ul.children).forEach(function (li, k) { li.setAttribute("aria-selected", String(k === at)); });
+      if (at > -1 && ul.children[at]) {
+        inp.setAttribute("aria-activedescendant", "opt-" + at);
+        var li = ul.children[at];
+        if (li.offsetTop < ul.scrollTop) ul.scrollTop = li.offsetTop;
+        else if (li.offsetTop + li.offsetHeight > ul.scrollTop + ul.clientHeight) ul.scrollTop = li.offsetTop + li.offsetHeight - ul.clientHeight;
+      } else inp.removeAttribute("aria-activedescendant");
+    }
+    function closeList() { shown = []; at = -1; ul.hidden = true; ul.textContent = ""; inp.setAttribute("aria-expanded", "false"); inp.removeAttribute("aria-activedescendant"); }
+    function open() { return !ul.hidden; }
+    function choose(name) { inp.value = name; closeList(); answer(name); }
+    Q.closeList = closeList;
+    inp.addEventListener("input", function () {
+      if (Q.answered) return;
+      hint("");
+      if (norm(inp.value)) paintList(matches(inp.value)); else closeList();
+    });
+    inp.addEventListener("keydown", function (e) {
+      if (Q.answered) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        if (!open()) { paintList(matches(inp.value)); return; }
+        if (!shown.length) return;
+        at = at === -1 ? (e.key === "ArrowDown" ? 0 : shown.length - 1) : (at + (e.key === "ArrowDown" ? 1 : shown.length - 1)) % shown.length;
+        mark();
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (open() && at > -1) return choose(shown[at].name);
+        var typed = norm(inp.value);
+        if (!typed) return;
+        var same = pool().filter(function (it) { return it.n === typed; })[0];
+        if (same) return choose(same.name);
+        var list = matches(inp.value);
+        if (list.length) paintList(list);
+        hint(list.length ? "Choose a name from the list." : "No name on this site fits that. Try another word.");
+      } else if (e.key === "Escape" && open()) { e.stopPropagation(); closeList(); }
+    });
+    inp.addEventListener("blur", function () { setTimeout(function () { if (document.activeElement !== inp) closeList(); }, 120); });
+    drop.addEventListener("mousedown", function (e) { e.preventDefault(); });
+    drop.addEventListener("click", function () {
+      if (Q.answered) return;
+      if (open()) closeList(); else { paintList(matches(norm(inp.value) ? inp.value : "")); if (!PHONE.matches) inp.focus({ preventScroll: true }); }
+    });
+    skip.addEventListener("click", function () { answer(null); });
+    next.addEventListener("click", advance);
+  }
+  function hint(text) { var v = $("verdict"); if (!v) return; v.className = "verdict hint"; v.textContent = text; }
+  function askNow() {
+    var s = Q.order[Q.i], inp = $("answer");
+    Q.answered = false;
+    Q.dots.forEach(function (d, id) { d.classList.toggle("asked", id === s.id); });
+    clearTag();
+    if (Q.hit) glow(s, true); else clearGlow();           // the click map may still be on its way: loadHitmap() tints then
+    inp.value = ""; inp.disabled = false; inp.className = "";
+    $("answer-drop").disabled = false;
+    if (Q.closeList) Q.closeList();
+    hint("");
+    $("skip").hidden = false; $("next-one").hidden = true;
+    if (!PHONE.matches) inp.focus({ preventScroll: true });
+    intoView(s);
+    say("Structure " + (Q.i + 1) + " of " + Q.order.length + " is highlighted. Type its name.");
+  }
+  // The dot of the structure asked for is brought into view when it is off the screen (a tall picture, a phone).
+  function intoView(s) {
+    var d = Q.dots.get(s.id); if (!d) return;
+    var r = d.getBoundingClientRect();
+    var top = (PHONE.matches ? $("panel") : document.querySelector(".bar")).getBoundingClientRect().bottom, bottom = window.innerHeight;
+    if (r.top < top + 24 || r.bottom > bottom - 24) window.scrollBy(0, (r.top + r.bottom) / 2 - (top + bottom) / 2);
+  }
+  function answer(text) {                                 // text: the name given, or null for "I don't know"
+    if (!Q || Q.state !== "play" || Q.mode !== "test" || Q.answered) return;
+    var s = Q.order[Q.i], d = Q.dots.get(s.id), inp = $("answer"), v = $("verdict");
+    var how = text === null ? "wrong" : judgeName(s, text);
+    if (how === "empty") return;
+    if (how === "side") { hint("Right or left?"); if (!PHONE.matches) inp.focus({ preventScroll: true }); say("Right or left?"); return; }
+    Q.answered = true;
+    if (Q.closeList) Q.closeList();
+    inp.disabled = true; $("answer-drop").disabled = true; $("skip").hidden = true;
+    if (PHONE.matches) inp.blur();
+    if (how === "right") {
+      Q.right++;
+      d.classList.add("found"); inp.className = "ok";
+      v.className = "verdict ok"; v.textContent = "Correct";
+      say("Correct.");
+      var mine = Q, run = Q.run;
+      Q.flash = setTimeout(function () { if (Q === mine && Q.run === run && Q.state === "play") advance(); }, 750);
+    } else {
+      Q.misses++;
+      d.classList.add("missed"); inp.className = text === null ? "" : "no";
+      v.className = "verdict no"; v.textContent = "";
+      if (text !== null) { v.appendChild(el("span", "lead", "Not quite.")); v.appendChild(document.createTextNode(" ")); }
+      v.appendChild(document.createTextNode("Answer: ")); v.appendChild(el("b", null, s.name));
+      tagAt(s);
+      var nx = $("next-one"); nx.hidden = false; nx.textContent = Q.i + 1 >= Q.order.length ? "Finish" : "Next";
+      nx.focus({ preventScroll: true });
+      say("The answer is " + s.name + ".");
+    }
+    paintCount();
+  }
+  function advance() {
+    if (!Q || Q.state !== "play" || Q.mode !== "test" || !Q.answered) return;
+    if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
+    var d = Q.dots.get(Q.order[Q.i].id); if (d) d.classList.remove("asked");
+    Q.i++;
+    if (Q.i >= Q.order.length) return finish();
+    paintCount();
+    askNow();
+  }
+  function finishTest(ms) {
+    clearGlow(); clearTag();
+    var n = Q.order.length, key = "aq.test." + Q.entry.slug, prev = store(key);
+    var had = prev && isFinite(prev.right) && isFinite(prev.n) && prev.n > 0;
+    var isBest = !had || Q.right / n > prev.right / prev.n || (Q.right / n === prev.right / prev.n && ms < prev.ms);
+    if (isBest) store(key, { right: Q.right, n: n, ms: Math.round(ms) });
+    Q.dots.forEach(function (d) { d.classList.remove("asked"); d.disabled = false; });
+    var p = $("panel"); p.textContent = "";
+    p.appendChild(el("p", "final", Q.right + " / " + n));
+    p.appendChild(el("p", "line", (Q.right === n ? "Every structure named" : Q.right + " of " + n + " named") + " in " + clockText(ms, true) + "."));
+    if (had) p.appendChild(el("p", "line quiet", isBest ? "New best." : "Your best: " + prev.right + " of " + prev.n));
+    if (Q.right < n) p.appendChild(el("p", "line quiet", "The ones you missed are marked in red."));
+    if (Q.list.some(hasBlurb)) { var tip = el("p", "line quiet", "Click any dot to read about it."); tip.id = "blurb-tip"; p.appendChild(tip); }
+    var act = el("div", "actions");
+    var again = el("button", "btn", "Test again"); again.type = "button"; again.id = "again";
+    again.addEventListener("click", begin);
+    act.appendChild(again);
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    if (next) { var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next); act.appendChild(nx); }
+    p.appendChild(act);
+    say(Q.right + " of " + n + " named.");
+    again.focus({ preventScroll: true });
+  }
+
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -710,19 +1010,29 @@ a.btn { display: inline-block; text-decoration: none; }
     go.disabled = !Q.loaded;
     go.addEventListener("click", begin);
     p.appendChild(go);
-    var best = store("aq.time." + Q.entry.slug);
-    if (best && isFinite(best.ms)) p.appendChild(el("p", "line quiet", "Your best: " + clockText(best.ms, true)));
+    if (MODE === "test") {
+      var top = store("aq.test." + Q.entry.slug);
+      if (top && isFinite(top.right) && isFinite(top.n)) p.appendChild(el("p", "line quiet", "Your best: " + top.right + " of " + top.n));
+    } else {
+      var best = store("aq.time." + Q.entry.slug);
+      if (best && isFinite(best.ms)) p.appendChild(el("p", "line quiet", "Your best: " + clockText(best.ms, true)));
+    }
     if (Q.loaded) go.focus({ preventScroll: true });
   }
 
   function begin() {
     if (!Q || !Q.loaded) return;
-    Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start");
+    Q.mode = MODE; Q.run = (Q.run || 0) + 1; Q.right = 0; Q.answered = false;
+    if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
+    Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start", { mode: Q.mode });
     clearGlow(); clearTag();
-    Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = false; });
+    Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = Q.mode === "test"; });   // in Test nothing is clicked on the picture
     var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
-    var w = el("p", "word live"); w.id = "word"; w.setAttribute("aria-live", "polite");
-    p.appendChild(w);
+    if (Q.mode === "test") buildAsk(p);
+    else {
+      var w = el("p", "word live"); w.id = "word"; w.setAttribute("aria-live", "polite");
+      p.appendChild(w);
+    }
     var m = el("div", "meter");
     var c = el("span", "clock", "0:00"); c.id = "clock";
     var n = el("span", "count"); n.id = "count";
@@ -730,7 +1040,8 @@ a.btn { display: inline-block; text-decoration: none; }
     m.appendChild(c); m.appendChild(n); m.appendChild(x);
     p.appendChild(m);
     Q.t0 = performance.now();
-    paintWord(); paintCount();
+    if (Q.mode === "test") askNow(); else paintWord();
+    paintCount();
     stopClock();
     tick = setInterval(paintClock, 200);
   }
@@ -743,14 +1054,14 @@ a.btn { display: inline-block; text-decoration: none; }
   }
   function paintCount() {
     $("count").textContent = Q.i + " of " + Q.order.length;
-    $("misses").textContent = Q.misses ? Q.misses + (Q.misses === 1 ? " miss" : " misses") : "";
+    $("misses").textContent = !Q.misses ? "" : Q.mode === "test" ? Q.misses + " missed" : Q.misses + (Q.misses === 1 ? " miss" : " misses");
   }
   function bump(node, cls) { node.classList.remove("pop", "shake"); void node.offsetWidth; node.classList.add(cls); }
 
   function tapDot(s) {
     if (!Q) return;
     if (Q.state === "done") return review(s);
-    if (Q.state !== "play") return;
+    if (Q.state !== "play" || Q.mode === "test") return;
     var want = Q.order[Q.i], d = Q.dots.get(s.id);
     if (s.id === want.id) {
       d.classList.remove("wrong"); d.classList.add("found"); d.disabled = true;
@@ -773,7 +1084,8 @@ a.btn { display: inline-block; text-decoration: none; }
   function finish() {
     var ms = performance.now() - Q.t0;
     stopClock();
-    Q.state = "done"; track("quiz_complete", { misses: Q.misses });
+    Q.state = "done"; track("quiz_complete", { misses: Q.misses, mode: Q.mode });
+    if (Q.mode === "test") return finishTest(ms);
     var key = "aq.time." + Q.entry.slug, prev = store(key);
     var isBest = !prev || !isFinite(prev.ms) || ms < prev.ms;
     if (isBest) {
@@ -860,6 +1172,7 @@ a.btn { display: inline-block; text-decoration: none; }
       x.drawImage(im, 0, 0, c.width, c.height);
       try { Q.hit = { w: c.width, h: c.height, data: x.getImageData(0, 0, c.width, c.height).data }; } catch (e) { Q.hit = null; }
       var g = $("glow"); g.width = c.width; g.height = c.height;
+      if (Q.state === "play" && Q.mode === "test" && !Q.answered) glow(Q.order[Q.i], true);   // Test was started before the click map arrived
     };
     im.src = src;
   }
@@ -884,7 +1197,7 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.masks.set(s.id, m);
     return m;
   }
-  function glow(s) {
+  function glow(s, edge) {
     var g = $("glow"), img = $("plate");
     if (!Q || !Q.hit) return;
     var m = maskFor(s), x = g.getContext("2d"), W = g.width, H = g.height;
@@ -911,6 +1224,16 @@ a.btn { display: inline-block; text-decoration: none; }
       x.drawImage(m, 0, 0);
       x.globalCompositeOperation = "source-in";
       x.fillStyle = "rgba(255, 217, 26, 0.55)"; x.fillRect(0, 0, W, H);
+    }
+    if (edge) {
+      // Test: a dark edge round the structure asked for, so that a yellow nerve, a pale tendon or a vessel a few
+      // pixels wide stands out as clearly as a red muscle does. The edge lies outside the structure's own pixels.
+      var t = document.createElement("canvas"); t.width = W; t.height = H;
+      var y = t.getContext("2d"), k = Math.max(2, Math.round(Math.max(W, H) / 450));
+      for (var a = 0; a < 12; a++) y.drawImage(m, Math.round(Math.cos(a * Math.PI / 6) * k), Math.round(Math.sin(a * Math.PI / 6) * k));
+      y.globalCompositeOperation = "source-in"; y.fillStyle = "#000000"; y.fillRect(0, 0, W, H);
+      y.globalCompositeOperation = "destination-out"; y.drawImage(m, 0, 0);
+      x.globalCompositeOperation = "destination-over"; x.drawImage(t, 0, 0);
     }
     x.globalCompositeOperation = "source-over";
     g.classList.add("on");
@@ -962,6 +1285,7 @@ a.btn { display: inline-block; text-decoration: none; }
   window.addEventListener("hashchange", route);
 
   setMenu(PHONE.matches ? false : store("aq.menu") !== "closed");
+  setMode(store("aq.mode") === "test" ? "test" : "study", false);
   requestAnimationFrame(function () { requestAnimationFrame(function () { $("shell").classList.remove("booting"); }); });
 
   // A quiz page starts its quiz at once from what it carries; the menu arrives after.

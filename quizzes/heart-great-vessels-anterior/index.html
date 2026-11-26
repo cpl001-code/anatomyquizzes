@@ -89,6 +89,11 @@ a { color: inherit; }
 .looks button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
 .looks button:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
 .scrim { display: none; }
+/* STUDY OR TEST (Colin, 2026-11-26: "select between study mode and test mode"). The same kind of switch as the two
+   looks, in one row with it. Study is the quiz as it always was. In Test one structure is highlighted and its name
+   is typed into a box with a dropdown of names. */
+.switches { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 2px 0 10px; }
+.switches .looks { margin: 0; }
 
 .menu h2 { font: 800 25px/1.12 var(--font); letter-spacing: -0.01em; margin: 0; padding: 22px 18px 16px; }
 .tree { flex: 1 0 auto; border-bottom: 1px solid var(--line); }
@@ -171,6 +176,30 @@ a.btn { display: inline-block; text-decoration: none; }
 .line { margin: 0; max-width: 34ch; }
 .line.quiet { color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+/* Test: the question, the typing box with its dropdown, and what came of the answer */
+.ask-line { margin: 0; font: 800 clamp(24px, 2.3vw, 34px)/1.12 var(--font); letter-spacing: -0.01em; text-wrap: balance; }
+.answer { position: relative; align-self: stretch; max-width: 27rem; }
+.answer input { display: block; width: 100%; margin: 0; padding: 11px 46px 11px 13px; font: 400 19px/1.3 var(--font); color: var(--ink); background: var(--page); border: 2px solid var(--ink); border-radius: 10px; -webkit-appearance: none; appearance: none; }
+.answer input::placeholder { color: var(--muted); opacity: 1; }
+.answer input.ok { border-color: var(--ok); }
+.answer input.no { border-color: var(--no); }
+.answer input:disabled { opacity: 1; -webkit-text-fill-color: var(--ink); }
+.answer input:disabled::placeholder { color: transparent; -webkit-text-fill-color: transparent; }
+.answer .drop { position: absolute; right: 5px; top: 5px; width: 38px; height: calc(100% - 10px); padding: 0; border: 0; background: none; border-radius: 7px; display: grid; place-items: center; }
+.answer .drop:hover { background: var(--mist); }
+.answer .drop::before { content: ""; width: 9px; height: 9px; margin-top: -5px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.answer .drop[disabled] { visibility: hidden; }
+.answer ul { position: absolute; z-index: 40; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px 0; list-style: none; max-height: min(44vh, 330px); overflow-y: auto; overscroll-behavior: contain; background: var(--page); border: 1px solid var(--ink); border-radius: 10px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14); }
+.answer li { padding: 7px 13px; font-size: 17px; line-height: 1.25; cursor: pointer; }
+.answer li:hover { background: var(--mist); }
+.answer li[aria-selected="true"] { background: var(--mist-2); }
+.verdict { margin: 0; min-height: 1.45em; max-width: 34ch; }
+.verdict.ok { color: var(--ok); font-weight: 700; }
+.verdict.no b { font-weight: 800; }
+.verdict.no .lead { color: var(--no); font-weight: 700; }
+.verdict.hint { color: var(--muted); }
+.dot.asked::before { background: #000000; box-shadow: 0 0 0 1.5px #ffffff, 0 0 0 4px #000000, 0 0 0 5.5px #ffffff; }
+.dot.missed::before { background: var(--no); box-shadow: 0 0 0 1.5px #ffffff, 0 0 0 3.5px var(--no); }
 /* after-quiz blurb: the words about one structure, beside the picture (a sheet at the bottom on a phone) */
 .blurb { align-self: stretch; max-width: 46ch; padding-top: 12px; border-top: 1px solid var(--line); max-height: max(220px, calc(100vh - var(--bar) - 290px)); overflow: auto; overscroll-behavior: contain; }
 .blurb-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
@@ -244,6 +273,10 @@ a.btn { display: inline-block; text-decoration: none; }
   .final { font-size: 44px; }
   .blurb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; max-width: none; max-height: 46vh; padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--page); border-top: 2px solid var(--ink); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.14); }
   .panel.reading #blurb-tip { display: none; }
+  .switches { margin: 6px 16px 8px; }
+  .ask-line { font-size: clamp(20px, 5.6vw, 26px); }
+  .answer { max-width: none; }
+  .answer ul { max-height: min(38vh, 300px); }
 }
 </style>
 <!-- Google tag (Colin's container, 2026-11-24) -->
@@ -283,7 +316,10 @@ a.btn { display: inline-block; text-decoration: none; }
     <section class="quiz" id="quiz">
       <div class="figure" id="figure" style="--ratio: 0.7440">
         <h1 class="caption"><span class="qt" id="quiz-title">Heart and great vessels (anterior)</span><span id="caption">Heart, anterior view</span></h1>
-        <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
+        <div class="switches" id="switches">
+          <div class="looks" id="modes" role="group" aria-label="Mode"><button type="button" id="mode-study" aria-pressed="true">Study</button><button type="button" id="mode-test" aria-pressed="false">Test</button></div>
+          <div class="looks" id="looks" role="group" aria-label="Picture" hidden><button type="button" id="look-natural" aria-pressed="true">Natural</button><button type="button" id="look-color" aria-pressed="false">Color-coded</button></div>
+        </div>
         <div class="stage" id="stage">
           <img id="plate" alt="Anatomy image: Heart and great vessels (anterior)" src="../../scenes/sys_heart_great_vessels_anterior/heart-great-vessels-anterior.2bf6280dba.webp" width="1488" height="2000">
           <canvas id="glow"></canvas>
@@ -443,7 +479,7 @@ a.btn { display: inline-block; text-decoration: none; }
 <p class="sr" id="say" aria-live="polite"></p>
 
 
-<script>window.AQ = {"root":"../../","quiz":"sys-heart-great-vessels-anterior","build":"8b152bb4fe","entry":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","nav":["Cardiovascular System","Thorax","Heart"],"structures":26,"path":"scenes/sys_heart_great_vessels_anterior","url":"heart-great-vessels-anterior"},"scene":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","image":"heart-great-vessels-anterior.2bf6280dba.webp","size":[1488,2000],"hitmap":"hitmap.365253dd2d.png","hitmap_colors":{"Right atrium":[31,31,94],"Right ventricle":[31,31,161],"Left ventricle":[31,31,224],"Left atrium":[31,94,31],"Pulmonary trunk":[31,94,94],"Ascending aorta":[31,94,161],"Aortic arch":[31,94,224],"Superior vena cava":[31,161,31],"Brachiocephalic trunk":[31,161,94],"Left common carotid artery":[31,161,161],"Left subclavian artery":[31,161,224],"Right subclavian artery":[31,224,31],"Right coronary artery":[31,224,94],"Anterior interventricular artery":[31,224,161],"Great cardiac vein":[31,224,224],"Inferior vena cava (thoracic part)":[94,31,31],"Thoracic aorta":[94,31,94],"Abdominal aorta":[94,31,161],"Internal jugular vein.r":[94,94,31],"Internal jugular vein.l":[94,94,94],"Right subclavian vein":[94,94,161],"Left subclavian vein":[94,94,224],"Right brachiocephalic vein":[94,161,31],"Left brachiocephalic vein":[94,161,94],"Right common carotid artery":[94,161,161],"Right marginal branch (of right coronary artery)":[161,94,224],"Diagonal branch (of left anterior descending)":[161,94,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"right_atrium","name":"Right atrium","prompts":["Right atrium"],"objects":["Right atrium"],"dot":{"x":0.2017,"y":0.5461},"blurb":{"rows":[["Location","Forms the right border of the heart."],["Receives","Deoxygenated blood from the superior vena cava, the inferior vena cava, and the coronary sinus."],["Sends blood to","Right ventricle, through the tricuspid valve."]],"hy":["The sinoatrial node lies in its wall beside the opening of the superior vena cava. The atrioventricular node lies in the interatrial septum near the opening of the coronary sinus.","The fossa ovalis in the interatrial septum is the remnant of the foramen ovale."]}},{"id":"right_ventricle","name":"Right ventricle","prompts":["Right ventricle"],"objects":["Right ventricle"],"dot":{"x":0.5205,"y":0.7043},"blurb":{"rows":[["Location","Forms most of the anterior surface of the heart, behind the sternum."],["Receives","Blood from the right atrium, through the tricuspid valve."],["Sends blood to","Pulmonary trunk, through the pulmonary valve."]],"hy":["The most anterior chamber, so it is the one most often injured by a penetrating wound of the front of the chest."]}},{"id":"left_ventricle","name":"Left ventricle","prompts":["Left ventricle"],"objects":["Left ventricle"],"dot":{"x":0.8481,"y":0.6946},"blurb":{"rows":[["Location","Forms the apex and the left border of the heart."],["Receives","Oxygenated blood from the left atrium, through the mitral valve."],["Sends blood to","Aorta, through the aortic valve, and so to the whole body."]]}},{"id":"left_atrium","name":"Left atrium","prompts":["Left atrium"],"objects":["Left atrium"],"dot":{"x":0.6999,"y":0.4818},"blurb":{"rows":[["Location","Forms most of the posterior surface (base) of the heart, directly in front of the esophagus."],["Receives","Oxygenated blood from the four pulmonary veins."],["Sends blood to","Left ventricle, through the mitral valve."]],"hy":["The most posterior chamber. When it enlarges, as in mitral stenosis, it can press on the esophagus (difficulty swallowing) or on the left recurrent laryngeal nerve (hoarseness)."]}},{"id":"pulmonary_trunk","name":"Pulmonary trunk","prompts":["Pulmonary trunk"],"objects":["Pulmonary trunk"],"dot":{"x":0.54,"y":0.3802},"blurb":{"rows":[["Arises from","Right ventricle, at the pulmonary valve."],["Course","Runs up and back on the left of the ascending aorta and divides under the aortic arch into the right and left pulmonary arteries."],["Supplies","Carries deoxygenated blood to the lungs."]]}},{"id":"ascending_aorta","name":"Ascending aorta","prompts":["Ascending aorta"],"objects":["Ascending aorta"],"dot":{"x":0.3753,"y":0.3463},"blurb":{"rows":[["Arises from","Left ventricle, at the aortic valve."],["Course","Runs up about 5 cm to the level of the sternal angle, where it becomes the aortic arch."],["Supplies","Its only branches are the right and left coronary arteries, which leave from the aortic sinuses just above the valve."]],"hy":["An aortic dissection that involves the ascending aorta (Stanford type A) is a surgical emergency.","It dilates in Marfan syndrome and in the aortitis of tertiary syphilis."]}},{"id":"aortic_arch","name":"Aortic arch","prompts":["Aortic arch"],"objects":["Aortic arch"],"dot":{"x":0.4609,"y":0.1951},"blurb":{"rows":[["Arises from","Continues the ascending aorta at the level of the sternal angle."],["Course","Arches back and to the left over the root of the left lung and becomes the descending aorta at about T4."],["Supplies","Three branches: the brachiocephalic trunk, the left common carotid artery, and the left subclavian artery."]],"hy":["The left recurrent laryngeal nerve hooks under the arch beside the ligamentum arteriosum, so an aneurysm of the arch or a mediastinal mass can cause hoarseness.","Coarctation of the aorta usually lies just beyond the origin of the left subclavian artery, near the ligamentum arteriosum.","Baroreceptors in the arch signal through the vagus nerve; those in the carotid sinus signal through the glossopharyngeal nerve."]}},{"id":"superior_vena_cava","name":"Superior vena cava","prompts":["Superior vena cava"],"objects":["Superior vena cava"],"dot":{"x":0.2477,"y":0.3033},"blurb":{"rows":[["Drains","Head, neck, upper limbs, and the wall of the chest. It is formed by the two brachiocephalic veins behind the first right costal cartilage and receives the azygos vein."],["Empties into","Right atrium."]],"hy":["Superior vena cava syndrome: obstruction, most often by a lung cancer or lymphoma, causes swelling of the face and arms, a flushed face, and distended neck veins."]}},{"id":"brachiocephalic_trunk","name":"Brachiocephalic trunk","prompts":["Brachiocephalic trunk"],"objects":["Brachiocephalic trunk"],"dot":{"x":0.3108,"y":0.0882},"blurb":{"rows":[["Arises from","Aortic arch, as its first and largest branch."],["Course","Runs up and to the right and divides behind the right sternoclavicular joint."],["Supplies","The right side of the head and neck and the right upper limb, through its two branches, the right common carotid and right subclavian arteries."]]}},{"id":"left_common_carotid_artery","name":"Left common carotid artery","prompts":["Left common carotid artery"],"objects":["Left common carotid artery"],"dot":{"x":0.4654,"y":0.0302},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Ascends in the carotid sheath with the internal jugular vein and the vagus nerve and divides at about the upper border of the thyroid cartilage into the internal and external carotid arteries."],["Supplies","Head and neck, through its two end branches. It has no other branches."]],"hy":["At its division lie the carotid sinus, a baroreceptor, and the carotid body, a chemoreceptor; both signal mainly through the glossopharyngeal nerve."]}},{"id":"left_subclavian_artery","name":"Left subclavian artery","prompts":["Left subclavian artery"],"objects":["Left subclavian artery"],"dot":{"x":0.6376,"y":0.0331},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Arches over the first rib behind the anterior scalene muscle and becomes the axillary artery at the outer border of the first rib."],["Supplies","Upper limb and, through the vertebral, internal thoracic, and thyrocervical branches, the brain, the front of the chest wall, and the neck."]],"hy":["Subclavian steal: a narrowing of the artery before the origin of the vertebral artery reverses flow in that vertebral artery, causing dizziness or fainting when the arm is exercised."]}},{"id":"right_subclavian_artery","name":"Right subclavian artery","prompts":["Right subclavian artery"],"objects":["Right subclavian artery"],"dot":{"x":0.0938,"y":0.0503},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Arches over the first rib behind the anterior scalene muscle and becomes the axillary artery at the outer border of the first rib."],["Supplies","Upper limb and, through the vertebral, internal thoracic, and thyrocervical branches, the brain, the front of the chest wall, and the neck."]],"hy":["Subclavian steal: a narrowing of the artery before the origin of the vertebral artery reverses flow in that vertebral artery, causing dizziness or fainting when the arm is exercised."]}},{"id":"right_coronary_artery","name":"Right coronary artery","prompts":["Right coronary artery"],"objects":["Right coronary artery"],"dot":{"x":0.1217,"y":0.5002},"blurb":{"rows":[["Arises from","Right aortic sinus of the ascending aorta."],["Course","Runs in the coronary groove around the right border of the heart to its posterior surface."],["Supplies","Right atrium and most of the right ventricle. In most people it also supplies the sinoatrial node, the atrioventricular node, and, through the posterior interventricular artery, the inferior wall of the left ventricle and the posterior third of the septum."]],"hy":["Occlusion causes an inferior myocardial infarction (ST elevation in leads II, III, and aVF), often with bradycardia or heart block because it usually supplies the nodes."]}},{"id":"anterior_interventricular_artery","name":"Anterior interventricular artery (left anterior descending)","prompts":["Anterior interventricular artery (left anterior descending)"],"objects":["Anterior interventricular artery"],"dot":{"x":0.8588,"y":0.5807},"blurb":{"rows":[["Arises from","Left coronary artery, where it divides."],["Course","Descends in the anterior interventricular groove toward the apex."],["Supplies","Anterior wall of the left ventricle, the anterior two thirds of the interventricular septum, and the apex."]],"hy":["The most often occluded coronary artery. Occlusion causes an anterior myocardial infarction (ST elevation in leads V1 to V4)."]}},{"id":"great_cardiac_vein","name":"Great cardiac vein","prompts":["Great cardiac vein"],"objects":["Great cardiac vein"],"dot":{"x":0.9138,"y":0.6726},"blurb":{"rows":[["Drains","The parts of the heart supplied by the left coronary artery."],["Course","Ascends in the anterior interventricular groove beside the anterior interventricular artery, then runs in the coronary groove with the circumflex artery."],["Empties into","Coronary sinus."]]}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (thoracic part)"],"dot":{"x":0.2947,"y":0.9127},"blurb":{"rows":[["Drains","Lower limbs, pelvis, abdominal wall, kidneys, suprarenal glands, gonads, and liver. It is formed at L5 by the two common iliac veins."],["Course","Ascends on the right of the aorta and behind the liver and passes through the diaphragm at T8."],["Empties into","Right atrium."]],"hy":["Levels of the openings in the diaphragm: inferior vena cava at T8, esophagus at T10, aorta at T12 (I ate ten eggs at twelve)."]}},{"id":"descending_aorta","name":"Descending (thoracic) aorta","prompts":["Descending (thoracic) aorta"],"objects":["Thoracic aorta","Abdominal aorta"],"dot":{"x":0.4224,"y":0.9343},"blurb":{"rows":[["Arises from","Continues the aortic arch at about T4."],["Course","Descends in the posterior mediastinum, at first on the left of the vertebral column and then in front of it, and passes through the diaphragm at T12."],["Supplies","Chest wall (posterior intercostal arteries), bronchi, esophagus, and pericardium."]],"hy":["In a sudden deceleration injury the aorta tears most often at the isthmus, just beyond the origin of the left subclavian artery."]}},{"id":"right_internal_jugular_vein","name":"Right internal jugular vein","prompts":["Right internal jugular vein"],"objects":["Internal jugular vein.r"],"dot":{"x":0.2013,"y":0.0283},"blurb":{"rows":[["Drains","Brain, face, and neck. It begins at the jugular foramen as the continuation of the sigmoid sinus."],["Course","Descends in the carotid sheath, lateral to the carotid arteries and the vagus nerve."],["Empties into","Joins the subclavian vein to form the brachiocephalic vein."]],"hy":["The height of its pulsation (jugular venous pressure) reflects right atrial pressure and rises in right heart failure."]}},{"id":"left_internal_jugular_vein","name":"Left internal jugular vein","prompts":["Left internal jugular vein"],"objects":["Internal jugular vein.l"],"dot":{"x":0.5185,"y":0.0227},"blurb":{"rows":[["Drains","Brain, face, and neck. It begins at the jugular foramen as the continuation of the sigmoid sinus."],["Course","Descends in the carotid sheath, lateral to the carotid arteries and the vagus nerve."],["Empties into","Joins the subclavian vein to form the brachiocephalic vein."]],"hy":["The height of its pulsation (jugular venous pressure) reflects right atrial pressure and rises in right heart failure."]}},{"id":"right_subclavian_vein","name":"Right subclavian vein","prompts":["Right subclavian vein"],"objects":["Right subclavian vein"],"dot":{"x":0.0931,"y":0.0772},"blurb":{"rows":[["Drains","Upper limb. It continues the axillary vein at the outer border of the first rib."],["Course","Crosses the first rib in front of the anterior scalene muscle."],["Empties into","Joins the internal jugular vein to form the brachiocephalic vein."]],"hy":["The thoracic duct empties at the junction of the left subclavian and left internal jugular veins.","A common site for a central venous catheter; the lung apex lies just behind, so a pneumothorax is a risk."]}},{"id":"left_subclavian_vein","name":"Left subclavian vein","prompts":["Left subclavian vein"],"objects":["Left subclavian vein"],"dot":{"x":0.7302,"y":0.0813},"blurb":{"rows":[["Drains","Upper limb. It continues the axillary vein at the outer border of the first rib."],["Course","Crosses the first rib in front of the anterior scalene muscle."],["Empties into","Joins the internal jugular vein to form the brachiocephalic vein."]],"hy":["The thoracic duct empties at the junction of the left subclavian and left internal jugular veins.","A common site for a central venous catheter; the lung apex lies just behind, so a pneumothorax is a risk."]}},{"id":"right_brachiocephalic_vein","name":"Right brachiocephalic vein","prompts":["Right brachiocephalic vein"],"objects":["Right brachiocephalic vein"],"dot":{"x":0.2221,"y":0.1298},"blurb":{"rows":[["Drains","Head, neck, and upper limb of its side. It is formed behind the sternoclavicular joint by the internal jugular and subclavian veins."],["Course","The left vein is longer and crosses behind the manubrium, in front of the branches of the aortic arch."],["Empties into","The two brachiocephalic veins join to form the superior vena cava."]]}},{"id":"left_brachiocephalic_vein","name":"Left brachiocephalic vein","prompts":["Left brachiocephalic vein"],"objects":["Left brachiocephalic vein"],"dot":{"x":0.3787,"y":0.1432},"blurb":{"rows":[["Drains","Head, neck, and upper limb of its side. It is formed behind the sternoclavicular joint by the internal jugular and subclavian veins."],["Course","The left vein is longer and crosses behind the manubrium, in front of the branches of the aortic arch."],["Empties into","The two brachiocephalic veins join to form the superior vena cava."]]}},{"id":"right_common_carotid_artery","name":"Right common carotid artery","prompts":["Right common carotid artery"],"objects":["Right common carotid artery"],"dot":{"x":0.2577,"y":0.0297},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Ascends in the carotid sheath with the internal jugular vein and the vagus nerve and divides at about the upper border of the thyroid cartilage into the internal and external carotid arteries."],["Supplies","Head and neck, through its two end branches. It has no other branches."]],"hy":["At its division lie the carotid sinus, a baroreceptor, and the carotid body, a chemoreceptor; both signal mainly through the glossopharyngeal nerve."]}},{"id":"right_marginal_branch","name":"Right marginal branch (of right coronary artery)","prompts":["Right marginal branch (of right coronary artery)"],"objects":["Right marginal branch (of right coronary artery)"],"dot":{"x":0.1808,"y":0.8449},"blurb":{"rows":[["Arises from","Right coronary artery, near the lower border of the heart."],["Course","Runs along the lower border of the heart toward the apex."],["Supplies","Right ventricle."]]}},{"id":"diagonal_branch_of_lad","name":"Diagonal branch (of left anterior descending)","prompts":["Diagonal branch (of left anterior descending)"],"objects":["Diagonal branch (of left anterior descending)"],"dot":{"x":0.9281,"y":0.8094},"blurb":{"rows":[["Arises from","Anterior interventricular artery (left anterior descending)."],["Course","Runs obliquely down across the front of the left ventricle."],["Supplies","Anterolateral wall of the left ventricle."]]}}],"caption":"Heart, anterior view"}};</script>
+<script>window.AQ = {"root":"../../","quiz":"sys-heart-great-vessels-anterior","build":"8b152bb4fe","names":"2684ed393a","entry":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","nav":["Cardiovascular System","Thorax","Heart"],"structures":26,"path":"scenes/sys_heart_great_vessels_anterior","url":"heart-great-vessels-anterior"},"scene":{"id":"sys_heart_great_vessels_anterior","title":"Heart and great vessels (anterior)","region":"thorax","lab":"Heart","view":"anterior","image":"heart-great-vessels-anterior.2bf6280dba.webp","size":[1488,2000],"hitmap":"hitmap.365253dd2d.png","hitmap_colors":{"Right atrium":[31,31,94],"Right ventricle":[31,31,161],"Left ventricle":[31,31,224],"Left atrium":[31,94,31],"Pulmonary trunk":[31,94,94],"Ascending aorta":[31,94,161],"Aortic arch":[31,94,224],"Superior vena cava":[31,161,31],"Brachiocephalic trunk":[31,161,94],"Left common carotid artery":[31,161,161],"Left subclavian artery":[31,161,224],"Right subclavian artery":[31,224,31],"Right coronary artery":[31,224,94],"Anterior interventricular artery":[31,224,161],"Great cardiac vein":[31,224,224],"Inferior vena cava (thoracic part)":[94,31,31],"Thoracic aorta":[94,31,94],"Abdominal aorta":[94,31,161],"Internal jugular vein.r":[94,94,31],"Internal jugular vein.l":[94,94,94],"Right subclavian vein":[94,94,161],"Left subclavian vein":[94,94,224],"Right brachiocephalic vein":[94,161,31],"Left brachiocephalic vein":[94,161,94],"Right common carotid artery":[94,161,161],"Right marginal branch (of right coronary artery)":[161,94,224],"Diagonal branch (of left anterior descending)":[161,94,31]},"license":"CC BY-SA","attribution":"3D anatomy from Z-Anatomy, built on BodyParts3D (CC BY-SA). Rendered in Blender; surface detail added with an image model.","structures":[{"id":"right_atrium","name":"Right atrium","prompts":["Right atrium"],"objects":["Right atrium"],"dot":{"x":0.2017,"y":0.5461},"blurb":{"rows":[["Location","Forms the right border of the heart."],["Receives","Deoxygenated blood from the superior vena cava, the inferior vena cava, and the coronary sinus."],["Sends blood to","Right ventricle, through the tricuspid valve."]],"hy":["The sinoatrial node lies in its wall beside the opening of the superior vena cava. The atrioventricular node lies in the interatrial septum near the opening of the coronary sinus.","The fossa ovalis in the interatrial septum is the remnant of the foramen ovale."]}},{"id":"right_ventricle","name":"Right ventricle","prompts":["Right ventricle"],"objects":["Right ventricle"],"dot":{"x":0.5205,"y":0.7043},"blurb":{"rows":[["Location","Forms most of the anterior surface of the heart, behind the sternum."],["Receives","Blood from the right atrium, through the tricuspid valve."],["Sends blood to","Pulmonary trunk, through the pulmonary valve."]],"hy":["The most anterior chamber, so it is the one most often injured by a penetrating wound of the front of the chest."]}},{"id":"left_ventricle","name":"Left ventricle","prompts":["Left ventricle"],"objects":["Left ventricle"],"dot":{"x":0.8481,"y":0.6946},"blurb":{"rows":[["Location","Forms the apex and the left border of the heart."],["Receives","Oxygenated blood from the left atrium, through the mitral valve."],["Sends blood to","Aorta, through the aortic valve, and so to the whole body."]]}},{"id":"left_atrium","name":"Left atrium","prompts":["Left atrium"],"objects":["Left atrium"],"dot":{"x":0.6999,"y":0.4818},"blurb":{"rows":[["Location","Forms most of the posterior surface (base) of the heart, directly in front of the esophagus."],["Receives","Oxygenated blood from the four pulmonary veins."],["Sends blood to","Left ventricle, through the mitral valve."]],"hy":["The most posterior chamber. When it enlarges, as in mitral stenosis, it can press on the esophagus (difficulty swallowing) or on the left recurrent laryngeal nerve (hoarseness)."]}},{"id":"pulmonary_trunk","name":"Pulmonary trunk","prompts":["Pulmonary trunk"],"objects":["Pulmonary trunk"],"dot":{"x":0.54,"y":0.3802},"blurb":{"rows":[["Arises from","Right ventricle, at the pulmonary valve."],["Course","Runs up and back on the left of the ascending aorta and divides under the aortic arch into the right and left pulmonary arteries."],["Supplies","Carries deoxygenated blood to the lungs."]]}},{"id":"ascending_aorta","name":"Ascending aorta","prompts":["Ascending aorta"],"objects":["Ascending aorta"],"dot":{"x":0.3753,"y":0.3463},"blurb":{"rows":[["Arises from","Left ventricle, at the aortic valve."],["Course","Runs up about 5 cm to the level of the sternal angle, where it becomes the aortic arch."],["Supplies","Its only branches are the right and left coronary arteries, which leave from the aortic sinuses just above the valve."]],"hy":["An aortic dissection that involves the ascending aorta (Stanford type A) is a surgical emergency.","It dilates in Marfan syndrome and in the aortitis of tertiary syphilis."]}},{"id":"aortic_arch","name":"Aortic arch","prompts":["Aortic arch"],"objects":["Aortic arch"],"dot":{"x":0.4609,"y":0.1951},"blurb":{"rows":[["Arises from","Continues the ascending aorta at the level of the sternal angle."],["Course","Arches back and to the left over the root of the left lung and becomes the descending aorta at about T4."],["Supplies","Three branches: the brachiocephalic trunk, the left common carotid artery, and the left subclavian artery."]],"hy":["The left recurrent laryngeal nerve hooks under the arch beside the ligamentum arteriosum, so an aneurysm of the arch or a mediastinal mass can cause hoarseness.","Coarctation of the aorta usually lies just beyond the origin of the left subclavian artery, near the ligamentum arteriosum.","Baroreceptors in the arch signal through the vagus nerve; those in the carotid sinus signal through the glossopharyngeal nerve."]}},{"id":"superior_vena_cava","name":"Superior vena cava","prompts":["Superior vena cava"],"objects":["Superior vena cava"],"dot":{"x":0.2477,"y":0.3033},"blurb":{"rows":[["Drains","Head, neck, upper limbs, and the wall of the chest. It is formed by the two brachiocephalic veins behind the first right costal cartilage and receives the azygos vein."],["Empties into","Right atrium."]],"hy":["Superior vena cava syndrome: obstruction, most often by a lung cancer or lymphoma, causes swelling of the face and arms, a flushed face, and distended neck veins."]}},{"id":"brachiocephalic_trunk","name":"Brachiocephalic trunk","prompts":["Brachiocephalic trunk"],"objects":["Brachiocephalic trunk"],"dot":{"x":0.3108,"y":0.0882},"blurb":{"rows":[["Arises from","Aortic arch, as its first and largest branch."],["Course","Runs up and to the right and divides behind the right sternoclavicular joint."],["Supplies","The right side of the head and neck and the right upper limb, through its two branches, the right common carotid and right subclavian arteries."]]}},{"id":"left_common_carotid_artery","name":"Left common carotid artery","prompts":["Left common carotid artery"],"objects":["Left common carotid artery"],"dot":{"x":0.4654,"y":0.0302},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Ascends in the carotid sheath with the internal jugular vein and the vagus nerve and divides at about the upper border of the thyroid cartilage into the internal and external carotid arteries."],["Supplies","Head and neck, through its two end branches. It has no other branches."]],"hy":["At its division lie the carotid sinus, a baroreceptor, and the carotid body, a chemoreceptor; both signal mainly through the glossopharyngeal nerve."]}},{"id":"left_subclavian_artery","name":"Left subclavian artery","prompts":["Left subclavian artery"],"objects":["Left subclavian artery"],"dot":{"x":0.6376,"y":0.0331},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Arches over the first rib behind the anterior scalene muscle and becomes the axillary artery at the outer border of the first rib."],["Supplies","Upper limb and, through the vertebral, internal thoracic, and thyrocervical branches, the brain, the front of the chest wall, and the neck."]],"hy":["Subclavian steal: a narrowing of the artery before the origin of the vertebral artery reverses flow in that vertebral artery, causing dizziness or fainting when the arm is exercised."]}},{"id":"right_subclavian_artery","name":"Right subclavian artery","prompts":["Right subclavian artery"],"objects":["Right subclavian artery"],"dot":{"x":0.0938,"y":0.0503},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Arches over the first rib behind the anterior scalene muscle and becomes the axillary artery at the outer border of the first rib."],["Supplies","Upper limb and, through the vertebral, internal thoracic, and thyrocervical branches, the brain, the front of the chest wall, and the neck."]],"hy":["Subclavian steal: a narrowing of the artery before the origin of the vertebral artery reverses flow in that vertebral artery, causing dizziness or fainting when the arm is exercised."]}},{"id":"right_coronary_artery","name":"Right coronary artery","prompts":["Right coronary artery"],"objects":["Right coronary artery"],"dot":{"x":0.1217,"y":0.5002},"blurb":{"rows":[["Arises from","Right aortic sinus of the ascending aorta."],["Course","Runs in the coronary groove around the right border of the heart to its posterior surface."],["Supplies","Right atrium and most of the right ventricle. In most people it also supplies the sinoatrial node, the atrioventricular node, and, through the posterior interventricular artery, the inferior wall of the left ventricle and the posterior third of the septum."]],"hy":["Occlusion causes an inferior myocardial infarction (ST elevation in leads II, III, and aVF), often with bradycardia or heart block because it usually supplies the nodes."]}},{"id":"anterior_interventricular_artery","name":"Anterior interventricular artery (left anterior descending)","prompts":["Anterior interventricular artery (left anterior descending)"],"objects":["Anterior interventricular artery"],"dot":{"x":0.8588,"y":0.5807},"blurb":{"rows":[["Arises from","Left coronary artery, where it divides."],["Course","Descends in the anterior interventricular groove toward the apex."],["Supplies","Anterior wall of the left ventricle, the anterior two thirds of the interventricular septum, and the apex."]],"hy":["The most often occluded coronary artery. Occlusion causes an anterior myocardial infarction (ST elevation in leads V1 to V4)."]}},{"id":"great_cardiac_vein","name":"Great cardiac vein","prompts":["Great cardiac vein"],"objects":["Great cardiac vein"],"dot":{"x":0.9138,"y":0.6726},"blurb":{"rows":[["Drains","The parts of the heart supplied by the left coronary artery."],["Course","Ascends in the anterior interventricular groove beside the anterior interventricular artery, then runs in the coronary groove with the circumflex artery."],["Empties into","Coronary sinus."]]}},{"id":"inferior_vena_cava","name":"Inferior vena cava","prompts":["Inferior vena cava"],"objects":["Inferior vena cava (thoracic part)"],"dot":{"x":0.2947,"y":0.9127},"blurb":{"rows":[["Drains","Lower limbs, pelvis, abdominal wall, kidneys, suprarenal glands, gonads, and liver. It is formed at L5 by the two common iliac veins."],["Course","Ascends on the right of the aorta and behind the liver and passes through the diaphragm at T8."],["Empties into","Right atrium."]],"hy":["Levels of the openings in the diaphragm: inferior vena cava at T8, esophagus at T10, aorta at T12 (I ate ten eggs at twelve)."]}},{"id":"descending_aorta","name":"Descending (thoracic) aorta","prompts":["Descending (thoracic) aorta"],"objects":["Thoracic aorta","Abdominal aorta"],"dot":{"x":0.4224,"y":0.9343},"blurb":{"rows":[["Arises from","Continues the aortic arch at about T4."],["Course","Descends in the posterior mediastinum, at first on the left of the vertebral column and then in front of it, and passes through the diaphragm at T12."],["Supplies","Chest wall (posterior intercostal arteries), bronchi, esophagus, and pericardium."]],"hy":["In a sudden deceleration injury the aorta tears most often at the isthmus, just beyond the origin of the left subclavian artery."]}},{"id":"right_internal_jugular_vein","name":"Right internal jugular vein","prompts":["Right internal jugular vein"],"objects":["Internal jugular vein.r"],"dot":{"x":0.2013,"y":0.0283},"blurb":{"rows":[["Drains","Brain, face, and neck. It begins at the jugular foramen as the continuation of the sigmoid sinus."],["Course","Descends in the carotid sheath, lateral to the carotid arteries and the vagus nerve."],["Empties into","Joins the subclavian vein to form the brachiocephalic vein."]],"hy":["The height of its pulsation (jugular venous pressure) reflects right atrial pressure and rises in right heart failure."]}},{"id":"left_internal_jugular_vein","name":"Left internal jugular vein","prompts":["Left internal jugular vein"],"objects":["Internal jugular vein.l"],"dot":{"x":0.5185,"y":0.0227},"blurb":{"rows":[["Drains","Brain, face, and neck. It begins at the jugular foramen as the continuation of the sigmoid sinus."],["Course","Descends in the carotid sheath, lateral to the carotid arteries and the vagus nerve."],["Empties into","Joins the subclavian vein to form the brachiocephalic vein."]],"hy":["The height of its pulsation (jugular venous pressure) reflects right atrial pressure and rises in right heart failure."]}},{"id":"right_subclavian_vein","name":"Right subclavian vein","prompts":["Right subclavian vein"],"objects":["Right subclavian vein"],"dot":{"x":0.0931,"y":0.0772},"blurb":{"rows":[["Drains","Upper limb. It continues the axillary vein at the outer border of the first rib."],["Course","Crosses the first rib in front of the anterior scalene muscle."],["Empties into","Joins the internal jugular vein to form the brachiocephalic vein."]],"hy":["The thoracic duct empties at the junction of the left subclavian and left internal jugular veins.","A common site for a central venous catheter; the lung apex lies just behind, so a pneumothorax is a risk."]}},{"id":"left_subclavian_vein","name":"Left subclavian vein","prompts":["Left subclavian vein"],"objects":["Left subclavian vein"],"dot":{"x":0.7302,"y":0.0813},"blurb":{"rows":[["Drains","Upper limb. It continues the axillary vein at the outer border of the first rib."],["Course","Crosses the first rib in front of the anterior scalene muscle."],["Empties into","Joins the internal jugular vein to form the brachiocephalic vein."]],"hy":["The thoracic duct empties at the junction of the left subclavian and left internal jugular veins.","A common site for a central venous catheter; the lung apex lies just behind, so a pneumothorax is a risk."]}},{"id":"right_brachiocephalic_vein","name":"Right brachiocephalic vein","prompts":["Right brachiocephalic vein"],"objects":["Right brachiocephalic vein"],"dot":{"x":0.2221,"y":0.1298},"blurb":{"rows":[["Drains","Head, neck, and upper limb of its side. It is formed behind the sternoclavicular joint by the internal jugular and subclavian veins."],["Course","The left vein is longer and crosses behind the manubrium, in front of the branches of the aortic arch."],["Empties into","The two brachiocephalic veins join to form the superior vena cava."]]}},{"id":"left_brachiocephalic_vein","name":"Left brachiocephalic vein","prompts":["Left brachiocephalic vein"],"objects":["Left brachiocephalic vein"],"dot":{"x":0.3787,"y":0.1432},"blurb":{"rows":[["Drains","Head, neck, and upper limb of its side. It is formed behind the sternoclavicular joint by the internal jugular and subclavian veins."],["Course","The left vein is longer and crosses behind the manubrium, in front of the branches of the aortic arch."],["Empties into","The two brachiocephalic veins join to form the superior vena cava."]]}},{"id":"right_common_carotid_artery","name":"Right common carotid artery","prompts":["Right common carotid artery"],"objects":["Right common carotid artery"],"dot":{"x":0.2577,"y":0.0297},"blurb":{"rows":[["Arises from","On the right, the brachiocephalic trunk. On the left, the aortic arch directly."],["Course","Ascends in the carotid sheath with the internal jugular vein and the vagus nerve and divides at about the upper border of the thyroid cartilage into the internal and external carotid arteries."],["Supplies","Head and neck, through its two end branches. It has no other branches."]],"hy":["At its division lie the carotid sinus, a baroreceptor, and the carotid body, a chemoreceptor; both signal mainly through the glossopharyngeal nerve."]}},{"id":"right_marginal_branch","name":"Right marginal branch (of right coronary artery)","prompts":["Right marginal branch (of right coronary artery)"],"objects":["Right marginal branch (of right coronary artery)"],"dot":{"x":0.1808,"y":0.8449},"blurb":{"rows":[["Arises from","Right coronary artery, near the lower border of the heart."],["Course","Runs along the lower border of the heart toward the apex."],["Supplies","Right ventricle."]]}},{"id":"diagonal_branch_of_lad","name":"Diagonal branch (of left anterior descending)","prompts":["Diagonal branch (of left anterior descending)"],"objects":["Diagonal branch (of left anterior descending)"],"dot":{"x":0.9281,"y":0.8094},"blurb":{"rows":[["Arises from","Anterior interventricular artery (left anterior descending)."],["Course","Runs obliquely down across the front of the left ventricle."],["Supplies","Anterolateral wall of the left ventricle."]]}}],"caption":"Heart, anterior view"}};</script>
 <script>
 (function () {
   "use strict";
@@ -459,6 +495,8 @@ a.btn { display: inline-block; text-decoration: none; }
   var Q = null;                // the quiz on screen
   var tick = null;             // clock interval
   var PHONE = window.matchMedia("(max-width: 820px)");
+  var MODE = "study";          // "study" (find the named structure) or "test" (name the highlighted one)
+  var NAMES = null;            // every answer name on the site (data/names.json), for the dropdown in Test
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -652,6 +690,268 @@ a.btn { display: inline-block; text-decoration: none; }
   function mainEntry() { return (AQ.quiz && byslug.get(AQ.quiz)) || (Q && Q.entry); }
   $("look-natural").addEventListener("click", function () { if (lookNow() !== "natural") showLook("natural", true); });
   $("look-color").addEventListener("click", function () { if (lookNow() !== "color") showLook("color", true); });
+  // STUDY OR TEST (Colin, 2026-11-26: "a feature for every quiz where you can select between study mode and test
+  // mode. study mode is how the quizzes are now but test mode is where the anatomy structure is highlighted yellow
+  // and you have a space to type what it is, with a dropdown menu"). The switch sits above the picture; the choice
+  // is remembered. Switching in the middle of a quiz goes back to Start.
+  //   Test: the structures come one at a time in a random order. The one asked for is tinted yellow with a dark
+  //   edge and its dot is ringed. The name is typed; the dropdown offers every answer name on the SITE that fits
+  //   what has been typed (not just this quiz's short list, which would hand over the answers). One try each: a
+  //   wrong name, or "I don't know", shows the answer and counts as missed. At the end: how many were named.
+  function setMode(m, remember) {
+    MODE = m === "test" ? "test" : "study";
+    if (remember) store("aq.mode", MODE);
+    $("mode-study").setAttribute("aria-pressed", String(MODE === "study"));
+    $("mode-test").setAttribute("aria-pressed", String(MODE === "test"));
+    if (MODE === "test" && AQ.quiz) loadNames();
+    if (Q) restart();
+  }
+  function restart() {                                   // back to the Start button of the quiz on screen
+    stopClock(); closeBlurb(); clearGlow(); clearTag();
+    if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
+    Q.run = (Q.run || 0) + 1;
+    Q.state = "ready";
+    Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = true; });
+    renderReady();
+  }
+  $("mode-study").addEventListener("click", function () { if (MODE !== "study") setMode("study", true); });
+  $("mode-test").addEventListener("click", function () { if (MODE !== "test") setMode("test", true); });
+  function loadNames() {
+    if (NAMES || loadNames.asked) return;
+    loadNames.asked = true;
+    fetch(ROOT + "data/names.json" + (AQ.build ? "?v=" + encodeURIComponent(AQ.names || AQ.build) : ""))
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) {
+        var list = (d && Array.isArray(d.names) ? d.names : []).filter(function (n) { return typeof n === "string" && n; });
+        if (list.length) { NAMES = list; if (Q) Q.pool = null; }
+      })
+      .catch(function () { loadNames.asked = false; });   // until it arrives the dropdown offers this quiz's own names
+  }
+  // A name as it is compared: small letters and digits, one space between words.
+  function norm(t) {
+    t = String(t === undefined || t === null ? "" : t).toLowerCase();
+    if (t.normalize) t = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return t.replace(/[^a-z0-9]+/g, " ").replace(/^ +| +$/g, "");
+  }
+  function sideless(n) { return n.replace(/^(right|left) /, ""); }
+  // What counts as the name of a structure: its name; the name with a bracketed part left out or taken alone
+  // ("Calcaneal (Achilles) tendon": calcaneal tendon, achilles tendon); any other prompt the scene carries.
+  function accepted(s) {
+    var out = [];
+    function add(t) { t = norm(t); if (t && out.indexOf(t) === -1) out.push(t); }
+    [s.name].concat(Array.isArray(s.prompts) ? s.prompts : []).forEach(function (name) {
+      if (typeof name !== "string") return;
+      add(name);
+      var m = /^(.*?)\s*\(([^)]*)\)\s*(.*)$/.exec(name);
+      if (m) { add(m[1] + " " + m[3]); add(m[3] ? m[2] + " " + m[3] : m[2]); }
+    });
+    return out;
+  }
+  // "right": the name fits. "side": the quiz shows both sides and the name lacks one, so it is asked for and
+  // nothing is counted. A quiz that shows one side takes the name with or without a side.
+  function judgeName(s, text) {
+    var got = norm(text), acc = accepted(s);
+    if (!got) return "empty";
+    if (acc.indexOf(got) !== -1) return "right";
+    var own = norm(s.name);
+    if (sideless(own) === own) return acc.indexOf(sideless(got)) !== -1 ? "right" : "wrong";
+    return acc.map(sideless).indexOf(got) !== -1 ? "side" : "wrong";
+  }
+  function pool() {
+    if (Q.pool) return Q.pool;
+    var seen = {}, list = [];
+    (NAMES || []).concat(Q.list.map(function (s) { return s.name; })).forEach(function (n) {
+      var k = norm(n);
+      if (k && !seen[k]) { seen[k] = 1; list.push({ name: n, n: k, words: k.split(" ") }); }
+    });
+    list.sort(function (a, b) { return a.n < b.n ? -1 : a.n > b.n ? 1 : 0; });
+    return (Q.pool = list);
+  }
+  // The names that fit what has been typed: every typed word begins a word of the name. An exact name comes
+  // first, then names that begin with what was typed, then the rest, each group in alphabetical order.
+  function matches(text) {
+    var q = norm(text), all = pool();
+    if (!q) return all.slice();
+    var words = q.split(" "), hits = [];
+    all.forEach(function (it) {
+      var fits = words.every(function (w) { return it.words.some(function (x) { return x.indexOf(w) === 0; }); });
+      if (!fits && it.n.indexOf(q) === -1) return;
+      hits.push({ it: it, rank: it.n === q ? 0 : it.n.indexOf(q) === 0 ? 1 : fits ? 2 : 3 });
+    });
+    hits.sort(function (a, b) { return a.rank - b.rank || (a.it.n < b.it.n ? -1 : a.it.n > b.it.n ? 1 : 0); });
+    return hits.slice(0, 60).map(function (h) { return h.it; });
+  }
+
+  function buildAsk(p) {
+    var line = el("p", "ask-line", "Name the highlighted structure"); line.id = "ask-line";
+    p.appendChild(line);
+    var box = el("div", "answer");
+    var inp = el("input"); inp.type = "text"; inp.id = "answer";
+    inp.setAttribute("role", "combobox"); inp.setAttribute("aria-autocomplete", "list"); inp.setAttribute("aria-expanded", "false");
+    inp.setAttribute("aria-controls", "answer-list"); inp.setAttribute("aria-labelledby", "ask-line");
+    inp.setAttribute("autocomplete", "off"); inp.setAttribute("autocapitalize", "none"); inp.setAttribute("autocorrect", "off");
+    inp.setAttribute("enterkeyhint", "done"); inp.spellcheck = false; inp.placeholder = "Type its name";
+    var drop = el("button", "drop"); drop.type = "button"; drop.id = "answer-drop"; drop.tabIndex = -1; drop.setAttribute("aria-label", "Show all names");
+    var ul = el("ul"); ul.id = "answer-list"; ul.setAttribute("role", "listbox"); ul.setAttribute("aria-label", "Names"); ul.hidden = true;
+    box.appendChild(inp); box.appendChild(drop); box.appendChild(ul);
+    p.appendChild(box);
+    var v = el("p", "verdict"); v.id = "verdict";
+    p.appendChild(v);
+    var act = el("div", "actions");
+    var skip = el("button", "btn ghost", "I don't know"); skip.type = "button"; skip.id = "skip";
+    var next = el("button", "btn", "Next"); next.type = "button"; next.id = "next-one"; next.hidden = true;
+    act.appendChild(skip); act.appendChild(next);
+    p.appendChild(act);
+
+    var shown = [], at = -1;
+    function paintList(list) {
+      // A name is marked ready for Enter only when there is no doubt which one is meant (the only one that fits,
+      // or exactly what was typed): with one try per structure, Enter must never send a name he did not pick.
+      shown = list; at = list.length === 1 || (list.length && list[0].n === norm(inp.value)) ? 0 : -1;
+      ul.textContent = "";
+      list.forEach(function (it, k) {
+        var li = el("li", null, it.name); li.id = "opt-" + k; li.setAttribute("role", "option");
+        li.addEventListener("mousedown", function (e) { e.preventDefault(); });      // the typing box keeps the cursor
+        li.addEventListener("click", function () { choose(it.name); });
+        ul.appendChild(li);
+      });
+      ul.hidden = !list.length; ul.scrollTop = 0;
+      inp.setAttribute("aria-expanded", String(!!list.length));
+      mark();
+    }
+    function mark() {
+      Array.from(ul.children).forEach(function (li, k) { li.setAttribute("aria-selected", String(k === at)); });
+      if (at > -1 && ul.children[at]) {
+        inp.setAttribute("aria-activedescendant", "opt-" + at);
+        var li = ul.children[at];
+        if (li.offsetTop < ul.scrollTop) ul.scrollTop = li.offsetTop;
+        else if (li.offsetTop + li.offsetHeight > ul.scrollTop + ul.clientHeight) ul.scrollTop = li.offsetTop + li.offsetHeight - ul.clientHeight;
+      } else inp.removeAttribute("aria-activedescendant");
+    }
+    function closeList() { shown = []; at = -1; ul.hidden = true; ul.textContent = ""; inp.setAttribute("aria-expanded", "false"); inp.removeAttribute("aria-activedescendant"); }
+    function open() { return !ul.hidden; }
+    function choose(name) { inp.value = name; closeList(); answer(name); }
+    Q.closeList = closeList;
+    inp.addEventListener("input", function () {
+      if (Q.answered) return;
+      hint("");
+      if (norm(inp.value)) paintList(matches(inp.value)); else closeList();
+    });
+    inp.addEventListener("keydown", function (e) {
+      if (Q.answered) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        if (!open()) { paintList(matches(inp.value)); return; }
+        if (!shown.length) return;
+        at = at === -1 ? (e.key === "ArrowDown" ? 0 : shown.length - 1) : (at + (e.key === "ArrowDown" ? 1 : shown.length - 1)) % shown.length;
+        mark();
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (open() && at > -1) return choose(shown[at].name);
+        var typed = norm(inp.value);
+        if (!typed) return;
+        var same = pool().filter(function (it) { return it.n === typed; })[0];
+        if (same) return choose(same.name);
+        var list = matches(inp.value);
+        if (list.length) paintList(list);
+        hint(list.length ? "Choose a name from the list." : "No name on this site fits that. Try another word.");
+      } else if (e.key === "Escape" && open()) { e.stopPropagation(); closeList(); }
+    });
+    inp.addEventListener("blur", function () { setTimeout(function () { if (document.activeElement !== inp) closeList(); }, 120); });
+    drop.addEventListener("mousedown", function (e) { e.preventDefault(); });
+    drop.addEventListener("click", function () {
+      if (Q.answered) return;
+      if (open()) closeList(); else { paintList(matches(norm(inp.value) ? inp.value : "")); if (!PHONE.matches) inp.focus({ preventScroll: true }); }
+    });
+    skip.addEventListener("click", function () { answer(null); });
+    next.addEventListener("click", advance);
+  }
+  function hint(text) { var v = $("verdict"); if (!v) return; v.className = "verdict hint"; v.textContent = text; }
+  function askNow() {
+    var s = Q.order[Q.i], inp = $("answer");
+    Q.answered = false;
+    Q.dots.forEach(function (d, id) { d.classList.toggle("asked", id === s.id); });
+    clearTag();
+    if (Q.hit) glow(s, true); else clearGlow();           // the click map may still be on its way: loadHitmap() tints then
+    inp.value = ""; inp.disabled = false; inp.className = "";
+    $("answer-drop").disabled = false;
+    if (Q.closeList) Q.closeList();
+    hint("");
+    $("skip").hidden = false; $("next-one").hidden = true;
+    if (!PHONE.matches) inp.focus({ preventScroll: true });
+    intoView(s);
+    say("Structure " + (Q.i + 1) + " of " + Q.order.length + " is highlighted. Type its name.");
+  }
+  // The dot of the structure asked for is brought into view when it is off the screen (a tall picture, a phone).
+  function intoView(s) {
+    var d = Q.dots.get(s.id); if (!d) return;
+    var r = d.getBoundingClientRect();
+    var top = (PHONE.matches ? $("panel") : document.querySelector(".bar")).getBoundingClientRect().bottom, bottom = window.innerHeight;
+    if (r.top < top + 24 || r.bottom > bottom - 24) window.scrollBy(0, (r.top + r.bottom) / 2 - (top + bottom) / 2);
+  }
+  function answer(text) {                                 // text: the name given, or null for "I don't know"
+    if (!Q || Q.state !== "play" || Q.mode !== "test" || Q.answered) return;
+    var s = Q.order[Q.i], d = Q.dots.get(s.id), inp = $("answer"), v = $("verdict");
+    var how = text === null ? "wrong" : judgeName(s, text);
+    if (how === "empty") return;
+    if (how === "side") { hint("Right or left?"); if (!PHONE.matches) inp.focus({ preventScroll: true }); say("Right or left?"); return; }
+    Q.answered = true;
+    if (Q.closeList) Q.closeList();
+    inp.disabled = true; $("answer-drop").disabled = true; $("skip").hidden = true;
+    if (PHONE.matches) inp.blur();
+    if (how === "right") {
+      Q.right++;
+      d.classList.add("found"); inp.className = "ok";
+      v.className = "verdict ok"; v.textContent = "Correct";
+      say("Correct.");
+      var mine = Q, run = Q.run;
+      Q.flash = setTimeout(function () { if (Q === mine && Q.run === run && Q.state === "play") advance(); }, 750);
+    } else {
+      Q.misses++;
+      d.classList.add("missed"); inp.className = text === null ? "" : "no";
+      v.className = "verdict no"; v.textContent = "";
+      if (text !== null) { v.appendChild(el("span", "lead", "Not quite.")); v.appendChild(document.createTextNode(" ")); }
+      v.appendChild(document.createTextNode("Answer: ")); v.appendChild(el("b", null, s.name));
+      tagAt(s);
+      var nx = $("next-one"); nx.hidden = false; nx.textContent = Q.i + 1 >= Q.order.length ? "Finish" : "Next";
+      nx.focus({ preventScroll: true });
+      say("The answer is " + s.name + ".");
+    }
+    paintCount();
+  }
+  function advance() {
+    if (!Q || Q.state !== "play" || Q.mode !== "test" || !Q.answered) return;
+    if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
+    var d = Q.dots.get(Q.order[Q.i].id); if (d) d.classList.remove("asked");
+    Q.i++;
+    if (Q.i >= Q.order.length) return finish();
+    paintCount();
+    askNow();
+  }
+  function finishTest(ms) {
+    clearGlow(); clearTag();
+    var n = Q.order.length, key = "aq.test." + Q.entry.slug, prev = store(key);
+    var had = prev && isFinite(prev.right) && isFinite(prev.n) && prev.n > 0;
+    var isBest = !had || Q.right / n > prev.right / prev.n || (Q.right / n === prev.right / prev.n && ms < prev.ms);
+    if (isBest) store(key, { right: Q.right, n: n, ms: Math.round(ms) });
+    Q.dots.forEach(function (d) { d.classList.remove("asked"); d.disabled = false; });
+    var p = $("panel"); p.textContent = "";
+    p.appendChild(el("p", "final", Q.right + " / " + n));
+    p.appendChild(el("p", "line", (Q.right === n ? "Every structure named" : Q.right + " of " + n + " named") + " in " + clockText(ms, true) + "."));
+    if (had) p.appendChild(el("p", "line quiet", isBest ? "New best." : "Your best: " + prev.right + " of " + prev.n));
+    if (Q.right < n) p.appendChild(el("p", "line quiet", "The ones you missed are marked in red."));
+    if (Q.list.some(hasBlurb)) { var tip = el("p", "line quiet", "Click any dot to read about it."); tip.id = "blurb-tip"; p.appendChild(tip); }
+    var act = el("div", "actions");
+    var again = el("button", "btn", "Test again"); again.type = "button"; again.id = "again";
+    again.addEventListener("click", begin);
+    act.appendChild(again);
+    var k = order.indexOf(mainEntry()), next = k > -1 && order.length > 1 ? order[(k + 1) % order.length] : null;
+    if (next) { var nx = el("a", "btn ghost", "Next quiz"); nx.id = "next"; nx.href = quizHref(next); act.appendChild(nx); }
+    p.appendChild(act);
+    say(Q.right + " of " + n + " named.");
+    again.focus({ preventScroll: true });
+  }
+
   // A problem on a quiz page is said ON that page; it never swaps the page for the home view (Colin,
   // 2026-11-25: a quiz "took me to that old landing page" while the site was being updated).
   function quizProblem(text) {
@@ -731,19 +1031,29 @@ a.btn { display: inline-block; text-decoration: none; }
     go.disabled = !Q.loaded;
     go.addEventListener("click", begin);
     p.appendChild(go);
-    var best = store("aq.time." + Q.entry.slug);
-    if (best && isFinite(best.ms)) p.appendChild(el("p", "line quiet", "Your best: " + clockText(best.ms, true)));
+    if (MODE === "test") {
+      var top = store("aq.test." + Q.entry.slug);
+      if (top && isFinite(top.right) && isFinite(top.n)) p.appendChild(el("p", "line quiet", "Your best: " + top.right + " of " + top.n));
+    } else {
+      var best = store("aq.time." + Q.entry.slug);
+      if (best && isFinite(best.ms)) p.appendChild(el("p", "line quiet", "Your best: " + clockText(best.ms, true)));
+    }
     if (Q.loaded) go.focus({ preventScroll: true });
   }
 
   function begin() {
     if (!Q || !Q.loaded) return;
-    Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start");
+    Q.mode = MODE; Q.run = (Q.run || 0) + 1; Q.right = 0; Q.answered = false;
+    if (Q.flash) { clearTimeout(Q.flash); Q.flash = null; }
+    Q.state = "play"; Q.order = shuffle(Q.list.slice()); Q.i = 0; Q.misses = 0; track("quiz_start", { mode: Q.mode });
     clearGlow(); clearTag();
-    Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = false; });
+    Q.dots.forEach(function (d) { d.className = "dot"; d.disabled = Q.mode === "test"; });   // in Test nothing is clicked on the picture
     var p = $("panel"); p.textContent = ""; p.classList.remove("reading");
-    var w = el("p", "word live"); w.id = "word"; w.setAttribute("aria-live", "polite");
-    p.appendChild(w);
+    if (Q.mode === "test") buildAsk(p);
+    else {
+      var w = el("p", "word live"); w.id = "word"; w.setAttribute("aria-live", "polite");
+      p.appendChild(w);
+    }
     var m = el("div", "meter");
     var c = el("span", "clock", "0:00"); c.id = "clock";
     var n = el("span", "count"); n.id = "count";
@@ -751,7 +1061,8 @@ a.btn { display: inline-block; text-decoration: none; }
     m.appendChild(c); m.appendChild(n); m.appendChild(x);
     p.appendChild(m);
     Q.t0 = performance.now();
-    paintWord(); paintCount();
+    if (Q.mode === "test") askNow(); else paintWord();
+    paintCount();
     stopClock();
     tick = setInterval(paintClock, 200);
   }
@@ -764,14 +1075,14 @@ a.btn { display: inline-block; text-decoration: none; }
   }
   function paintCount() {
     $("count").textContent = Q.i + " of " + Q.order.length;
-    $("misses").textContent = Q.misses ? Q.misses + (Q.misses === 1 ? " miss" : " misses") : "";
+    $("misses").textContent = !Q.misses ? "" : Q.mode === "test" ? Q.misses + " missed" : Q.misses + (Q.misses === 1 ? " miss" : " misses");
   }
   function bump(node, cls) { node.classList.remove("pop", "shake"); void node.offsetWidth; node.classList.add(cls); }
 
   function tapDot(s) {
     if (!Q) return;
     if (Q.state === "done") return review(s);
-    if (Q.state !== "play") return;
+    if (Q.state !== "play" || Q.mode === "test") return;
     var want = Q.order[Q.i], d = Q.dots.get(s.id);
     if (s.id === want.id) {
       d.classList.remove("wrong"); d.classList.add("found"); d.disabled = true;
@@ -794,7 +1105,8 @@ a.btn { display: inline-block; text-decoration: none; }
   function finish() {
     var ms = performance.now() - Q.t0;
     stopClock();
-    Q.state = "done"; track("quiz_complete", { misses: Q.misses });
+    Q.state = "done"; track("quiz_complete", { misses: Q.misses, mode: Q.mode });
+    if (Q.mode === "test") return finishTest(ms);
     var key = "aq.time." + Q.entry.slug, prev = store(key);
     var isBest = !prev || !isFinite(prev.ms) || ms < prev.ms;
     if (isBest) {
@@ -881,6 +1193,7 @@ a.btn { display: inline-block; text-decoration: none; }
       x.drawImage(im, 0, 0, c.width, c.height);
       try { Q.hit = { w: c.width, h: c.height, data: x.getImageData(0, 0, c.width, c.height).data }; } catch (e) { Q.hit = null; }
       var g = $("glow"); g.width = c.width; g.height = c.height;
+      if (Q.state === "play" && Q.mode === "test" && !Q.answered) glow(Q.order[Q.i], true);   // Test was started before the click map arrived
     };
     im.src = src;
   }
@@ -905,7 +1218,7 @@ a.btn { display: inline-block; text-decoration: none; }
     Q.masks.set(s.id, m);
     return m;
   }
-  function glow(s) {
+  function glow(s, edge) {
     var g = $("glow"), img = $("plate");
     if (!Q || !Q.hit) return;
     var m = maskFor(s), x = g.getContext("2d"), W = g.width, H = g.height;
@@ -932,6 +1245,16 @@ a.btn { display: inline-block; text-decoration: none; }
       x.drawImage(m, 0, 0);
       x.globalCompositeOperation = "source-in";
       x.fillStyle = "rgba(255, 217, 26, 0.55)"; x.fillRect(0, 0, W, H);
+    }
+    if (edge) {
+      // Test: a dark edge round the structure asked for, so that a yellow nerve, a pale tendon or a vessel a few
+      // pixels wide stands out as clearly as a red muscle does. The edge lies outside the structure's own pixels.
+      var t = document.createElement("canvas"); t.width = W; t.height = H;
+      var y = t.getContext("2d"), k = Math.max(2, Math.round(Math.max(W, H) / 450));
+      for (var a = 0; a < 12; a++) y.drawImage(m, Math.round(Math.cos(a * Math.PI / 6) * k), Math.round(Math.sin(a * Math.PI / 6) * k));
+      y.globalCompositeOperation = "source-in"; y.fillStyle = "#000000"; y.fillRect(0, 0, W, H);
+      y.globalCompositeOperation = "destination-out"; y.drawImage(m, 0, 0);
+      x.globalCompositeOperation = "destination-over"; x.drawImage(t, 0, 0);
     }
     x.globalCompositeOperation = "source-over";
     g.classList.add("on");
@@ -983,6 +1306,7 @@ a.btn { display: inline-block; text-decoration: none; }
   window.addEventListener("hashchange", route);
 
   setMenu(PHONE.matches ? false : store("aq.menu") !== "closed");
+  setMode(store("aq.mode") === "test" ? "test" : "study", false);
   requestAnimationFrame(function () { requestAnimationFrame(function () { $("shell").classList.remove("booting"); }); });
 
   // A quiz page starts its quiz at once from what it carries; the menu arrives after.
