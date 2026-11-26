@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T03:39:53+00:00",
+ "generated": "2026-11-26T04:14:52+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -690,6 +690,21 @@
    "structures": 12,
    "path": "scenes/cv_heart_great_vessels_posterior",
    "url": "heart-chambers-coronary-vessels-posterior"
+  },
+  {
+   "id": "cv_azygos_thoracic_aorta_anterior",
+   "title": "Posterior mediastinum: aorta, azygos vein and esophagus (anterior)",
+   "region": "thorax",
+   "lab": "Mediastinum",
+   "view": "anterior",
+   "nav": [
+    "Cardiovascular System",
+    "Thorax",
+    "Posterior Mediastinum"
+   ],
+   "structures": 20,
+   "path": "scenes/cv_azygos_thoracic_aorta_anterior",
+   "url": "posterior-mediastinum-aorta-azygos-vein-esophagus-anterior"
   },
   {
    "id": "sys_abdominal_aorta_branches_anterior",
