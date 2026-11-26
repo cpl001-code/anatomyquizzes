@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T14:10:51+00:00",
+ "generated": "2026-11-26T15:00:14+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -768,7 +768,7 @@
   },
   {
    "id": "cv_azygos_thoracic_aorta_anterior",
-   "title": "Posterior mediastinum: aorta, azygos vein and esophagus (anterior)",
+   "title": "Posterior mediastinum: aorta, azygos vein, and esophagus (anterior)",
    "region": "thorax",
    "lab": "Mediastinum",
    "view": "anterior",
@@ -873,7 +873,7 @@
   },
   {
    "id": "sys_stomach_pancreas_spleen_anterior",
-   "title": "Stomach, duodenum, pancreas and spleen (anterior, liver removed)",
+   "title": "Stomach, duodenum, pancreas, and spleen (anterior, liver removed)",
    "region": "abdomen",
    "lab": "Stomach, Pancreas and Spleen",
    "view": "anterior",
@@ -903,7 +903,7 @@
   },
   {
    "id": "sys_urinary_tract_anterior",
-   "title": "Kidneys, ureters and urinary bladder (anterior)",
+   "title": "Kidneys, ureters, and urinary bladder (anterior)",
    "region": "abdomen",
    "lab": "Kidneys and Urinary Tract",
    "view": "anterior",
