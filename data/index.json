@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T14:05:10+00:00",
+ "generated": "2026-11-26T14:10:51+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -242,36 +242,6 @@
    "url": "bones-foot-dorsal"
   },
   {
-   "id": "ul_acromioclavicular_coracoid_ligaments_anterior",
-   "title": "Ligaments, capsule and rotator cuff of the shoulder (anterior)",
-   "region": "upper_limb",
-   "lab": "Shoulder Joint, Scapular Muscles, and Posterior Arm",
-   "view": "anterior",
-   "nav": [
-    "Joints and Ligaments",
-    "Upper Body",
-    "Shoulder"
-   ],
-   "structures": 8,
-   "path": "scenes/ul_acromioclavicular_coracoid_ligaments_anterior",
-   "url": "ligaments-capsule-rotator-cuff-shoulder-anterior"
-  },
-  {
-   "id": "jt_pelvis_ligaments_posterior",
-   "title": "Ligaments of the pelvis and sacroiliac joint (posterior)",
-   "region": "pelvis_and_perineum",
-   "lab": "Pelvis",
-   "view": "posterior",
-   "nav": [
-    "Joints and Ligaments",
-    "Pelvis",
-    "Pelvic Ligaments"
-   ],
-   "structures": 7,
-   "path": "scenes/jt_pelvis_ligaments_posterior",
-   "url": "ligaments-pelvis-sacroiliac-joint-posterior"
-  },
-  {
    "id": "jt_vertebral_ligaments_lumbar_lateral",
    "title": "Ligaments of the lumbar vertebral column (right lateral)",
    "region": "back",
@@ -285,36 +255,6 @@
    "structures": 9,
    "path": "scenes/jt_vertebral_ligaments_lumbar_lateral",
    "url": "ligaments-lumbar-vertebral-column-right-lateral"
-  },
-  {
-   "id": "sys_hip_pelvis_ligaments_anterior",
-   "title": "Ligaments of the hip joint and pelvis (anterior)",
-   "region": "lower_limb",
-   "lab": "Hip Joint",
-   "view": "anterior",
-   "nav": [
-    "Joints and Ligaments",
-    "Lower Body",
-    "Hip"
-   ],
-   "structures": 11,
-   "path": "scenes/sys_hip_pelvis_ligaments_anterior",
-   "url": "ligaments-hip-joint-pelvis-anterior"
-  },
-  {
-   "id": "sys_knee_ligaments_posterior",
-   "title": "Ligaments and menisci of the knee (posterior)",
-   "region": "lower_limb",
-   "lab": "Knee Joint",
-   "view": "posterior",
-   "nav": [
-    "Joints and Ligaments",
-    "Lower Body",
-    "Knee"
-   ],
-   "structures": 7,
-   "path": "scenes/sys_knee_ligaments_posterior",
-   "url": "ligaments-menisci-knee-posterior"
   },
   {
    "id": "mu_extraocular_muscles_lateral_right",
