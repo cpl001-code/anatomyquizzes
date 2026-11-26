@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T01:50:31+00:00",
+ "generated": "2026-11-26T02:15:15+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -255,6 +255,21 @@
    "structures": 7,
    "path": "scenes/sys_knee_ligaments_posterior",
    "url": "ligaments-menisci-knee-posterior"
+  },
+  {
+   "id": "mu_neck_muscles_lateral_right",
+   "title": "Muscles of the neck (right lateral)",
+   "region": "head_and_neck",
+   "lab": "Neck",
+   "view": "lateral_right",
+   "nav": [
+    "Muscular System",
+    "Head and Neck",
+    "Neck"
+   ],
+   "structures": 12,
+   "path": "scenes/mu_neck_muscles_lateral_right",
+   "url": "muscles-neck-right-lateral"
   },
   {
    "id": "ul_pectoral_shoulder_superficial_muscles_anterior",
@@ -540,6 +555,36 @@
    "structures": 6,
    "path": "scenes/mu_leg_posterior_deep_muscles_posterior",
    "url": "deep-muscles-posterior-leg"
+  },
+  {
+   "id": "mu_foot_sole_superficial_muscles_plantar",
+   "title": "Muscles of the sole of the foot: first layer (plantar)",
+   "region": "lower_limb",
+   "lab": "Foot",
+   "view": "inferior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Foot"
+   ],
+   "structures": 9,
+   "path": "scenes/mu_foot_sole_superficial_muscles_plantar",
+   "url": "muscles-sole-foot-first-layer-plantar"
+  },
+  {
+   "id": "mu_foot_sole_deep_muscles_plantar",
+   "title": "Muscles of the sole of the foot: deep layers (plantar)",
+   "region": "lower_limb",
+   "lab": "Foot",
+   "view": "inferior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Foot"
+   ],
+   "structures": 8,
+   "path": "scenes/mu_foot_sole_deep_muscles_plantar",
+   "url": "muscles-sole-foot-deep-layers-plantar"
   },
   {
    "id": "sys_brain_gyri_lateral_left",
