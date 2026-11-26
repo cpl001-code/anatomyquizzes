@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T00:08:49+00:00",
+ "generated": "2026-11-26T00:32:34+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -60,6 +60,36 @@
    "structures": 10,
    "path": "scenes/sk_skull_bones_lateral_right",
    "url": "bones-skull-right-lateral"
+  },
+  {
+   "id": "sk_skull_bones_anterior",
+   "title": "Bones of the skull (anterior)",
+   "region": "head_and_neck",
+   "lab": "Skull",
+   "view": "anterior",
+   "nav": [
+    "Skeletal System",
+    "Head and Neck",
+    "Skull"
+   ],
+   "structures": 20,
+   "path": "scenes/sk_skull_bones_anterior",
+   "url": "bones-skull-anterior"
+  },
+  {
+   "id": "sk_upper_limb_bones_anterior",
+   "title": "Bones of the upper limb (anterior)",
+   "region": "upper_limb",
+   "lab": "Osteology of the Upper Limb",
+   "view": "anterior",
+   "nav": [
+    "Skeletal System",
+    "Upper Body",
+    "Upper Limb"
+   ],
+   "structures": 8,
+   "path": "scenes/sk_upper_limb_bones_anterior",
+   "url": "bones-upper-limb-anterior"
   },
   {
    "id": "ul_hand_bones_carpals_metacarpals_anterior",
@@ -135,6 +165,36 @@
    "structures": 6,
    "path": "scenes/sk_vertebral_column_lateral_right",
    "url": "regions-vertebral-column-right-lateral"
+  },
+  {
+   "id": "sk_lower_limb_bones_anterior",
+   "title": "Bones of the lower limb (anterior)",
+   "region": "lower_limb",
+   "lab": "Osteology of the Lower Limb",
+   "view": "anterior",
+   "nav": [
+    "Skeletal System",
+    "Lower Body",
+    "Lower Limb"
+   ],
+   "structures": 8,
+   "path": "scenes/sk_lower_limb_bones_anterior",
+   "url": "bones-lower-limb-anterior"
+  },
+  {
+   "id": "sk_foot_bones_dorsal",
+   "title": "Bones of the foot (dorsal)",
+   "region": "lower_limb",
+   "lab": "Foot",
+   "view": "superior",
+   "nav": [
+    "Skeletal System",
+    "Lower Body",
+    "Foot"
+   ],
+   "structures": 15,
+   "path": "scenes/sk_foot_bones_dorsal",
+   "url": "bones-foot-dorsal"
   },
   {
    "id": "ul_acromioclavicular_coracoid_ligaments_anterior",
@@ -375,6 +435,36 @@
    "structures": 9,
    "path": "scenes/mu_gluteal_deep_muscles_posterior",
    "url": "deep-muscles-gluteal-region-posterior"
+  },
+  {
+   "id": "mu_thigh_anterior_medial_muscles_anterior",
+   "title": "Muscles of the anterior and medial thigh (anterior)",
+   "region": "lower_limb",
+   "lab": "Anterior and Medial Thigh",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Thigh"
+   ],
+   "structures": 12,
+   "path": "scenes/mu_thigh_anterior_medial_muscles_anterior",
+   "url": "muscles-anterior-medial-thigh"
+  },
+  {
+   "id": "mu_thigh_deep_muscles_anterior",
+   "title": "Deep muscles of the anterior and medial thigh (anterior)",
+   "region": "lower_limb",
+   "lab": "Anterior and Medial Thigh",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Thigh"
+   ],
+   "structures": 7,
+   "path": "scenes/mu_thigh_deep_muscles_anterior",
+   "url": "deep-muscles-anterior-medial-thigh"
   },
   {
    "id": "mu_leg_posterior_deep_muscles_posterior",
