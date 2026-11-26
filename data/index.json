@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T22:40:29+00:00",
+ "generated": "2026-11-26T00:08:49+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -24,6 +24,7 @@
    "Lower Body"
   ],
   "parts": [
+   "Upper Limb",
    "Chest and Shoulder",
    "Shoulder",
    "Shoulder and Arm",
@@ -33,6 +34,7 @@
    "Forearm",
    "Wrist",
    "Hand",
+   "Lower Limb",
    "Hip",
    "Gluteal Region",
    "Thigh",
@@ -88,6 +90,21 @@
    "structures": 14,
    "path": "scenes/ul_hand_bones_phalanges_anterior",
    "url": "phalanges-hand-palmar"
+  },
+  {
+   "id": "sk_thoracic_cage_anterior",
+   "title": "Thoracic cage (anterior)",
+   "region": "thorax",
+   "lab": "Thoracic Wall",
+   "view": "anterior",
+   "nav": [
+    "Skeletal System",
+    "Thorax",
+    "Thoracic Cage"
+   ],
+   "structures": 12,
+   "path": "scenes/sk_thoracic_cage_anterior",
+   "url": "thoracic-cage-anterior"
   },
   {
    "id": "sk_bony_pelvis_anterior",
@@ -343,6 +360,36 @@
    "structures": 10,
    "path": "scenes/mu_back_deep_muscles_posterior",
    "url": "deep-muscles-back-erector-spinae-splenius-posterior"
+  },
+  {
+   "id": "mu_gluteal_deep_muscles_posterior",
+   "title": "Deep muscles of the gluteal region (posterior)",
+   "region": "lower_limb",
+   "lab": "Gluteal Region",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Gluteal Region"
+   ],
+   "structures": 9,
+   "path": "scenes/mu_gluteal_deep_muscles_posterior",
+   "url": "deep-muscles-gluteal-region-posterior"
+  },
+  {
+   "id": "mu_leg_posterior_deep_muscles_posterior",
+   "title": "Deep muscles of the posterior leg (posterior)",
+   "region": "lower_limb",
+   "lab": "Leg",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Leg"
+   ],
+   "structures": 6,
+   "path": "scenes/mu_leg_posterior_deep_muscles_posterior",
+   "url": "deep-muscles-posterior-leg"
   },
   {
    "id": "sys_brain_gyri_lateral_left",
