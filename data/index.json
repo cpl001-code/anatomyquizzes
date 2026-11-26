@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T04:14:52+00:00",
+ "generated": "2026-11-26T14:05:10+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -75,6 +75,51 @@
    "structures": 20,
    "path": "scenes/sk_skull_bones_anterior",
    "url": "bones-skull-anterior"
+  },
+  {
+   "id": "sk_skull_calvaria_superior",
+   "title": "Skull from above: bones and sutures (superior)",
+   "region": "head_and_neck",
+   "lab": "Skull",
+   "view": "superior",
+   "nav": [
+    "Skeletal System",
+    "Head and Neck",
+    "Skull"
+   ],
+   "structures": 4,
+   "path": "scenes/sk_skull_calvaria_superior",
+   "url": "skull-from-above-bones-sutures-superior"
+  },
+  {
+   "id": "sk_skull_posterior",
+   "title": "Skull from behind: bones and sutures (posterior)",
+   "region": "head_and_neck",
+   "lab": "Skull",
+   "view": "posterior",
+   "nav": [
+    "Skeletal System",
+    "Head and Neck",
+    "Skull"
+   ],
+   "structures": 5,
+   "path": "scenes/sk_skull_posterior",
+   "url": "skull-from-behind-bones-sutures-posterior"
+  },
+  {
+   "id": "sk_lower_teeth_superior",
+   "title": "Lower teeth and mandible (superior)",
+   "region": "head_and_neck",
+   "lab": "Skull",
+   "view": "superior",
+   "nav": [
+    "Skeletal System",
+    "Head and Neck",
+    "Teeth"
+   ],
+   "structures": 8,
+   "path": "scenes/sk_lower_teeth_superior",
+   "url": "lower-teeth-mandible-superior"
   },
   {
    "id": "sk_upper_limb_bones_anterior",
@@ -227,6 +272,21 @@
    "url": "ligaments-pelvis-sacroiliac-joint-posterior"
   },
   {
+   "id": "jt_vertebral_ligaments_lumbar_lateral",
+   "title": "Ligaments of the lumbar vertebral column (right lateral)",
+   "region": "back",
+   "lab": "Vertebral Column",
+   "view": "lateral_right",
+   "nav": [
+    "Joints and Ligaments",
+    "Back",
+    "Vertebral Column"
+   ],
+   "structures": 9,
+   "path": "scenes/jt_vertebral_ligaments_lumbar_lateral",
+   "url": "ligaments-lumbar-vertebral-column-right-lateral"
+  },
+  {
    "id": "sys_hip_pelvis_ligaments_anterior",
    "title": "Ligaments of the hip joint and pelvis (anterior)",
    "region": "lower_limb",
@@ -257,6 +317,21 @@
    "url": "ligaments-menisci-knee-posterior"
   },
   {
+   "id": "mu_extraocular_muscles_lateral_right",
+   "title": "Extraocular muscles of the right eye (lateral)",
+   "region": "head_and_neck",
+   "lab": "Orbit and Eye",
+   "view": "lateral_right",
+   "nav": [
+    "Muscular System",
+    "Head and Neck",
+    "Eye"
+   ],
+   "structures": 8,
+   "path": "scenes/mu_extraocular_muscles_lateral_right",
+   "url": "extraocular-muscles-right-eye-lateral"
+  },
+  {
    "id": "mu_neck_muscles_lateral_right",
    "title": "Muscles of the neck (right lateral)",
    "region": "head_and_neck",
@@ -270,6 +345,21 @@
    "structures": 12,
    "path": "scenes/mu_neck_muscles_lateral_right",
    "url": "muscles-neck-right-lateral"
+  },
+  {
+   "id": "mu_suboccipital_muscles_posterior",
+   "title": "Suboccipital muscles (posterior)",
+   "region": "head_and_neck",
+   "lab": "Neck",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Head and Neck",
+    "Neck"
+   ],
+   "structures": 6,
+   "path": "scenes/mu_suboccipital_muscles_posterior",
+   "url": "suboccipital-muscles-posterior"
   },
   {
    "id": "ul_pectoral_shoulder_superficial_muscles_anterior",
@@ -512,6 +602,21 @@
    "url": "deep-muscles-anterior-medial-thigh"
   },
   {
+   "id": "mu_popliteal_fossa_posterior",
+   "title": "Popliteal fossa (posterior)",
+   "region": "lower_limb",
+   "lab": "Popliteal Fossa",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Knee"
+   ],
+   "structures": 11,
+   "path": "scenes/mu_popliteal_fossa_posterior",
+   "url": "popliteal-fossa-posterior"
+  },
+  {
    "id": "mu_leg_anterior_lateral_muscles_anterior",
    "title": "Muscles of the anterior and lateral leg (anterior)",
    "region": "lower_limb",
@@ -660,6 +765,36 @@
    "structures": 12,
    "path": "scenes/sys_brain_gyri_medial",
    "url": "gyri-medial-surface-cerebral-hemisphere-view"
+  },
+  {
+   "id": "nv_ventricles_lateral_left",
+   "title": "Ventricles of the brain (lateral)",
+   "region": "head_and_neck",
+   "lab": "Brain",
+   "view": "lateral_left",
+   "nav": [
+    "Nervous System",
+    "Head and Neck",
+    "Brain"
+   ],
+   "structures": 4,
+   "path": "scenes/nv_ventricles_lateral_left",
+   "url": "ventricles-brain-lateral"
+  },
+  {
+   "id": "cv_upper_limb_veins_anterior",
+   "title": "Veins of the upper limb (anterior)",
+   "region": "upper_limb",
+   "lab": "Vessels of the Upper Limb",
+   "view": "anterior",
+   "nav": [
+    "Cardiovascular System",
+    "Upper Body",
+    "Upper Limb"
+   ],
+   "structures": 6,
+   "path": "scenes/cv_upper_limb_veins_anterior",
+   "url": "veins-upper-limb-anterior"
   },
   {
    "id": "sys_heart_great_vessels_anterior",
