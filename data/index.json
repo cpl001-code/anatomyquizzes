@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T00:32:34+00:00",
+ "generated": "2026-11-26T00:34:33+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -465,6 +465,21 @@
    "structures": 7,
    "path": "scenes/mu_thigh_deep_muscles_anterior",
    "url": "deep-muscles-anterior-medial-thigh"
+  },
+  {
+   "id": "mu_leg_posterior_superficial_muscles_posterior",
+   "title": "Superficial muscles of the posterior leg (posterior)",
+   "region": "lower_limb",
+   "lab": "Leg",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Leg"
+   ],
+   "structures": 5,
+   "path": "scenes/mu_leg_posterior_superficial_muscles_posterior",
+   "url": "superficial-muscles-posterior-leg"
   },
   {
    "id": "mu_leg_posterior_deep_muscles_posterior",
