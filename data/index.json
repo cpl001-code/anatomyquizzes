@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T17:13:13+00:00",
+ "generated": "2026-11-26T17:20:47+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -720,6 +720,21 @@
    "structures": 4,
    "path": "scenes/nv_ventricles_lateral_left",
    "url": "ventricles-brain-lateral"
+  },
+  {
+   "id": "sys_brachial_plexus_arm_nerves_anterior",
+   "title": "Brachial plexus (anterior)",
+   "region": "upper_limb",
+   "lab": "Brachial Plexus and Arm",
+   "view": "anterior",
+   "nav": [
+    "Nervous System",
+    "Upper Body",
+    "Shoulder"
+   ],
+   "structures": 38,
+   "path": "scenes/sys_brachial_plexus_arm_nerves_anterior",
+   "url": "brachial-plexus-anterior"
   },
   {
    "id": "cv_upper_limb_veins_anterior",
