@@ -159,6 +159,10 @@ a.btn { display: inline-block; text-decoration: none; }
 .dot[disabled] { cursor: default; }
 .tag { position: absolute; z-index: 2; transform: translate(12px, -50%); max-width: 46%; background: #ffffff; color: #000000; border: 1px solid #000000; font: 600 15px/1.2 var(--font); padding: 3px 8px; border-radius: 4px; pointer-events: none; text-wrap: balance; }
 .tag.left { transform: translate(-12px, -50%); }
+/* Level tags (owner, 2026-11-26: "label the vertebrae explicitly so that you know IMA is at L3"): a bone's name
+   written on the picture by the page. Not an answer: no dot, never takes a click, sits under the dots. */
+.lvl { position: absolute; transform: translate(-50%, -50%); pointer-events: none; user-select: none; white-space: nowrap; font: 700 clamp(10px, 2.2cqw, 13px)/1 var(--font); letter-spacing: 0.02em; color: #3a4652; background: rgba(255, 255, 255, 0.86); border-radius: 3px; padding: 2px 4px; }
+.lvl-note { margin: 6px 0 0; color: var(--muted); font: 400 13px/1.4 var(--font); }
 
 .panel { flex: 0 1 clamp(250px, 30vw, 440px); min-width: 0; position: sticky; top: calc(var(--bar) + 22px); padding-top: clamp(4px, 9vh, 92px); display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .word { margin: 0; font: 800 clamp(32px, 3.6vw, 56px)/1.08 var(--font); letter-spacing: -0.015em; text-wrap: balance; transform-origin: left center; }
@@ -265,6 +269,7 @@ a.btn { display: inline-block; text-decoration: none; }
   .quiz { flex-direction: column; gap: 0; }
   .figure { flex: none; width: 100%; max-width: none; }
   .caption { margin: 8px 16px 0; }
+  .lvl-note { margin: 6px 16px 0; }
   .more { margin: 44px 18px 0; }
   .panel { order: -1; flex: none; width: 100%; top: var(--bar); z-index: 10; background: var(--page); border-bottom: 1px solid var(--line); padding: 12px 16px; gap: 8px; }
   .word { font-size: clamp(25px, 7.2vw, 34px); }
@@ -324,6 +329,7 @@ a.btn { display: inline-block; text-decoration: none; }
           <img id="plate" alt="Anatomy image: Bones of the upper limb (anterior)" src="../../scenes/sk_upper_limb_bones_anterior/bones-upper-limb-anterior.fd34029b8a.webp" width="1240" height="2000">
           <canvas id="glow"></canvas>
         </div>
+        <p class="lvl-note" id="lvl-note" hidden>Gray tags mark the vertebrae.</p>
       </div>
       <div class="panel" id="panel"></div>
     </section>
@@ -893,7 +899,7 @@ a.btn { display: inline-block; text-decoration: none; }
     Q = { entry: entry, base: base, scene: scene, list: list, state: "ready", dots: new Map(), masks: new Map(),
           hit: null, tag: null, order: [], i: 0, misses: 0, t0: 0, flash: null, loaded: false, broken: false };
     var stage = $("stage"), img = $("plate");
-    Array.from(stage.querySelectorAll(".dot, .tag")).forEach(function (n) { n.remove(); });
+    Array.from(stage.querySelectorAll(".dot, .tag, .lvl")).forEach(function (n) { n.remove(); });
     var w = scene.size && scene.size[0], h = scene.size && scene.size[1];
     if (w > 0 && h > 0) {
       img.width = w; img.height = h;
@@ -911,6 +917,20 @@ a.btn { display: inline-block; text-decoration: none; }
     $("caption").textContent = typeof scene.caption === "string" ? scene.caption : "";
     clearGlow();
     loadHitmap(base + "/" + (safePath(String(scene.hitmap || "hitmap.png")) || "hitmap.png"));
+
+    // LEVEL TAGS: names the page writes on the picture ("L3" on a vertebra). Added before the dots, so a dot is
+    // never under a tag; they take no click and are not answers.
+    var levels = (Array.isArray(scene.levels) ? scene.levels : []).filter(function (L) {
+      return L && typeof L.text === "string" && L.text && isFinite(L.x) && isFinite(L.y);
+    }).slice(0, 40);
+    levels.forEach(function (L) {
+      var t = el("span", "lvl", L.text.slice(0, 6));
+      t.setAttribute("aria-hidden", "true");
+      t.style.left = (Math.min(1, Math.max(0, L.x)) * 100) + "%";
+      t.style.top = (Math.min(1, Math.max(0, L.y)) * 100) + "%";
+      stage.appendChild(t);
+    });
+    if ($("lvl-note")) $("lvl-note").hidden = !levels.length;
 
     var tall = (w > 0 && h > 0) ? h / w : 1;
     list.forEach(function (s, i) {
