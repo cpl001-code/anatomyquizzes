@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27T02:58:27+00:00",
+ "generated": "2026-11-27T18:04:43+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -41,9 +41,17 @@
    "Knee",
    "Leg",
    "Ankle",
-   "Foot"
+   "Foot",
+   "Electrode Placement",
+   "What the Leads See"
   ],
-  "show_empty_systems": true
+  "show_empty_systems": true,
+  "concept": {
+   "name": "Concept Quizzes",
+   "topics": [
+    "EKG"
+   ]
+  }
  },
  "scenes": [
   {
