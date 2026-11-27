@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T17:47:05+00:00",
+ "generated": "2026-11-27T01:10:21+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -272,6 +272,21 @@
    "url": "extraocular-muscles-right-eye-lateral"
   },
   {
+   "id": "mu_pterygoid_muscles_posterior",
+   "title": "Pterygoid muscles (posterior)",
+   "region": "head_and_neck",
+   "lab": "Infratemporal Fossa",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Head and Neck",
+    "Jaw"
+   ],
+   "structures": 9,
+   "path": "scenes/mu_pterygoid_muscles_posterior",
+   "url": "pterygoid-muscles-posterior"
+  },
+  {
    "id": "mu_neck_muscles_lateral_right",
    "title": "Muscles of the neck (right lateral)",
    "region": "head_and_neck",
@@ -467,6 +482,21 @@
    "url": "muscles-posterior-abdominal-wall-anterior"
   },
   {
+   "id": "mu_pelvic_floor_inferior",
+   "title": "Pelvic diaphragm: levator ani and coccygeus muscles (inferior)",
+   "region": "pelvis",
+   "lab": "Pelvis and Perineum",
+   "view": "inferior",
+   "nav": [
+    "Muscular System",
+    "Pelvis",
+    "Pelvic Floor"
+   ],
+   "structures": 9,
+   "path": "scenes/mu_pelvic_floor_inferior",
+   "url": "pelvic-diaphragm-levator-ani-coccygeus-muscles-inferior"
+  },
+  {
    "id": "mu_back_deep_muscles_posterior",
    "title": "Deep muscles of the back: erector spinae and splenius (posterior)",
    "region": "back_and_spinal_cord",
@@ -542,6 +572,21 @@
    "url": "deep-muscles-anterior-medial-thigh"
   },
   {
+   "id": "mu_femoral_triangle_anterior",
+   "title": "Femoral triangle (anterior)",
+   "region": "lower_limb",
+   "lab": "Anterior and Medial Thigh",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Thigh"
+   ],
+   "structures": 16,
+   "path": "scenes/mu_femoral_triangle_anterior",
+   "url": "femoral-triangle-anterior"
+  },
+  {
    "id": "mu_popliteal_fossa_posterior",
    "title": "Popliteal fossa (posterior)",
    "region": "lower_limb",
@@ -612,9 +657,24 @@
     "Lower Body",
     "Foot"
    ],
-   "structures": 9,
+   "structures": 3,
    "path": "scenes/mu_foot_sole_superficial_muscles_plantar",
    "url": "muscles-sole-foot-first-layer-plantar"
+  },
+  {
+   "id": "mu_foot_sole_third_layer_plantar",
+   "title": "Muscles of the sole of the foot: third layer (plantar)",
+   "region": "lower_limb",
+   "lab": "Foot",
+   "view": "inferior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Foot"
+   ],
+   "structures": 4,
+   "path": "scenes/mu_foot_sole_third_layer_plantar",
+   "url": "muscles-sole-foot-third-layer-plantar"
   },
   {
    "id": "mu_foot_sole_deep_muscles_plantar",
@@ -762,7 +822,7 @@
     "Thorax",
     "Heart"
    ],
-   "structures": 26,
+   "structures": 27,
    "path": "scenes/sys_heart_great_vessels_anterior",
    "url": "heart-great-vessels-anterior"
   },
@@ -855,6 +915,21 @@
    "structures": 12,
    "path": "scenes/sys_tracheobronchial_tree_anterior",
    "url": "trachea-bronchial-tree-anterior"
+  },
+  {
+   "id": "dg_pharynx_muscles_posterior",
+   "title": "Muscles of the pharynx (posterior)",
+   "region": "head_neck",
+   "lab": "Pharynx",
+   "view": "posterior",
+   "nav": [
+    "Digestive System",
+    "Head and Neck",
+    "Pharynx"
+   ],
+   "structures": 15,
+   "path": "scenes/dg_pharynx_muscles_posterior",
+   "url": "muscles-pharynx-posterior"
   },
   {
    "id": "sys_abdominal_viscera_anterior",
