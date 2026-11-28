@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27T18:04:43+00:00",
+ "generated": "2026-11-28T03:38:40+00:00",
  "menu": {
   "systems": [
    "Skeletal System",
@@ -220,6 +220,21 @@
    "url": "regions-vertebral-column-right-lateral"
   },
   {
+   "id": "sk_cervical_vertebrae_anterior",
+   "title": "Cervical vertebrae (anterior)",
+   "region": "back",
+   "lab": "Vertebral Column",
+   "view": "anterior",
+   "nav": [
+    "Skeletal System",
+    "Back",
+    "Vertebral Column"
+   ],
+   "structures": 7,
+   "path": "scenes/sk_cervical_vertebrae_anterior",
+   "url": "cervical-vertebrae-anterior"
+  },
+  {
    "id": "sk_lower_limb_bones_anterior",
    "title": "Bones of the lower limb (anterior)",
    "region": "lower_limb",
@@ -280,6 +295,21 @@
    "url": "extraocular-muscles-right-eye-lateral"
   },
   {
+   "id": "mu_extraocular_muscles_superior",
+   "title": "Extraocular muscles of the right eye (superior)",
+   "region": "head_and_neck",
+   "lab": "Orbit and Eye",
+   "view": "superior",
+   "nav": [
+    "Muscular System",
+    "Head and Neck",
+    "Eye"
+   ],
+   "structures": 7,
+   "path": "scenes/mu_extraocular_muscles_superior",
+   "url": "extraocular-muscles-right-eye-superior"
+  },
+  {
    "id": "mu_pterygoid_muscles_posterior",
    "title": "Pterygoid muscles (posterior)",
    "region": "head_and_neck",
@@ -325,6 +355,21 @@
    "url": "suboccipital-muscles-posterior"
   },
   {
+   "id": "mu_neck_hyoid_muscles_anterior",
+   "title": "Suprahyoid and infrahyoid muscles (anterior)",
+   "region": "head_neck",
+   "lab": "Neck",
+   "view": "anterior",
+   "nav": [
+    "Muscular System",
+    "Head and Neck",
+    "Neck"
+   ],
+   "structures": 16,
+   "path": "scenes/mu_neck_hyoid_muscles_anterior",
+   "url": "suprahyoid-infrahyoid-muscles-anterior"
+  },
+  {
    "id": "ul_pectoral_shoulder_superficial_muscles_anterior",
    "title": "Superficial muscles of the pectoral region and shoulder (anterior)",
    "region": "upper_limb",
@@ -350,7 +395,7 @@
     "Upper Body",
     "Chest and Shoulder"
    ],
-   "structures": 5,
+   "structures": 11,
    "path": "scenes/ul_pectoral_deep_axilla_muscles_anterior",
    "url": "deep-muscles-pectoral-region-axilla-anterior"
   },
@@ -440,7 +485,7 @@
     "Upper Body",
     "Forearm"
    ],
-   "structures": 10,
+   "structures": 11,
    "path": "scenes/ul_posterior_forearm_muscles_posterior",
    "url": "muscles-posterior-forearm"
   },
@@ -470,7 +515,7 @@
     "Upper Body",
     "Hand"
    ],
-   "structures": 5,
+   "structures": 6,
    "path": "scenes/ul_hand_deep_muscles_palmar",
    "url": "deep-muscles-palm"
   },
@@ -518,6 +563,21 @@
    "structures": 10,
    "path": "scenes/mu_back_deep_muscles_posterior",
    "url": "deep-muscles-back-erector-spinae-splenius-posterior"
+  },
+  {
+   "id": "mu_back_scapular_layers_posterior",
+   "title": "Muscles of the upper back in layers: trapezius, rhomboids, and levator scapulae (posterior)",
+   "region": "back",
+   "lab": "Back",
+   "view": "posterior",
+   "nav": [
+    "Muscular System",
+    "Back",
+    "Superficial Back"
+   ],
+   "structures": 17,
+   "path": "scenes/mu_back_scapular_layers_posterior",
+   "url": "muscles-upper-back-layers-trapezius-rhomboids-levator-scapulae-posterior"
   },
   {
    "id": "mu_gluteal_posterior_thigh_muscles_posterior",
@@ -670,6 +730,21 @@
    "url": "muscles-sole-foot-first-layer-plantar"
   },
   {
+   "id": "mu_foot_sole_second_layer_plantar",
+   "title": "Muscles of the sole of the foot: second layer (plantar)",
+   "region": "lower_limb",
+   "lab": "Foot",
+   "view": "inferior",
+   "nav": [
+    "Muscular System",
+    "Lower Body",
+    "Foot"
+   ],
+   "structures": 4,
+   "path": "scenes/mu_foot_sole_second_layer_plantar",
+   "url": "muscles-sole-foot-second-layer-plantar"
+  },
+  {
    "id": "mu_foot_sole_third_layer_plantar",
    "title": "Muscles of the sole of the foot: third layer (plantar)",
    "region": "lower_limb",
@@ -685,8 +760,8 @@
    "url": "muscles-sole-foot-third-layer-plantar"
   },
   {
-   "id": "mu_foot_sole_deep_muscles_plantar",
-   "title": "Muscles of the sole of the foot: deep layers (plantar)",
+   "id": "mu_foot_sole_fourth_layer_plantar",
+   "title": "Muscles of the sole of the foot: fourth layer (plantar)",
    "region": "lower_limb",
    "lab": "Foot",
    "view": "inferior",
@@ -695,9 +770,9 @@
     "Lower Body",
     "Foot"
    ],
-   "structures": 8,
-   "path": "scenes/mu_foot_sole_deep_muscles_plantar",
-   "url": "muscles-sole-foot-deep-layers-plantar"
+   "structures": 4,
+   "path": "scenes/mu_foot_sole_fourth_layer_plantar",
+   "url": "muscles-sole-foot-fourth-layer-plantar"
   },
   {
    "id": "sys_brain_gyri_lateral_left",
@@ -820,6 +895,21 @@
    "url": "veins-upper-limb-anterior"
   },
   {
+   "id": "cv_hand_arteries_palmar",
+   "title": "Arteries of the hand (palmar)",
+   "region": "upper_limb",
+   "lab": "Wrist Joint and Hand",
+   "view": "anterior",
+   "nav": [
+    "Cardiovascular System",
+    "Upper Body",
+    "Hand"
+   ],
+   "structures": 7,
+   "path": "scenes/cv_hand_arteries_palmar",
+   "url": "arteries-hand-palmar"
+  },
+  {
    "id": "sys_heart_great_vessels_anterior",
    "title": "Heart and great vessels (anterior)",
    "region": "thorax",
@@ -878,6 +968,36 @@
    "structures": 25,
    "path": "scenes/sys_abdominal_aorta_branches_anterior",
    "url": "abdominal-aorta-branches-anterior"
+  },
+  {
+   "id": "cv_foot_arteries_dorsal",
+   "title": "Arteries of the dorsum of the foot (dorsal)",
+   "region": "lower_limb",
+   "lab": "Foot",
+   "view": "superior",
+   "nav": [
+    "Cardiovascular System",
+    "Lower Body",
+    "Foot"
+   ],
+   "structures": 6,
+   "path": "scenes/cv_foot_arteries_dorsal",
+   "url": "arteries-dorsum-foot"
+  },
+  {
+   "id": "cv_foot_arteries_plantar",
+   "title": "Arteries of the sole of the foot (plantar)",
+   "region": "lower_limb",
+   "lab": "Foot",
+   "view": "inferior",
+   "nav": [
+    "Cardiovascular System",
+    "Lower Body",
+    "Foot"
+   ],
+   "structures": 7,
+   "path": "scenes/cv_foot_arteries_plantar",
+   "url": "arteries-sole-foot-plantar"
   },
   {
    "id": "rs_larynx_anterior",
@@ -1058,6 +1178,21 @@
    "structures": 6,
    "path": "scenes/sys_suprarenal_glands_pancreas_anterior",
    "url": "suprarenal-glands-pancreas-anterior"
+  },
+  {
+   "id": "cv_ekg_chest_electrodes_anterior",
+   "title": "EKG electrode placement: chest leads V1 to V6 (anterior)",
+   "region": "thorax",
+   "lab": "Heart",
+   "view": "anterior",
+   "nav": [
+    "Concept Quizzes",
+    "EKG",
+    "Electrode Placement"
+   ],
+   "structures": 10,
+   "path": "scenes/cv_ekg_chest_electrodes_anterior",
+   "url": "ekg-electrode-placement-chest-leads-v1-to-v6-anterior"
   }
  ]
 }
